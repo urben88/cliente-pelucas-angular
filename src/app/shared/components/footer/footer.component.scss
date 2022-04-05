@@ -1,0 +1,82 @@
+.footer{
+    // border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    width: 100%;
+    height: 381px;
+    left: 0px;
+    bottom: 0px;
+    // top: 113px;
+    // position: absolute;
+    margin-bottom: 0px;
+    background: #3D2844;
+    color: #EDE9FE;
+    .logo{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+        text-align: center;
+        width: 30%;
+    }
+    .menu{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items:center;
+        width: 100%;
+        gap: 40px;
+        height: 100%;
+        .submenu{
+            display: flex;
+            flex-direction: column;
+            h1{
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 24px;
+            }
+            a{
+                color: #E5E7EB;
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+                cursor: pointer;
+
+                &:hover{
+                    color: palevioletred;
+                }
+            }
+
+        }
+    }
+}
+
+// `sm` se aplica a dispositivos x-small (teléfonos verticales, menos de 576px)
+@media (max-width: 575.98px) {  }
+
+// `md` se aplica a dispositivos pequeños (teléfonos horizontales, menos de 768px)
+@media (max-width: 767.98px) { 
+    .footer{
+        flex-direction: column;
+        .logo{
+            margin: 0px !important;
+            padding: 0px !important;
+            height: 30px;
+            width: 100%;
+        }
+    }
+}
+
+// "lg" se aplica a dispositivos medianos (tabletas, menos de 992 px)
+@media (max-width: 991.98px) {  }
+
+// `xl` se aplica a dispositivos grandes (computadoras de escritorio, menos de 1200 px)
+@media (max-width: 1199.98px) {  }
+
+// `xxl` se aplica a dispositivos de gran tamaño (escritorios grandes, menos de 1400px)
+@media (max-width: 1399.98px) { }

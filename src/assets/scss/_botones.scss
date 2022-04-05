@@ -1,0 +1,48 @@
+.btn-blanco{
+
+    background: #FFFFFF;
+    border: 1px solid #18A0FB;
+    box-sizing: border-box;
+    border-radius: 6px;
+    width: 90px;
+    height: 32px;
+    left: 29px;
+    top: 15px;
+
+    //? Letra
+    font-family: 'Montserrat';
+    text-align: center;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.015em;
+
+    /* Actionable Item */
+    color: #18A0FB;
+
+    transition: 0.2s;
+    &:hover{
+        background-color: #D1E4FF;
+    }
+}
+
+
+.btn-morado{
+    background: #7879F1;
+    border-radius: 6px;
+    border: none;
+    padding: 11px 34px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.015em;
+
+    color: #FFFFFF;
+    transition: 0.2s;
+    &:hover{
+        background-color: #8cb8fca8;
+    }
+}

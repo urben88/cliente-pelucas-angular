@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavComponent } from '../shared/components/nav/nav.component';
+import { HomeComponent } from './components/home/home.component';
 
 //! He creado esta conexión de módulos para el LazyLoad
 
 const routes: Routes = [ 
 
 //todo Rutas principales
-  {path:'',component:NavComponent},
+  {path:'',component:HomeComponent},
 
     
     //?Cargo las rutas para el registro
