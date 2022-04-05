@@ -4,7 +4,7 @@
     top: 0px;
     background-color: white;
     min-height: 62px;
-    max-height: 400px;
+    max-height: 700px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -20,6 +20,8 @@
         .logo{
             width: 100px;
             height: 62px;
+            padding-bottom: 0px;
+            margin-bottom: 0px;
             // border: black 2px solid;
             img{
                 width: 100%;
@@ -81,6 +83,8 @@
 @media (max-width: 767.98px) { 
     .logo{
         margin: 30px auto;
+        width: 200px !important;
+        height: 200px !important;
     }
     .nav{
         // height: 62px * 2;
