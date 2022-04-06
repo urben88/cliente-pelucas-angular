@@ -1,0 +1,159 @@
+@import "../../../../styles.scss";
+//! Diseño de la caja video
+.video{
+    // border: 2px solid black;!
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    margin-top: $navheigth + 70px;
+    position: relative;
+    // border: 2px solid black;
+    youtube-player{
+        z-index: 2;
+    }
+}
+
+//! Diseño caja seleccionar
+.cajaproductos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border: 2px solid black;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 0;
+    // @include text-h1-morado();
+    .productos{
+        // border: 2px solid black;
+        margin-top:50px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+            div{
+                border-bottom: 4px solid black;
+                background-color: #3d2844cb;
+                box-shadow: 0px 0px 10px;
+                border-radius: 10px;
+                width: 200px;
+                height: 100px;
+                transition: 0.2s;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                .escondido{
+                    position: absolute;
+                    background-color: #3d2844cb;
+                    width: 100%;
+                    height: 100%;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 10px;
+                    display: none;
+                    transition: 2s;
+                    h1{
+                        position: relative;
+                        user-select: none;
+                        color: #50f0fbe2;
+                        font-size: 19px;
+                        // text-align: center;
+                        // display: inline;
+                        font-family: 'Montserrat';
+                        font-style:normal;
+                        font-weight: 500;
+                        overflow-wrap: break-word;
+                        // display: none;
+                    }
+                }
+                img{
+                    border-radius: 10px;
+                    width: 100%;
+                    height: 100%;
+                    user-select: none;
+              
+                }
+                &:hover{
+                    .escondido{
+                        display: flex;
+                    }
+                    cursor: pointer;
+                    transform: scale(1.1)
+                }
+                &:active{
+                    transform: scale(0.9);
+                }
+            }
+        }
+}
+.peluca{
+        position: absolute;
+        top: 1px;
+        left: -20px;
+        z-index: 0;
+        transform: rotate(0deg);
+        width: 40%;
+
+}
+
+ .hero-centros{
+    // border: 2px solid black;
+    
+    .centros{
+        // border: 2px solid black;
+        background-color: #F8F8F8;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        min-height: 600px;
+        position: relative;
+        div{
+            min-height: 200px;
+            padding-left: 20px;
+        }
+    }
+    .foto{
+        // border: 2px solid black; 
+        background-image: url('./../../../../assets/img/home/vereda.jpg');
+        background-size: cover;
+        background-position-x: center;
+    }
+}
+
+// `xs` devuelve solo un conjunto de reglas y ninguna consulta de medios
+// ... { ... }
+
+// `sm` se aplica a dispositivos x-small (teléfonos verticales, menos de 576px)
+@media (max-width: 575.98px) { }
+
+// `md` se aplica a dispositivos pequeños (teléfonos horizontales, menos de 768px)
+@media (max-width: 767.98px) { 
+    .video{
+        margin-top: 0px;
+    }
+    .cajaproductos{
+        padding-top: 50px;
+        h1{
+            // margin-top: 40px;
+        }
+    }
+    .hero-centros{
+        .centros{
+            min-height: 200px;
+            padding-top: 100px;
+        }
+        .foto{
+            height: 200px;
+        }
+    }
+ }
+
+// "lg" se aplica a dispositivos medianos (tabletas, menos de 992 px)
+@media (max-width: 991.98px) { }
+
+// `xl` se aplica a dispositivos grandes (computadoras de escritorio, menos de 1200 px)
+@media (max-width: 1199.98px) {}
+
+// `xxl` se aplica a dispositivos de gran tamaño (escritorios grandes, menos de 1400px)
+@media (max-width: 1399.98px) { }

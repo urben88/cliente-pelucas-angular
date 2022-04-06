@@ -1,3 +1,73 @@
 <app-nav></app-nav>
-<p style="min-height: 500px; border: 2px solid black;">home works!</p>
+<img src="./assets/decorados/Ola.svg" class="ola" type="">
+<!-- <p style="min-height: 500px;">home works!</p> -->
+<div class="container mb-3">
+    <!--! Primera fila -->
+    <div class="row">
+        <div class="col video">
+            <youtube-player videoId="PRQCAL_RMVo" [width]="700" [height]="500"></youtube-player>
+        </div> 
+    </div>
+    <!--! Segunda fila -->
+    <div class="row mt-3" style="position: relative;" >
+        <img src="/assets/decorados/PelucaRosa.svg" alt="peluca" class="peluca">
+        <div class="col-12 col-md-8 d-flex justify-content-center pe-3">
+            <div class="cajaproductos">
+                <h1>Productos que ofrecemos</h1>
+                <div class="productos">
+                    <div>
+                        <span class="escondido"><h1>Transplante capilar</h1></span>
+                        <img src="assets/img/home/protesis.jpg" alt="">
+                    </div>
+                    <div>
+                        <span class="escondido"><h1>Pañuelo</h1></span>
+                        <img src="assets/img/home/chica_panuelo.jpg" alt="">
+                    </div>
+                    <div>
+                        <span class="escondido"><h1>Transplante capilar</h1></span>
+                        <img src="assets/img/home/protesis.jpg" alt="">
+                    </div>
+                    <div>
+                        <span class="escondido"><h1>Pañuelo</h1></span>
+                        <img src="assets/img/home/chica_panuelo.jpg" alt="">
+                    </div>
+                    <div>
+                        <span class="escondido"><h1>Transplante capilar</h1></span>
+                        <img src="assets/img/home/protesis.jpg" alt="">
+                    </div>
+                    <div>
+                        <span class="escondido"><h1>Pañuelo</h1></span>
+                        <img src="assets/img/home/chica_panuelo.jpg" alt="">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-12 col-md-4 d-flex justify-content-center mt-5">
+            <p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '100%'}" styleClass="p-card-shadow">
+                <ng-template pTemplate="header">
+                    <img alt="chica_pañuelo" src="assets/img/home/chica_panuelo.jpg" style="width: 50%; margin-left: 25%;">
+                </ng-template>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+                    quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+                <ng-template pTemplate="footer">
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+
+    <!--! Tercera fila -->
+    <div class="hero-centros row p-5">
+            <div class="col-12 col-md-6 centros">
+                <div>
+                    <h1>Visita los centros que colaboran</h1>
+                    <button class="btn-morado">Visitar</button> 
+                </div> 
+            </div>
+            <div class="col-12 col-md-6 foto p-0 m-0">
+                <!-- <img alt="vereda" src="assets/img/home/vereda.jpg" style="width: 100%;"> -->
+            </div>
+    </div>
+</div>
+
 <app-footer></app-footer>

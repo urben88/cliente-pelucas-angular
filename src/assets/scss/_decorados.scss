@@ -1,0 +1,13 @@
+.ola{
+    position: absolute;
+    z-index: 0;
+    margin-top: $navheigth;
+    width: 100%;
+    user-select: none;
+}
+@media (max-width: 767.98px) { 
+    .ola{
+      margin-top: 0px;  
+    }
+    
+}

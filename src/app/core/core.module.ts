@@ -7,7 +7,6 @@ import { AuthModule } from './components/auth/auth.module';
 import { HomeComponent } from './components/home/home.component';
 
 
-
 @NgModule({
   declarations: [
     CoreComponent,
@@ -17,7 +16,7 @@ import { HomeComponent } from './components/home/home.component';
     CommonModule,
     CoreRoutingModule,
     AuthModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class CoreModule { }

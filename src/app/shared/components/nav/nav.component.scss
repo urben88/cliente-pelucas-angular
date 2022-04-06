@@ -1,15 +1,18 @@
+@import "../../../../assets/scss/_variables.scss";
 .nav{
     // border: 2px solid black;
+    z-index: 10;
     position: fixed;
     top: 0px;
     background-color: white;
-    min-height: 62px;
+    min-height: $navheigth; // 62px
     max-height: 700px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items:baseline;
     flex-wrap: wrap;
+    box-shadow: 0px 2px 10px;
 
     //? caja
     .caja{
@@ -19,7 +22,7 @@
         //? El logo
         .logo{
             width: 100px;
-            height: 62px;
+            height: $navheigth;
             padding-bottom: 0px;
             margin-bottom: 0px;
             // border: black 2px solid;
@@ -38,7 +41,8 @@
             .btn-menu{
                 padding-left:20px;
                 padding-right:20px;
-                height: 62px;
+                // max-width: 100px;
+                height: $navheigth;
                 // border: 2px solid black;
                 font-family: 'Montserrat';
                 font-style:normal;
@@ -54,7 +58,12 @@
                 cursor: pointer;
                 &:hover{
                     cursor: pointer;
-                    transform: scale(1.1);
+                    // transform: scale(1.1);
+                    // font-family: 'Montserrat';
+                    // font-style: normal;
+                    // font-weight: 700;
+                    color: #ef5da8a1;
+                    // color: aliceblue;
                 }
             } 
         }
@@ -117,7 +126,3 @@
 
 // `xxl` se aplica a dispositivos de gran tamaño (escritorios grandes, menos de 1400px)
 @media (max-width: 1399.98px) { }
-
-.ola{
-    width: 100%;
-}
