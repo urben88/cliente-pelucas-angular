@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 //Reproductor de youtube
 import { YouTubePlayerModule } from '@angular/youtube-player';
 
+import { RouterModule } from '@angular/router';
 //! Importes del PrimeNg
 import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
@@ -35,7 +36,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ButtonModule,
     AccordionModule,
     InputTextModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   exports:[
     NavComponent,

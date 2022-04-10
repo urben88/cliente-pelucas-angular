@@ -1,7 +1,7 @@
 <div class="container-fluid nav">
     <div class="caja">
         <div class="logo">
-            <img src="assets/img/logo/logo.png">
+            <a [routerLink]="['/']"><img src="assets/img/logo/logo.png"></a>
         </div>
         <div class="menu">
             <div class="btn-menu">Productos</div>
@@ -13,6 +13,6 @@
     </div>
     <div class="botones">
         <button class="btn-blanco">Log in</button>
-        <button class="btn-morado">Register</button>
+        <a [routerLink]="['/auth/register']" routerLinkActive="router-link-active" ><button class="btn-morado">Register</button></a>
     </div>
 </div>
