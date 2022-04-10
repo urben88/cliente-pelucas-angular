@@ -5,7 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CoreRoutingModule } from './core-routing.module';
 import { AuthModule } from './components/auth/auth.module';
 import { HomeComponent } from './components/home/home.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +17,11 @@ import { HomeComponent } from './components/home/home.component';
     CoreRoutingModule,
     AuthModule,
     SharedModule,
+    ReactiveFormsModule 
+  ],
+  exports: [
+    SharedModule,
+    ReactiveFormsModule 
   ]
 })
 export class CoreModule { }

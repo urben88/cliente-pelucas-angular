@@ -1,0 +1,30 @@
+.cajaform-1{
+    // border: 2px solid rgba(128, 128, 128, 0.223);
+    padding: 30px;
+    h1{
+        /* Body H4 */
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        /* or 150% */
+
+        letter-spacing: -0.015em;
+    }
+}
+.p-inputtext{
+    border-radius: 0px;
+    border: 2px solid rgba(128, 128, 128, 0.44);
+}
+:host ::ng-deep{
+    .p-inputnumber{
+        border-radius: 0px;
+        border: 2px solid rgba(128, 128, 128, 0.44);
+    }
+    .p-inputnumber-input{
+        border-radius: 0px;
+        border:none
+    }
+}
+

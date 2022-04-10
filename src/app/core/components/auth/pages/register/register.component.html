@@ -1,1 +1,49 @@
-<p>register works!</p>
+<app-nav></app-nav>
+<!--? Decorados -->
+<img class="circulo1" src="assets/decorados/circulo.svg">
+<img class="circulo2" src="assets/decorados/circulo.svg">
+
+<div class="container">
+    
+    <div class="caja cajaform-1">
+        <h1>Crear una cuenta</h1>
+        <div class="datos">
+
+            <div class="doble">
+                <input type="text" id="nombre" placeholder="Nombre" pInputText [(ngModel)]="nombre"> 
+                <input type="text" placeholder="Apellidos" pInputText [(ngModel)]="apellidos"> 
+            </div>
+
+            <input type="text" placeholder="Correo electronico" pInputText [(ngModel)]="email"> 
+            <div class="doble">
+                <p-inputNumber [(ngModel)]="telefono" pattern="\x2b[0-9]+" [maxlength]="lengthTel" placeholder="Teléfono" mode="decimal" inputId="withoutgrouping" [useGrouping]="false"></p-inputNumber>
+                <p-inputNumber [(ngModel)]="cpostal" placeholder="Código postal" [maxlength]="lengthCpos" mode="decimal" inputId="withoutgrouping" [useGrouping]="false"></p-inputNumber>
+            </div>
+
+            <!--? Contraseña -->
+            <p-password placeholder="Contraseña" [(ngModel)]="password" promptLabel="Escriba una contraseña" weakLabel="Poco segura" mediumLabel="Seguridad media" strongLabel="Muy segura">
+                <ng-template pTemplate="header">
+                    <h6>Pick a password</h6>
+                </ng-template>
+                <ng-template pTemplate="footer">
+                    <p-divider></p-divider>
+                    <p class="mt-2">Sugerencias</p>
+                    <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                        <li>Al menos una minúscula</li>
+                        <li>Al menos una mayuscula</li>
+                        <li>Al menos un número</li>
+                        <li>Mínimo 8 caracteres</li>
+                    </ul>
+                </ng-template>
+            </p-password>
+            <input type="password" placeholder="Repita la contraseña" pPassword [(ngModel)]="password2" [feedback]="false" />
+        </div>
+        <div class="errores">
+            <p-message severity="error" *ngFor="let error of errores" [text]="error"></p-message>
+        </div>
+        <button class="btn-morado" (click)="register()">Register</button>
+    </div>
+</div>
+
+<!-- <app-footer></app-footer>  -->
+

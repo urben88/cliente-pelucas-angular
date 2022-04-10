@@ -8,6 +8,13 @@ import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
 import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
 import {MenuItem} from 'primeng/api';                  //api
+import {InputTextModule} from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {PasswordModule} from 'primeng/password';
+import { DividerModule } from "primeng/divider";
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 import { SharedComponent } from './shared.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -19,14 +26,16 @@ import { FooterComponent } from './components/footer/footer.component';
   declarations: [
     SharedComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     CommonModule,
     YouTubePlayerModule,
     CardModule,
     ButtonModule,
-    AccordionModule
+    AccordionModule,
+    InputTextModule,
+    FormsModule
   ],
   exports:[
     NavComponent,
@@ -34,7 +43,14 @@ import { FooterComponent } from './components/footer/footer.component';
     YouTubePlayerModule,
     CardModule,
     ButtonModule,
-    AccordionModule
+    AccordionModule,
+    InputTextModule,
+    FormsModule,
+    InputNumberModule,
+    PasswordModule,
+    DividerModule,
+    MessageModule,
+    MessagesModule
   ]
 })
 export class SharedModule { }

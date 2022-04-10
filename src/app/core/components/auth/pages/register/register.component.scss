@@ -1,0 +1,136 @@
+@import "../../../../../../styles.scss";
+.container{
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: $navheigth + 70px;
+    .caja{
+        background-color: white;
+        z-index: 9;
+        width: 75%;
+        min-width: 200px;
+        border: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        .datos{
+            font-size: 100%;
+            // border: 2px solid black;
+            margin: 20px 0px;
+            input{
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .doble{
+                display: flex;
+                justify-content: space-around;
+                // border: 2px solid black;
+                gap: 20px;
+                width: 100%;
+                p-inputNumber{
+                    width: 100% !important;
+                }
+            }
+            p-password{
+                width: 100% !important;
+                margin-bottom: 20px;
+            }
+        }
+        .errores{
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            // border: 2px solid black;
+            p-message{
+                margin-right: 10px;
+                margin-bottom: 10px;
+            }
+        }
+       
+        button{
+            width: 180px;
+        }
+
+    }
+}
+
+.circulo1,.circulo2{
+    z-index: 0;
+    position: fixed;
+    user-select: none;
+    overflow: hidden;
+}
+.circulo1{
+    transform: rotate(16.35deg);
+    width: 1058px;
+    height: 1007.98px;
+    left: -211.27px;
+    top: -348px;
+}
+.circulo2{
+    width: 675.82px;
+    height: 643.87px;
+    left: 1300.06px;
+    top: 174.05px;
+    transform: rotate(-148.03deg);
+
+}
+
+
+
+:host ::ng-deep{
+    .p-inputnumber{
+        width: 100%;
+    }
+}
+
+:host ::ng-deep {
+    .p-password-panel{
+     width: 100% !important;
+    }
+} 
+
+
+// X-Small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {  }
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) { 
+    #nombre{
+        margin-bottom: 0px;
+    }
+    .container{
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .doble{
+        flex-direction: column;
+        gap: 0px;
+        padding: 0px;
+    }
+    .caja{
+        .errores{
+            align-items: center;
+            justify-content: center;
+        }
+        align-items: center;
+        justify-content: center;
+    }
+    .circulo1{
+        margin-top: 400px;
+    }
+ }
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {  }
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {  }
+
+// X-Large devices (large desktops, less than 1400px)
+@media (max-width: 1399.98px) {  }
+
+// XX-Large devices (larger desktops)
+// No media query since the xxl breakpoint has no upper bound on its width
