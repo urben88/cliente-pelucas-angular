@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import validar from '../../../../utils/validaciones'
+import { FormBuilder, FormGroup } from '@angular/forms';
+import validar from '../../../../utils/validaciones/validaciones'
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -7,8 +9,13 @@ import validar from '../../../../utils/validaciones'
 })
 export class RegisterComponent implements OnInit {
 
-
+  roles:any=[
+    {name: 'Colaborador', code: 'colaborador'},
+    {name: 'Receptor', code: 'receptor'},
+  ]
+  rol:any;
   errores:any[] = [];
+  
 
   nombre!:string;
   apellidos!:string;
@@ -18,9 +25,13 @@ export class RegisterComponent implements OnInit {
   password!:string;
   password2!:string;
 
-  lengthTel:number = 11;
+  lengthTel:number = 12;
   lengthCpos:number = 5;
-  constructor() {
+
+  // //? Form group
+  // singupForm:FormGroup;
+  constructor( private _builder:FormBuilder) {
+
     
   }
 
@@ -99,27 +110,31 @@ export class RegisterComponent implements OnInit {
   }
 
   validarApellidos(){
-    if(this.apellidos != '' && this.apellidos.split(" ").length == 2){
-      let resul = validar.validarApellidos(this.apellidos);
-      this.apellidos = resul[0] + " " + resul[1]
+    if(this.apellidos != "" && this.apellidos != undefined){
+        if(this.apellidos.split(" ").length == 2){
+          let resul = validar.validarApellidos(this.apellidos);
+          this.apellidos = resul[0] + " " + resul[1]
+          return [true]
+        }else if(this.apellidos.split(" ").length == 1){
+          return [false,"Pon tus dos apellidos"]
+        }else{
+          return [false,"Error en los apellidos"]
+        }
     }else{
-      this.errores.push("Error en los apellidos")
+      return [false,"Los apellidos estan vacios"] 
     }
   }
 
   //TODO Dar al boton enviar
   register(){
     this.errores = [];
-
+    console.log(this.apellidos)
     if(!this.validarNombre()[0]){
       this.errores.push(this.validarNombre()[1])
     }
 
-    if(this.apellidos !=  null && this.apellidos.split(" ").length == 2){
-        let resul = validar.validarApellidos(this.apellidos);
-        this.apellidos = resul[0] + " " + resul[1]
-      }else{
-        this.errores.push("Error en los apellidos")
+    if(!this.validarApellidos()[0]){
+      this.errores.push(this.validarApellidos()[1])
     }
 
     if(!this.validaEmail()[0]){
@@ -139,12 +154,15 @@ export class RegisterComponent implements OnInit {
     }
 
     if(this.errores.length == 0){
+      let rolselec = this.rol.code;
       let resul = {
         nombre:this.nombre,
         apellidos:this.apellidos,
         email:this.email,
         telefono:this.telefono,
-        cpostal:this.cpostal
+        cpostal:this.cpostal,
+        rol:this.rol.code
+        
       }
       console.log(resul)
     }else{

@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+//? Para hacer peticiones http
+import { HttpClientModule} from '@angular/common/http';
+
 import { CoreComponent } from './core.component';
 import { SharedModule } from '../shared/shared.module';
 import { CoreRoutingModule } from './core-routing.module';
@@ -17,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CoreRoutingModule,
     AuthModule,
     SharedModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule ,
+    HttpClientModule
   ],
   exports: [
     SharedModule,

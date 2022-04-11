@@ -16,6 +16,7 @@ import {PasswordModule} from 'primeng/password';
 import { DividerModule } from "primeng/divider";
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import {DropdownModule} from 'primeng/dropdown';
 
 import { SharedComponent } from './shared.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -37,7 +38,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AccordionModule,
     InputTextModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    DropdownModule
   ],
   exports:[
     NavComponent,
@@ -52,7 +54,8 @@ import { FooterComponent } from './components/footer/footer.component';
     PasswordModule,
     DividerModule,
     MessageModule,
-    MessagesModule
+    MessagesModule,
+    DropdownModule
   ]
 })
 export class SharedModule { }

@@ -1,4 +1,4 @@
-<app-nav></app-nav>
+<!-- <app-nav></app-nav> -->
 <!--? Decorados -->
 <img class="circulo1" src="assets/decorados/circulo.svg">
 <img class="circulo2" src="assets/decorados/circulo.svg">
@@ -16,32 +16,37 @@
 
             <input type="text" placeholder="Correo electronico" pInputText [(ngModel)]="email"> 
             <div class="doble">
-                <p-inputNumber [(ngModel)]="telefono" pattern="\x2b[0-9]+" [maxlength]="lengthTel" placeholder="Teléfono" mode="decimal" inputId="withoutgrouping" [useGrouping]="false"></p-inputNumber>
+                <p-inputNumber [(ngModel)]="telefono" [maxlength]="lengthTel" placeholder="Teléfono" mode="decimal" inputId="withoutgrouping" [useGrouping]="false"></p-inputNumber>
                 <p-inputNumber [(ngModel)]="cpostal" placeholder="Código postal" [maxlength]="lengthCpos" mode="decimal" inputId="withoutgrouping" [useGrouping]="false"></p-inputNumber>
             </div>
 
             <!--? Contraseña -->
-            <p-password placeholder="Contraseña" [(ngModel)]="password" promptLabel="Escriba una contraseña" weakLabel="Poco segura" mediumLabel="Seguridad media" strongLabel="Muy segura">
-                <ng-template pTemplate="header">
-                    <h6>Pick a password</h6>
-                </ng-template>
-                <ng-template pTemplate="footer">
-                    <p-divider></p-divider>
-                    <p class="mt-2">Sugerencias</p>
-                    <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
-                        <li>Al menos una minúscula</li>
-                        <li>Al menos una mayuscula</li>
-                        <li>Al menos un número</li>
-                        <li>Mínimo 8 caracteres</li>
-                    </ul>
-                </ng-template>
-            </p-password>
+            <div class="contra1">
+                <p-password placeholder="Contraseña" [(ngModel)]="password" style="width:100%" promptLabel="Seguridad de la contraseña" weakLabel="Poco segura" mediumLabel="Seguridad media" strongLabel="Muy segura">
+                    <ng-template pTemplate="header">
+                        <h6>Escriba una contraseña</h6>
+                    </ng-template>
+                    <ng-template pTemplate="footer">
+                        <p-divider></p-divider>
+                        <p class="mt-2">Sugerencias</p>
+                        <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                            <li>Al menos una minúscula</li>
+                            <li>Al menos una mayuscula</li>
+                            <li>Al menos un número</li>
+                            <li>Mínimo 8 caracteres</li>
+                        </ul>
+                    </ng-template>
+                </p-password>
+            </div>
             <input type="password" placeholder="Repita la contraseña" pPassword [(ngModel)]="password2" [feedback]="false" />
         </div>
+        <label for="rol" style="display: flex; flex-direction: column; margin-top: -20px;">
+            Tipo de centa:
+        <p-dropdown [options]="roles" id="rol" [(ngModel)]="rol" placeholder="Tipo de cuenta" optionLabel="name" [showClear]="false"></p-dropdown></label>
         <div class="errores">
             <p-message severity="error" *ngFor="let error of errores" [text]="error"></p-message>
         </div>
-        <button class="btn-morado" (click)="register()">Register</button>
+        <button class="btn-morado" style="align-self: flex-end;" (click)="register()">Register</button>
     </div>
 </div>
 

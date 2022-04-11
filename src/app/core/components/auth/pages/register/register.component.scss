@@ -32,10 +32,11 @@
                     width: 100% !important;
                 }
             }
-            p-password{
-                width: 100% !important;
-                margin-bottom: 20px;
+            .contra1{
+                width: 100%;
+                margin: 20px 20px 20px 0px;
             }
+
         }
         .errores{
             width: 100%;
@@ -81,16 +82,16 @@
 
 
 :host ::ng-deep{
+    .ng-tns-c65-0{
+        width: 100% !important;
+    }
     .p-inputnumber{
         width: 100%;
     }
+  
 }
 
-:host ::ng-deep {
-    .p-password-panel{
-     width: 100% !important;
-    }
-} 
+
 
 
 // X-Small devices (portrait phones, less than 576px)

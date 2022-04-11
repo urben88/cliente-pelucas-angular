@@ -8,6 +8,8 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { StudentsModule } from './students/students.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RouterLinkActive } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
