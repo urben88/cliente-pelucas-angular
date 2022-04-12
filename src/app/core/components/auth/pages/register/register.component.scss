@@ -28,8 +28,11 @@
                 // border: 2px solid black;
                 gap: 20px;
                 width: 100%;
-                p-inputNumber{
-                    width: 100% !important;
+                // p-inputNumber{
+                //     width: 100% !important;
+                // }
+                div{
+                    width: 100%;
                 }
             }
             .contra1{
@@ -57,6 +60,11 @@
     }
 }
 
+.field{
+    small{
+        margin-top: -15px;
+    }
+}
 .circulo1,.circulo2{
     z-index: 0;
     position: fixed;
@@ -100,7 +108,7 @@
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) { 
     #nombre{
-        margin-bottom: 0px;
+        margin-bottom: 20px;
     }
     .container{
         padding-top: 30px;

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import validar from '../../../../utils/validaciones/validaciones'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import validar from '../../../../utils/metodos'
+import validar2 from '../../../../utils/validaciones/validaciones'
+import patrones from "../../../../utils/validaciones/patterns";
 
 @Component({
   selector: 'app-register',
@@ -16,20 +18,19 @@ export class RegisterComponent implements OnInit {
   rol:any;
   errores:any[] = [];
   
+  singupForm:FormGroup = this._builder.group({
+    nombre:['Ruben  ',Validators.required],
+    apellidos:['esteve vicente',[Validators.required,Validators.pattern(patrones.apellidos)]],
+    email:['tirolin25@gmail.com',[Validators.required,Validators.pattern(patrones.email)]],
+    telefono:['111 111 1111',[Validators.required,Validators.pattern(patrones.telefono)]],
+    cpostal:['12345',[Validators.required,Validators.pattern(patrones.cpostal)]],
+    password1:['12345',[Validators.required ,Validators.minLength(5)]],
+    password2:['12345',Validators.required],
+    rol:['receptor',Validators.required],
+  },{
+    validators: [ validar2.camposIguales('password1','password2') ]
+  });
 
-  nombre!:string;
-  apellidos!:string;
-  email!:string;
-  cpostal!:number;
-  telefono!:number;
-  password!:string;
-  password2!:string;
-
-  lengthTel:number = 12;
-  lengthCpos:number = 5;
-
-  // //? Form group
-  // singupForm:FormGroup;
   constructor( private _builder:FormBuilder) {
 
     
@@ -38,137 +39,96 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //TODO Validaciones
-  validarNombre(){
-    console.log(this.nombre)
-    if(this.nombre != "" && this.nombre != null){
-      if(this.nombre.split(" ").length > 1){
-        return [false,"El nombre esta mal escrito"]
-      }else{
-        this.nombre = validar.mayusFirstChar(this.nombre)
-        return[true]
-      }
-    }else{
-      return [false,"No has introducido el nombre"]
+
+  //? Mensajes de error
+  get nombreErrorMsg(): string{
+    const errors = this.singupForm.get('nombre')?.errors;
+    if(errors?.['required']){
+      return 'El nombre es obligatorio'
     }
+    return '';
+  }
+  get apellidosErrorMsg(): string{
+    const errors = this.singupForm.get('apellidos')?.errors;
+    if(errors?.['required']){
+      return 'Los apellidos son obligatorios'
+    }else if(errors?.['pattern']){
+      return 'Formato no válido'
+    }
+    return '';
+  }
+  get emailErrorMsg(): string{
+    const errors = this.singupForm.get('email')?.errors;
+    if(errors?.['required']){
+      return 'El email es obligatorio'
+    }else if(errors?.['pattern']){
+      return 'Formato no válido'
+    }
+    return '';
+  }
+  get telefonoErrorMsg(): string{
+    const errors = this.singupForm.get('telefono')?.errors;
+    if(errors?.['required']){
+      return 'El telefono es obligatorio'
+    }else if(errors?.['pattern']){
+      return 'Formato no válido'
+    }
+    return '';
+  }
+  get cpostalErrorMsg(): string{
+    const errors = this.singupForm.get('cpostal')?.errors;
+    if(errors?.['required']){
+      return 'El codigo postal es obligatorio'
+    }else if(errors?.['pattern']){
+      return 'Formato no válido'
+    }
+    return '';
+  }
+  get password1ErrorMsg(): string{
+    const errors = this.singupForm.get('password1')?.errors;
+    if(errors?.['required']){
+      return 'La contraseña es obligatoria'
+    }else if (errors?.['minlength']){
+      return 'La contraseña debe de tener una longitud mínima de 5';
+    }
+    return '';
+  }
+  get password2ErrorMsg(): string{
+    const errors = this.singupForm.get('password2')?.errors;
+    if(errors?.['required']){
+      return 'Repetir la contraseña es obligatoria'
+    }else if (errors?.['noIguales']){
+      return 'Las contraseñas no coinciden'
+    }
+    return '';
+  }
+  //? 
+  campoEsValido( campo:string){
+    return this.singupForm.controls[campo].errors && this.singupForm.controls[campo].touched;
   }
 
-  validaEmail(){
-    if(this.email !=  null){
-      if(validar.validarEmail(this.email)){
-        return [true]
-      }else{
-        return [false,"El email no esta bien escrito"]
-      }
-     
-    }else{
-      return [false,"No has escrito el email"];
-    }
-  }
-  validarNumero(){
-    if(this.telefono != null){
-       if(this.telefono.toString().length < 9){
-          return [false,"El telefono no esta bien escrito"]
-       }else{
-         return [true]
-       }
-    }else{
-      return [false,"No has introducido el teléfono"]
-    }
-   
-  }
-  validarCodigoPostal(){
-    if(this.cpostal != null){
-       if(this.cpostal.toString().length < 5){
-          return [false,"El codigo postal no esta bien escrito"]
-       }else{
-         return [true]
-       }
-    }else{
-      return [false,"No has introducido el codigo postal"]
-    }
-   
-  }
-  validarContrasenas(){
-    
-    if(this.password ==  '' && this.password2 ==  ''){
-      return [false, "No has escrito las contraseñas"]
-    }
-
-    if(this.password == ''){
-      return [false, "No has escrito la primera contraseña"]
-    }
-    if(this.password2 == ''){
-      return [false, "No has escrito la segunda contraseña"]
-    }
-
-    if(this.password != this.password2){
-      return [false, "Las contraseñas no coinciden"]
-    }else{
-      return [true]
-    }
-  }
-
-  validarApellidos(){
-    if(this.apellidos != "" && this.apellidos != undefined){
-        if(this.apellidos.split(" ").length == 2){
-          let resul = validar.validarApellidos(this.apellidos);
-          this.apellidos = resul[0] + " " + resul[1]
-          return [true]
-        }else if(this.apellidos.split(" ").length == 1){
-          return [false,"Pon tus dos apellidos"]
-        }else{
-          return [false,"Error en los apellidos"]
-        }
-    }else{
-      return [false,"Los apellidos estan vacios"] 
-    }
-  }
 
   //TODO Dar al boton enviar
   register(){
-    this.errores = [];
-    console.log(this.apellidos)
-    if(!this.validarNombre()[0]){
-      this.errores.push(this.validarNombre()[1])
-    }
 
-    if(!this.validarApellidos()[0]){
-      this.errores.push(this.validarApellidos()[1])
-    }
-
-    if(!this.validaEmail()[0]){
-      this.errores.push(this.validaEmail()[1])
-    }
-
-    if(!this.validarNumero()[0]){
-      this.errores.push(this.validarNumero()[1])
-    }
-
-    if(!this.validarContrasenas()[0]){
-      this.errores.push(this.validarContrasenas()[1])
-    }
-
-    if(!this.validarCodigoPostal()[0]){
-      this.errores.push(this.validarCodigoPostal()[1])
-    }
-
-    if(this.errores.length == 0){
-      let rolselec = this.rol.code;
-      let resul = {
-        nombre:this.nombre,
-        apellidos:this.apellidos,
-        email:this.email,
-        telefono:this.telefono,
-        cpostal:this.cpostal,
-        rol:this.rol.code
-        
+    if(this.singupForm.invalid){
+      this.singupForm.markAllAsTouched();
+      console.log("Error en los datos")
+    }else{
+      console.log(this.singupForm.value)
+      let resul ={
+        apellidos:this.singupForm.value.apellidos.trim().toLowerCase(), 
+        cpostal: this.singupForm.value.cpostal.trim(),
+        email: this.singupForm.value.email.trim(),
+        nombre: this.singupForm.value.nombre.trim().toLowerCase(),
+        password: this.singupForm.value.password1.trim(),
+        rol: this.singupForm.value.rol.trim().toLowerCase(),
+        telefono: this.singupForm.value.telefono.trim()
       }
       console.log(resul)
-    }else{
-      console.log("Error en los datos")
+      this.singupForm.reset(); //Borra el contenido de los inputs
     }
-    
+
 
   }
 

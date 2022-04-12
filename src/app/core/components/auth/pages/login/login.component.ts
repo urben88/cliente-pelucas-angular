@@ -25,6 +25,25 @@ export class LoginComponent implements OnInit {
     }) 
   }
 
+  //? Mensages de error
+  get emailErrorMsg(): string{
+    const errors = this.singinForm.get('email')?.errors;
+    if(errors?.['required']){
+      return 'El email es obligatorio'
+    }else if(errors?.['pattern']){
+      return 'Formato no válido'
+    }
+    return '';
+  }
+  get passwordErrorMsg(): string{
+    const errors = this.singinForm.get('password')?.errors;
+    if(errors?.['required']){
+      return 'La contraseña es obligatoria'
+    }else if (errors?.['minlength']){
+      return 'La contraseña debe de tener una longitud mínima de 5';
+    }
+    return '';
+  }
   send(){
     if(this.singinForm.invalid){
       this.singinForm.markAllAsTouched();

@@ -1,7 +1,7 @@
 <!-- <app-nav></app-nav> -->
 <!--? Decorados -->
-<!-- <img class="circulo1" src="assets/decorados/circulo.svg">
-<img class="circulo2" src="assets/decorados/circulo.svg"> -->
+<img class="circulo1" src="assets/decorados/circulo.svg">
+<img class="circulo2" src="assets/decorados/circulo.svg">
 
 <div class="container">
     <form [formGroup]="singinForm" class="caja cajaform-1" (submit)="send()">
@@ -12,14 +12,14 @@
                 <label for="email" class="block">Email</label>
                 <input id="email" type="email" aria-describedby="username2-help" pInputText formControlName="email" />
                 <small id="email"  *ngIf="campoEsValido('email')" class="p-error block">
-                    {{ singinForm.controls['email'].errors | json }}</small>
+                    {{ emailErrorMsg }}</small>
             </div>
 
             <div class="field" style="display: flex; flex-direction: column;">
                 <label for="password" class="block">Password</label>
                 <input id="password" type="password" aria-describedby="username2-help" pInputText formControlName="password" />
                 <small id="password" *ngIf="campoEsValido('password')" class="p-error block">
-                    {{ singinForm.controls['password'].errors | json }}
+                    {{ passwordErrorMsg }}
                 </small>
             </div>
         </div>
@@ -33,8 +33,8 @@
         <button class="btn-morado">Login</button>
        
     </form>
-<p>{{ singinForm.value | json }}</p>
-<p>{{ singinForm.valid | json }}</p>
+<!-- <p>{{ singinForm.value | json }}</p>
+<p>{{ singinForm.valid | json }}</p> -->
 </div>
 
 <!-- <app-footer></app-footer> -->

@@ -5,49 +5,88 @@
 
 <div class="container">
     
-    <div class="caja cajaform-1">
+    <form class="caja cajaform-1" [formGroup]="singupForm">
         <h1>Crear una cuenta</h1>
         <div class="datos">
 
             <div class="doble">
-                <input type="text" id="nombre" placeholder="Nombre" pInputText [(ngModel)]="nombre"> 
-                <input type="text" placeholder="Apellidos" pInputText [(ngModel)]="apellidos"> 
+                <div class="field" style="display: flex; flex-direction: column;">
+                    <label for="nombre" class="block">Nombre</label>
+                    <input id="nombre" type="text" aria-describedby="username2-help" pInputText formControlName="nombre" />
+                    <small  *ngIf="campoEsValido('nombre')" class="p-error block">
+                        {{ nombreErrorMsg }}</small>
+                </div>
+                <div class="field" style="display: flex; flex-direction: column;">
+                    <label for="apellidos" class="block">Apellidos</label>
+                    <input id="apellidos" type="text" aria-describedby="username2-help" pInputText formControlName="apellidos" />
+                    <small *ngIf="campoEsValido('apellidos')" class="p-error block">
+                        {{apellidosErrorMsg }}</small>
+                </div>
+                <!-- <input type="text" id="nombre" placeholder="Nombre" pInputText [(ngModel)]="nombre">  -->
+                <!-- <input type="text" placeholder="Apellidos" pInputText [(ngModel)]="apellidos">  -->
             </div>
 
-            <input type="text" placeholder="Correo electronico" pInputText [(ngModel)]="email"> 
+            <!-- <input type="text" placeholder="Correo electronico" pInputText [(ngModel)]="email">  -->
+            <div class="field" style="display: flex; flex-direction: column;">
+                <label for="email" class="block">Correo electronico</label>
+                <input id="email" type="email" aria-describedby="username2-help" pInputText formControlName="email" />
+                <small *ngIf="campoEsValido('email')" class="p-error block">
+                    {{ emailErrorMsg }}</small>
+            </div>
+
             <div class="doble">
-                <p-inputNumber [(ngModel)]="telefono" [maxlength]="lengthTel" placeholder="Teléfono" mode="decimal" inputId="withoutgrouping" [useGrouping]="false"></p-inputNumber>
-                <p-inputNumber [(ngModel)]="cpostal" placeholder="Código postal" [maxlength]="lengthCpos" mode="decimal" inputId="withoutgrouping" [useGrouping]="false"></p-inputNumber>
+
+                <div class="field" style="display: flex; flex-direction: column;">
+                    <label for="telefono" class="block">Número de teléfono</label>
+                    <input id="telefono" type="tel" aria-describedby="username2-help" pInputText formControlName="telefono" />
+                    <small *ngIf="campoEsValido('telefono')" class="p-error block">
+                        {{ telefonoErrorMsg}}</small>
+                </div>
+                <div class="field" style="display: flex; flex-direction: column;">
+                    <label for="cpostal" class="block">Código postal</label>
+                    <input id="cpostal" type="number" aria-describedby="username2-help" pInputText formControlName="cpostal" />
+                    <small *ngIf="campoEsValido('cpostal')" class="p-error block">
+                        {{ cpostalErrorMsg }}</small>
+                </div>
+
             </div>
 
-            <!--? Contraseña -->
             <div class="contra1">
-                <p-password placeholder="Contraseña" [(ngModel)]="password" style="width:100%" promptLabel="Seguridad de la contraseña" weakLabel="Poco segura" mediumLabel="Seguridad media" strongLabel="Muy segura">
-                    <ng-template pTemplate="header">
-                        <h6>Escriba una contraseña</h6>
-                    </ng-template>
-                    <ng-template pTemplate="footer">
-                        <p-divider></p-divider>
-                        <p class="mt-2">Sugerencias</p>
-                        <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
-                            <li>Al menos una minúscula</li>
-                            <li>Al menos una mayuscula</li>
-                            <li>Al menos un número</li>
-                            <li>Mínimo 8 caracteres</li>
-                        </ul>
-                    </ng-template>
-                </p-password>
+                <label>Contraseña</label>
+                <p-password placeholder="Contraseña" formControlName="password1" style="width:100%" promptLabel="Seguridad de la contraseña" weakLabel="Poco segura" mediumLabel="Seguridad media" strongLabel="Muy segura">
+                        <ng-template pTemplate="header">
+                            <h6>Escriba una contraseña</h6>
+                        </ng-template>
+                        <ng-template pTemplate="footer">
+                            <p-divider></p-divider>
+                            <p class="mt-2">Sugerencias</p>
+                            <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                                <li>Al menos una minúscula</li>
+                                <li>Al menos una mayuscula</li>
+                                <li>Al menos un número</li>
+                                <li>Mínimo 8 caracteres</li>
+                            </ul>
+                        </ng-template>
+                </p-password> 
+                <small *ngIf="campoEsValido('password1')" class="p-error block">
+                    {{ password1ErrorMsg }}
+                </small>
             </div>
-            <input type="password" placeholder="Repita la contraseña" pPassword [(ngModel)]="password2" [feedback]="false" />
+
+            <div class="field" style="display: flex; flex-direction: column;">
+                <!-- <label for="password2" class="block">Repita</label> -->
+                <input id="password2" placeholder="Repita la constraseña" type="password" aria-describedby="username2-help" pInputText formControlName="password2" />
+                <small *ngIf="campoEsValido('password2')" class="p-error block">
+                    {{ password2ErrorMsg}}</small>
+            </div>
+            <!-- 
+            <label for="rol" style="display: flex; flex-direction: column; margin-top: -20px;">
+                Tipo de centa:
+            <p-dropdown [options]="roles" id="rol" formControlName="rol " placeholder="Tipo de cuenta" optionLabel="name" [showClear]="false"></p-dropdown></label> -->
         </div>
-        <label for="rol" style="display: flex; flex-direction: column; margin-top: -20px;">
-            Tipo de centa:
-        <p-dropdown [options]="roles" id="rol" [(ngModel)]="rol" placeholder="Tipo de cuenta" optionLabel="name" [showClear]="false"></p-dropdown></label>
-        <div class="errores">
-            <p-message severity="error" *ngFor="let error of errores" [text]="error"></p-message>
-        </div>
+
         <button class="btn-morado" style="align-self: flex-end;" (click)="register()">Register</button>
-    </div>
+    </form>
 </div>
 
 <!-- <app-footer></app-footer>  -->
