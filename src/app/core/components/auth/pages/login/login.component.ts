@@ -2,6 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 //? Importo el archivo con patrones
 import patrones from "../../../../utils/validaciones/patterns";
+import { AuthService } from 'src/app/core/services/auth.service';
+//? Interaces
+import {Login} from "../../../../models/Auth.interface"
+import { ErrorPost } from 'src/app/core/models/Error.interface';
+
+//? Servicio
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,13 +18,17 @@ import patrones from "../../../../utils/validaciones/patterns";
 export class LoginComponent implements OnInit {
 
 
+  erroresDB:String[] =[];
+
   singinForm:FormGroup =  this._builder.group({
     email:['', [Validators.required, Validators.pattern(patrones.email)]],
     password:['',[Validators.required]]
   })
 
   constructor(
-    private _builder: FormBuilder 
+    private _builder: FormBuilder,
+    private _auth: AuthService,
+    private _router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -45,11 +57,23 @@ export class LoginComponent implements OnInit {
     return '';
   }
   send(){
+    this.erroresDB = [];
     if(this.singinForm.invalid){
       this.singinForm.markAllAsTouched();
     }else{
       console.log(this.singinForm.value)
-      this.singinForm.reset(); //Borra el contenido de los inputs
+      this._auth.singin(this.singinForm.value)
+      .subscribe(
+        (res)=>{
+          localStorage.setItem('token',res.token);
+          this.singinForm.reset(); //Borra el contenido de los inputs
+          this._router.navigate(['/'])
+        },
+        (error:any) =>{
+          console.log(error)
+          this.erroresDB.push(error.error.msg)
+        }
+      )
     }
   }
   campoEsValido( campo:string){

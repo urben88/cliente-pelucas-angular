@@ -5,7 +5,7 @@
 
 <div class="container">
     
-    <form class="caja cajaform-1" [formGroup]="singupForm">
+    <form class="caja cajaform-1" [formGroup]="singupForm" (submit)="register()">
         <h1>Crear una cuenta</h1>
         <div class="datos">
 
@@ -14,7 +14,8 @@
                     <label for="nombre" class="block">Nombre</label>
                     <input id="nombre" type="text" aria-describedby="username2-help" pInputText formControlName="nombre" />
                     <small  *ngIf="campoEsValido('nombre')" class="p-error block">
-                        {{ nombreErrorMsg }}</small>
+                        {{ nombreErrorMsg }}
+                    </small>
                 </div>
                 <div class="field" style="display: flex; flex-direction: column;">
                     <label for="apellidos" class="block">Apellidos</label>
@@ -30,8 +31,9 @@
             <div class="field" style="display: flex; flex-direction: column;">
                 <label for="email" class="block">Correo electronico</label>
                 <input id="email" type="email" aria-describedby="username2-help" pInputText formControlName="email" />
-                <small *ngIf="campoEsValido('email')" class="p-error block">
-                    {{ emailErrorMsg }}</small>
+                <small *ngIf="campoEsValido('email') || errores.email" class="p-error block">
+                    {{ emailErrorMsg }}
+                </small>  
             </div>
 
             <div class="doble">
@@ -51,9 +53,9 @@
 
             </div>
 
-            <div class="contra1">
+            <div class="contra1" style="display: flex; flex-direction: column;">
                 <label>Contraseña</label>
-                <p-password placeholder="Contraseña" formControlName="password1" style="width:100%" promptLabel="Seguridad de la contraseña" weakLabel="Poco segura" mediumLabel="Seguridad media" strongLabel="Muy segura">
+                <p-password placeholder="Contraseña" formControlName="password1" promptLabel="Seguridad de la contraseña" weakLabel="Poco segura" mediumLabel="Seguridad media" strongLabel="Muy segura">
                         <ng-template pTemplate="header">
                             <h6>Escriba una contraseña</h6>
                         </ng-template>

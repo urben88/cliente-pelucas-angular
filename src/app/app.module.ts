@@ -10,7 +10,13 @@ import { StudentsModule } from './students/students.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
+//?Servicios
+import { AuthService } from './core/services/auth.service';
+//?Guards
+import { AuthGuard } from './core/guards/auth.guard';
+//?Para los provide
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from './core/interceptor/token-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent
@@ -22,7 +28,14 @@ import { CommonModule } from '@angular/common';
     SharedModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard,{
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptorService,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

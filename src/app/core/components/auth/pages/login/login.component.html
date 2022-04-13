@@ -23,13 +23,9 @@
                 </small>
             </div>
         </div>
-        <!-- <label for="password">Contraseña</label>
-        <input type="password" id="password" pInputText formControlName="password">
-        <span class="form-text text-danger"
-            *ngIf="campoEsValido('password')"
-        >
-            Error contraseña
-        </span> -->
+        <div *ngFor="let error of erroresDB" class="animate__animated animate__flipInX alert alert-danger" role="alert">
+          {{ error }}
+        </div>
         <button class="btn-morado">Login</button>
        
     </form>

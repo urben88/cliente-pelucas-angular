@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  
+  //? Ruta para conectarse al servidor
+  urlServer:"http://localhost:3000/",//?este no lo uso
+  urlServerApi:"http://localhost:3000/api/",
 };
 
 /*

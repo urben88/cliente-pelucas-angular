@@ -3,7 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import validar from '../../../../utils/metodos'
 import validar2 from '../../../../utils/validaciones/validaciones'
 import patrones from "../../../../utils/validaciones/patterns";
+//?Servicios
+import { AuthService } from 'src/app/core/services/auth.service';
 
+//?Interfaces
+import {Singin} from "../../../../models/Auth.interface"
+import {User} from "../../../../models/User.interface"
+import {ErrorPost} from "../../../../models/Error.interface"
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -16,7 +23,14 @@ export class RegisterComponent implements OnInit {
     {name: 'Receptor', code: 'receptor'},
   ]
   rol:any;
-  errores:any[] = [];
+  errores:any ={
+    nombre:[],
+    apellidos:[],
+    email:'Error',
+    telefono:[],
+    cpostal:[],
+    rol:[]
+  };
   
   singupForm:FormGroup = this._builder.group({
     nombre:['Ruben  ',Validators.required],
@@ -31,7 +45,7 @@ export class RegisterComponent implements OnInit {
     validators: [ validar2.camposIguales('password1','password2') ]
   });
 
-  constructor( private _builder:FormBuilder) {
+  constructor( private _builder:FormBuilder, private _auth:AuthService, private _router:Router) {
 
     
   }
@@ -40,7 +54,7 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  //? Mensajes de error
+//? Mensajes de error
   get nombreErrorMsg(): string{
     const errors = this.singupForm.get('nombre')?.errors;
     if(errors?.['required']){
@@ -102,9 +116,11 @@ export class RegisterComponent implements OnInit {
     }
     return '';
   }
-  //? 
+
+  //? Mostrar mensaje cada vez que escribimos
   campoEsValido( campo:string){
     return this.singupForm.controls[campo].errors && this.singupForm.controls[campo].touched;
+    
   }
 
 
@@ -116,7 +132,7 @@ export class RegisterComponent implements OnInit {
       console.log("Error en los datos")
     }else{
       console.log(this.singupForm.value)
-      let resul ={
+      let resul:User ={
         apellidos:this.singupForm.value.apellidos.trim().toLowerCase(), 
         cpostal: this.singupForm.value.cpostal.trim(),
         email: this.singupForm.value.email.trim(),
@@ -126,10 +142,21 @@ export class RegisterComponent implements OnInit {
         telefono: this.singupForm.value.telefono.trim()
       }
       console.log(resul)
-      this.singupForm.reset(); //Borra el contenido de los inputs
+      this._auth.singup(resul)
+      .subscribe(
+        (res)=>{
+            console.log('Registrado correctamente')
+            this.singupForm.reset(); //Borra el contenido de los inputs
+            this._router.navigate(['/'])
+        },
+        (err:ErrorPost)=>{
+          console.log(err)
+          err.error.errors.forEach((error) =>{
+           console.log(error)
+          })
+        }
+      )
     }
-
-
   }
 
 }

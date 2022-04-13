@@ -11,8 +11,12 @@
             <div class="btn-menu">Sugerencias</div>
         </div>
     </div>
-    <div class="botones">
-        <button [routerLink]="['/auth/login']" class="btn-blanco">Log in</button>
-        <a [routerLink]="['/auth/register']" routerLinkActive="router-link-active" ><button class="btn-morado">Register</button></a>
+    <div *ngIf="!_auth.loggedIn(); else logged" class="botones">
+        <button [routerLink]="['/auth/login']" routerLinkActive="btnActive" class="btn-blanco">Log in</button>
+        <a [routerLink]="['/auth/register']" routerLinkActive="btnActive" ><button class="btn-morado">Register</button></a>
     </div>
+    <ng-template #logged>
+        <button class="btn-blanco" (click)="_auth.logout()">LogOut</button>
+    </ng-template>
+    
 </div>
