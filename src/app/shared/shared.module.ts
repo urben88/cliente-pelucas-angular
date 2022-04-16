@@ -17,10 +17,16 @@ import { DividerModule } from "primeng/divider";
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {DropdownModule} from 'primeng/dropdown';
+import {AvatarModule} from 'primeng/avatar';
+import {AvatarGroupModule} from 'primeng/avatargroup';
+import {BadgeModule} from 'primeng/badge';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 import { SharedComponent } from './shared.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 
@@ -29,6 +35,7 @@ import { FooterComponent } from './components/footer/footer.component';
     SharedComponent,
     NavComponent,
     FooterComponent,
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -39,7 +46,12 @@ import { FooterComponent } from './components/footer/footer.component';
     InputTextModule,
     FormsModule,
     RouterModule,
-    DropdownModule
+    DropdownModule,
+    AvatarModule,
+    AvatarGroupModule,
+    BadgeModule,
+    ScrollPanelModule,
+    ProgressSpinnerModule
   ],
   exports:[
     NavComponent,
@@ -55,7 +67,9 @@ import { FooterComponent } from './components/footer/footer.component';
     DividerModule,
     MessageModule,
     MessagesModule,
-    DropdownModule
+    DropdownModule,
+    SpinnerComponent,
+    ProgressSpinnerModule
   ]
 })
 export class SharedModule { }

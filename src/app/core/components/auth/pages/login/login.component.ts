@@ -80,5 +80,4 @@ export class LoginComponent implements OnInit {
     return this.singinForm.controls[campo].errors && this.singinForm.controls[campo].touched;
   }
 
-
 }

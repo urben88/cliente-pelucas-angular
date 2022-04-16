@@ -17,6 +17,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 //?Para los provide
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './core/interceptor/token-interceptor.service';
+import { SpinnerInterceptorService } from './core/interceptor/spinner-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent
@@ -30,11 +31,17 @@ import { TokenInterceptorService } from './core/interceptor/token-interceptor.se
   ],
   providers: [
     AuthService,
-    AuthGuard,{
+    AuthGuard,
+    {
       provide:HTTP_INTERCEPTORS,
       useClass:TokenInterceptorService,
       multi:true
-    }
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:SpinnerInterceptorService,
+      multi:true
+    },
   ],
   bootstrap: [AppComponent]
 })

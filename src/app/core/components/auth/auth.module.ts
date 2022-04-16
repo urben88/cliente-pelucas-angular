@@ -6,12 +6,14 @@ import { RegisterComponent } from './pages/register/register.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreModule } from '../../core.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 
 // import { HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserSettingsComponent
   ],
   imports:[
     CommonModule,

@@ -26,7 +26,18 @@ export class AuthService {
   singin(user:Login){
     return this.http.post<Singin>(this.urlAuth +'/singin',user)
   }
-
+  refreshToken(){
+    let newToken = this.http.get<any>(this.urlAuth +'/refresh').subscribe(
+      (res)=>{
+        localStorage.setItem('token',res.token)
+        console.log("📗 Se ha hecho refresh el token")
+        return res.token;
+      },
+      (err)=>{
+        throw "Error al hacer refresh del token"
+      }
+    );
+  }
   //!Control de ACCESO
 
   //? Saber si estas logueado
@@ -36,10 +47,16 @@ export class AuthService {
   //? Desloguearte
   logout(){
     localStorage.removeItem('token')
-    this._router.navigate(['/auth/register'])
+    this._router.navigate(['/auth/login'])
   }
-
+  setToken(token:string){
+    localStorage.setItem('token',token)
+  }
   getToken(){
     return localStorage.getItem('token')
   }
+  getUser(){
+    return this.http.get<any>(this.urlAuth + '/user')
+  }
+
 }

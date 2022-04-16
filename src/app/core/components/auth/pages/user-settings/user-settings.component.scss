@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     padding-top: $navheigth + 70px;
+    user-select: none;
     .caja{
         background-color: white;
         z-index: 9;
@@ -86,7 +87,17 @@
     transform: rotate(-148.03deg);
 
 }
-
+.pi-refresh{
+    color: purple;
+    transition: 0.2s;
+    &:hover{
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+    &:active{
+        transform: scale(0.8);
+    }
+}
 
 
 :host ::ng-deep{
@@ -128,7 +139,7 @@
         justify-content: center;
     }
     .circulo1{
-        margin-top: 400px;
+         margin-top: 400px;
     }
     .doble{
         gap: 0px !important;
