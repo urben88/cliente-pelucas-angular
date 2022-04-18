@@ -26,6 +26,10 @@ export class AuthService {
   singin(user:Login){
     return this.http.post<Singin>(this.urlAuth +'/singin',user)
   }
+  updateUser(data:any){
+    return this.http.put<any>(this.urlAuth+'/update',data)
+  }
+
   refreshToken(){
     let newToken = this.http.get<any>(this.urlAuth +'/refresh').subscribe(
       (res)=>{

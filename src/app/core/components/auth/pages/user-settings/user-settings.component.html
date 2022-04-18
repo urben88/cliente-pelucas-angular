@@ -3,10 +3,15 @@
 <img class="circulo1" src="assets/decorados/circulo.svg">
 <img class="circulo2" src="assets/decorados/circulo.svg">
 
+
+<!-- ! Mensajes info -->
+<p-toast position="top-center" style="margin-top:300px"></p-toast>
+
+
 <div class="container">
     
-    <form class="caja cajaform-1" [formGroup]="changeForm" (submit)="register()">
-        <h1>Editar la cuenta <i (click)="datosDefault()" class="pi pi-refresh"></i></h1>
+    <form class="caja cajaform-1" [formGroup]="changeForm">
+        <h1>Editar la cuenta <i (click)="datosDefault()" (click)="showSuccess()" class="pi pi-refresh"></i></h1>
         <div class="datos">
 
             <div class="doble">
@@ -72,8 +77,12 @@
             </div>
 
         </div>
+        <div *ngFor="let error of erroresDB" class="animate__animated animate__flipInX alert alert-danger" role="alert">
+            {{ error }}
+        </div>
 
-        <button class="btn-morado" style="align-self: flex-end;" (click)="register()">Cambiar</button>
+        <p-confirmPopup></p-confirmPopup>
+        <button (click)="confirm($event)" class="btn-morado" style="align-self: flex-end;">Cambiar</button>
     </form>
 </div>
 

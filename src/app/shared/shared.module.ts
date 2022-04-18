@@ -22,6 +22,9 @@ import {AvatarGroupModule} from 'primeng/avatargroup';
 import {BadgeModule} from 'primeng/badge';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {ToastModule} from 'primeng/toast';
+import {ConfirmPopupModule} from 'primeng/confirmpopup';
+
 
 import { SharedComponent } from './shared.component';
 import { NavComponent } from './components/nav/nav.component';
@@ -51,7 +54,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     AvatarGroupModule,
     BadgeModule,
     ScrollPanelModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ToastModule,
+    ConfirmPopupModule
   ],
   exports:[
     NavComponent,
@@ -69,7 +74,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     MessagesModule,
     DropdownModule,
     SpinnerComponent,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ToastModule,
+    ConfirmPopupModule
   ]
 })
 export class SharedModule { }

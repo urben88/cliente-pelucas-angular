@@ -6,7 +6,7 @@ export interface User {
     cpostal:   string;
     email:     string;
     password:  string;
-    rol:       Rol[];
+    rol?:       Rol[];
     createdAt?: Date;
     updatedAt?: Date;
 }

@@ -18,6 +18,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './core/interceptor/token-interceptor.service';
 import { SpinnerInterceptorService } from './core/interceptor/spinner-interceptor.service';
+import { ErrorInterceptorService } from './core/interceptor/error-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent
@@ -42,6 +43,11 @@ import { SpinnerInterceptorService } from './core/interceptor/spinner-intercepto
       useClass:SpinnerInterceptorService,
       multi:true
     },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:ErrorInterceptorService,
+      multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })
