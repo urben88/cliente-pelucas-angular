@@ -28,7 +28,6 @@ export class NavComponent implements OnInit {
   notileng:string = String(0);
   user!:User;
 
-  //todo OJOO CUANDO CAMBIO DE USUARIO NO SE ACTUALIZAN LAS NOTIFICACIONES
    ngOnInit(){
     this._auth.getUser().subscribe(
       (res:User)=>{
@@ -38,22 +37,30 @@ export class NavComponent implements OnInit {
         throw err
       }
     )
-    this._notificaciones.getActual().subscribe(
-      (res)=>{
-      console.log(res)
-        if(res.status == 404){
-          this.notileng = String(0);
-        }else{
+    this._auth.getStatusToken$().subscribe(statustoken =>{
+
+      if(statustoken){
+
+        this._notificaciones.getActual().subscribe(
+          (res)=>{
           console.log(res)
-          this.notileng = String(res.body.length)
-          this.notificaciones = res.body
-        }
-      },
-      (err:HttpErrorResponse)=>{
-        console.log(err.error)
-     
+            if(res.status == 404){
+              this.notileng = String(0);
+            }else{
+              console.log(res)
+              this.notileng = String(res.body.length)
+              this.notificaciones = res.body
+            }
+          },
+          (err:HttpErrorResponse)=>{
+            console.log(err.error)
+         
+          }
+        )
+
       }
-    )
+
+    })
   }
   irSettings(){
     this._router.navigate(['/auth/settings'])
