@@ -11,7 +11,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 //?Servicios
-import { AuthService } from './core/services/auth.service';
+import { AuthService } from './core/services/db/auth.service';
 //?Guards
 import { AuthGuard } from './core/guards/auth.guard';
 //?Para los provide

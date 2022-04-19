@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
+//?Para los observables
+import { Observable, Subject } from 'rxjs';
 //? Interfaces
-import {Singup,Singin,Login} from '../models/Auth.interface'
-import {User} from '../models/User.interface'
+import {Singup,Singin,Login} from '../../models/Auth.interface'
+import {User} from '../../models/User.interface'
 
 //?Servicios
 import { Router } from '@angular/router';
@@ -15,16 +17,27 @@ export class AuthService {
 
   private urlAuth:string = environment.urlServerApi+'auth';
 
-  constructor(private http: HttpClient,private _router:Router) {
+  private statusToken$:Subject<boolean>;
+  
+  constructor(
+    private http: HttpClient,
+    private _router:Router,
+    ) {
+      this.statusToken$ = new Subject;
+  }
 
+  getStatusToken$():Observable<boolean>{
+    return this.statusToken$.asObservable();
   }
   //!Peticiones HTTP
   singup(user:User){
     return this.http.post<Singup>(this.urlAuth +'/singup',user)
+
   }
   
   singin(user:Login){
     return this.http.post<Singin>(this.urlAuth +'/singin',user)
+
   }
   updateUser(data:any){
     return this.http.put<any>(this.urlAuth+'/update',data)
@@ -35,6 +48,7 @@ export class AuthService {
       (res)=>{
         localStorage.setItem('token',res.token)
         console.log("📗 Se ha hecho refresh el token")
+        this.statusToken$.next(true)
         return res.token;
       },
       (err)=>{
@@ -52,9 +66,13 @@ export class AuthService {
   logout(){
     localStorage.removeItem('token')
     this._router.navigate(['/auth/login'])
+    this.statusToken$.next(false)
+
   }
   setToken(token:string){
     localStorage.setItem('token',token)
+    this.statusToken$.next(true)
+
   }
   getToken(){
     return localStorage.getItem('token')

@@ -4,7 +4,7 @@ import validar from '../../../../utils/metodos'
 import validar2 from '../../../../utils/validaciones/validaciones'
 import patrones from "../../../../utils/validaciones/patterns";
 //?Servicios
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService } from 'src/app/core/services/db/auth.service';
 
 //?Interfaces
 import {Login, Singin} from "../../../../models/Auth.interface"
