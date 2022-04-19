@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 //? Interfaces
-import {Singup,Singin,Login} from '../models/Auth.interface'
-import {User} from '../models/User.interface'
+import {Singup,Singin,Login} from '../../models/Auth.interface'
+import {User} from '../../models/User.interface'
 
 //?Servicios
 import { Router } from '@angular/router';

@@ -127,11 +127,11 @@
                             align-items:center;
                             cursor: pointer;
     
-                            &:hover{
+                            // &:hover{
     
-                                background-color: #7878f186;
-                                color: white;
-                            }
+                            //     background-color: #7878f186;
+                            //     color: white;
+                            // }
                             padding: 5px;
                             h2{
                                 font-size: 10px;
@@ -149,6 +149,16 @@
         }
     }
 
+}
+
+.successNoti{
+    background-color: rgba(0, 128, 0, 0.135);
+}
+.infoNoti{
+    background-color: rgba(0, 30, 128, 0.135);
+}
+.warnNoti{
+    background-color: rgba(163, 118, 13, 0.135);
 }
 
 // .btnActive{

@@ -4,7 +4,7 @@ import validar from '../../../../utils/metodos'
 import validar2 from '../../../../utils/validaciones/validaciones'
 import patrones from "../../../../utils/validaciones/patterns";
 //?Servicios
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService } from 'src/app/core/services/db/auth.service';
 //*Para los mensajes de advertencia
 import { MessageService } from 'primeng/api';
 import {ConfirmationService} from 'primeng/api';
@@ -86,7 +86,7 @@ export class UserSettingsComponent implements OnInit {
   confirm(event: any) {
     this._confirmationService.confirm({
         target: event.target,
-        message: 'Are you sure that you want to proceed?',
+        message: 'Estas seguro que quieres hacer los cambios?',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
           console.log('Has aceptado')
