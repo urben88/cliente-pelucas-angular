@@ -13,7 +13,7 @@ const routes: Routes = [
     children:[
       {path:'login',component: LoginComponent },
       {path:'register',component: RegisterComponent},
-      {path:'settings',component:UserSettingsComponent,canActivate:[AuthGuard]},
+      // {path:'settings',component:UserSettingsComponent,canActivate:[AuthGuard]},
       {path:'**',redirectTo: 'login'},
     ]
   }

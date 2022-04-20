@@ -9,6 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
 import { AdminModule } from '../admin/admin.module';
 import { TemplateComponent } from './template/template.component';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 // import { HttpClientModule} from '@angular/common/http';
 @NgModule({
@@ -23,10 +25,11 @@ import { TemplateComponent } from './template/template.component';
     AuthRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    AdminModule
+    AdminModule,
     // HttpClientModule
   ],
   providers:[
+   [MessageService,ConfirmationService]
   ],
   exports:[
    

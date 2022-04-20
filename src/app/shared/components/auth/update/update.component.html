@@ -1,0 +1,83 @@
+
+<form class="caja cajaform-1" [formGroup]="changeForm">
+        <!-- ! Mensajes info -->
+        <p-toast position="top-center" style="margin-top:300px"></p-toast>
+        
+        <h1>Editar la cuenta <i (click)="datosDefault()" (click)="showSuccess()" class="pi pi-refresh"></i></h1>
+        <div class="datos">
+
+            <div class="doble">
+
+                <div class="field" style="display: flex; flex-direction: column;">
+                    <label for="nombre" class="block">Cambiar Nombre</label>
+                    <input id="nombre" type="text" aria-describedby="username2-help" pInputText formControlName="nombre" />
+                    <small  *ngIf="campoEsValido('nombre')" class="p-error block">
+                        {{ nombreErrorMsg }}
+                    </small>
+                </div>
+
+                <div class="field" style="display: flex; flex-direction: column;">
+                    <label for="apellidos" class="block">Cambiar Apellidos</label>
+                    <input id="apellidos" type="text" aria-describedby="username2-help" pInputText formControlName="apellidos" />
+                    <small *ngIf="campoEsValido('apellidos')" class="p-error block">
+                        {{apellidosErrorMsg }}</small>
+                </div>
+
+            </div>
+
+           
+            <div class="field" style="display: flex; flex-direction: column;">
+                <label for="email" class="block">Cambiar Correo electronico</label>
+                <input id="email" type="email" aria-describedby="username2-help" pInputText formControlName="email" />
+                <small *ngIf="campoEsValido('email') || errores.email" class="p-error block">
+                    {{ emailErrorMsg }}
+                </small>  
+            </div>
+
+
+            <div class="doble">
+
+                <div class="field" style="display: flex; flex-direction: column;">
+                    <label for="telefono" class="block">Cambiar Número de teléfono</label>
+                    <input id="telefono" type="tel" aria-describedby="username2-help" pInputText formControlName="telefono" />
+                    <small *ngIf="campoEsValido('telefono')" class="p-error block">
+                        {{ telefonoErrorMsg}}</small>
+                </div>
+                <div class="field" style="display: flex; flex-direction: column;">
+                    <label for="cpostal" class="block">Cambiar Código postal</label>
+                    <input id="cpostal" type="number" aria-describedby="username2-help" pInputText formControlName="cpostal" />
+                    <small *ngIf="campoEsValido('cpostal')" class="p-error block">
+                        {{ cpostalErrorMsg }}</small>
+                </div>
+
+            </div>
+
+            <div class="switch">
+                <label>¿Cambiar contraseña?</label>
+                <p-inputSwitch (onChange)="cambiaswitch($event)" formControlName="passwordStatus"></p-inputSwitch>
+            </div>
+            <div *ngIf="changeForm.controls['passwordStatus'].value" class="contrasenas">
+                <label>Cambiar contraseña</label>
+                <div class="field" style="display: flex; flex-direction: column;">
+                    <!-- <label for="password2" class="block">Repita</label> -->
+                    <input id="password1" placeholder="Escriba la contraseña" type="password" aria-describedby="username2-help" pInputText formControlName="password1" />
+                    <small *ngIf="campoEsValido('password1')" class="p-error block">
+                        {{ password1ErrorMsg}}</small>
+                </div>
+    
+                <div class="field" style="display: flex; flex-direction: column;">
+                    <!-- <label for="password2" class="block">Repita</label> -->
+                    <input id="password2" placeholder="Repita la constraseña" type="password" aria-describedby="username2-help" pInputText formControlName="password2" />
+                    <small *ngIf="campoEsValido('password2')" class="p-error block">
+                        {{ password2ErrorMsg}}</small>
+                </div>
+            </div>
+
+        </div>
+        <div *ngFor="let error of erroresDB" class="animate__animated animate__flipInX alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+
+        <p-confirmPopup></p-confirmPopup>
+        <button (click)="confirm($event)" class="btn-morado">Cambiar</button>
+    </form>

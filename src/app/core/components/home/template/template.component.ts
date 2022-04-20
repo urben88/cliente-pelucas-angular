@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-template',
@@ -7,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateComponent implements OnInit {
 
-  constructor() { }
+  constructor( public router:Router){
+  }
+  mostrarFooter(){
+    if(this.router.isActive('/auth',false)){
+      return false;
+    }else{
+      return true;
+    }
+    
+  }
 
   ngOnInit(): void {
   }

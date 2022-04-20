@@ -5,13 +5,15 @@ import { HomeComponent } from './pages/home/home.component';
 //?Guards
 import { AuthGuard } from '../../guards/auth.guard';
 import { TemplateComponent } from './template/template.component';
+import { UserSettingsComponent } from '../auth/pages/user-settings/user-settings.component';
 const routes: Routes = [
   {
     path:'',
     component:TemplateComponent,
     children:[
       {path:'',component:HomeComponent},
-      {path:'**',redirectTo: ''},
+      {path:'auth/settings',component:UserSettingsComponent,canActivate:[AuthGuard]},
+      // {path:'**',redirectTo: ''},
     ]
   }
 ];

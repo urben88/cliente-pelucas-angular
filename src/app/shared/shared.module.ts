@@ -8,9 +8,9 @@ import { RouterModule } from '@angular/router';
 import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
 import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
-import {MenuItem} from 'primeng/api';                  //api
+import {ConfirmationService, MenuItem, MessageService} from 'primeng/api';                  //api
 import {InputTextModule} from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {PasswordModule} from 'primeng/password';
 import { DividerModule } from "primeng/divider";
@@ -25,13 +25,14 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ToastModule} from 'primeng/toast';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import {PanelModule} from 'primeng/panel';
-
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
 
 import { SharedComponent } from './shared.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-
+import { UpdateComponent } from './components/auth/update/update.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     NavComponent,
     FooterComponent,
     SpinnerComponent,
+    UpdateComponent,
   ],
   imports: [
     CommonModule,
@@ -58,7 +60,10 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     ProgressSpinnerModule,
     ToastModule,
     ConfirmPopupModule,
-    PanelModule
+    PanelModule,
+    InputSwitchModule,
+    ReactiveFormsModule,
+    BreadcrumbModule
   ],
   exports:[
     NavComponent,
@@ -80,7 +85,11 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     ToastModule,
     ConfirmPopupModule,
     ScrollPanelModule,
-    PanelModule
-  ]
+    PanelModule,
+    InputSwitchModule,
+    UpdateComponent,
+    BreadcrumbModule
+  ],
+  providers: [MessageService,ConfirmationService]
 })
 export class SharedModule { }

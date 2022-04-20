@@ -81,6 +81,9 @@ export class NavComponent implements OnInit {
     })
     
   }
+  Admin(){
+    return this._auth.isAdmin(this.user)
+  }
   irSettings(){
     this._router.navigate(['/auth/settings'])
   }

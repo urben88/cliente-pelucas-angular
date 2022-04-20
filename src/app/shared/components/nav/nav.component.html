@@ -18,8 +18,10 @@
             <div class="botones">
 
                 <div class="user">
-                    
-                    <p-avatar (click)="irSettings()" image="assets/img/logo/logo_negro.jpg" styleClass="mr-2" size="large" shape="circle"></p-avatar>
+                    <div class="imagen">
+                        <p-avatar (click)="irSettings()" image="assets/img/logo/logo_negro.jpg" styleClass="mr-2" size="large" shape="circle"></p-avatar>
+                        <i class="pi pi-user-edit"></i>
+                    </div>
 
                     <i class="pi pi-bell mr-4 p-text-secondary" pBadge style="font-size: 2rem" [value]="notileng">
                         <div class="caja">
@@ -47,5 +49,6 @@
             </div>
         </ng-template>
     </div>
+    <button *ngIf="Admin()" class="btn-admin" routerLink="/admin"><i class="pi pi-cog"></i> ADMIN</button>
     
 </div>

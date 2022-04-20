@@ -1,7 +1,7 @@
 <!-- Modelo a seguir https://coreui.io/demo/4.0/free/ -->
 <!-- Bootstrap https://bootstrap-cheatsheet.themeselection.com/ -->
-<div class="container-fluid" style="height: 100%">
-    <div class="row " style="height: 100%;">
+<div class="container-fluid" style="height: 100vh;">
+    <div class="row" style="height: 100%;">
 
         <!-- TODO MENU -->
         <div  [ngClass]="hideMenu ? 'd-none' : 'd-block' " class="col-2 menu d-flex flex-column">
@@ -11,7 +11,9 @@
         <!-- TODO Submenu -->
         <div [ngClass]="hideMenu ? 'col-12' : 'col-10' " class="submenu">
             <admin-nav (menuStatus)="statusMenu($event)"></admin-nav>
-            <admin-sub-menu></admin-sub-menu>
+            <div class="apartado">
+                <router-outlet></router-outlet>
+            </div>
         </div>
         
     </div>

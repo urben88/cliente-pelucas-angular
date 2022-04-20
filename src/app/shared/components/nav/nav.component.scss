@@ -1,4 +1,5 @@
-@import "../../../../assets/scss/_variables.scss";
+// @import "../../../../assets/scss/_variables.scss";
+@import "../../../../styles.scss";
 .nav{
     // border: 2px solid black;
     z-index: 10;
@@ -86,10 +87,39 @@
             justify-content: center;
             align-items: center;
             gap: 20px;
-            p-avatar{
-                margin-top: 5px;
+            .imagen{
+                position: relative;
+                p-avatar{
+                    margin-top: 5px;
+                    position: relative;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+                i{
+                    display: block;
+                    opacity: 0;
+                    position: absolute;
+                    top: -20px;
+                    right: -10px;
+                    border-radius: 100%;
+                    background-color:$morado-input;
+                    padding: 5px;
+                    color: white;
+                    transition: 0.3s;
+                    transform:skew(20deg)
+                }
                 &:hover{
                     cursor: pointer;
+                    transition: 0.3s;
+                    i{
+                        transform:skewY(0deg);
+                        opacity: 1;
+                        transition: 0.3s;
+                        display: block;
+                        top: 0px;
+                        
+                    }
                 }
             }
             //?Campana
@@ -150,7 +180,11 @@
     }
 
 }
-
+.btn-admin{
+    position: absolute;
+    right: 10px;
+    top: 15px;
+}
 .successNoti{
     background-color: rgba(0, 128, 0, 0.135);
 }

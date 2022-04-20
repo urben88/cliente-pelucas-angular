@@ -5,7 +5,7 @@ export interface User {
     telefono:  string;
     cpostal:   string;
     email:     string;
-    password:  string;
+    password?:  string;
     rol?:       Rol[];
     createdAt?: Date;
     updatedAt?: Date;
