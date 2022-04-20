@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/User.interface';
 import { AuthService } from '../../../services/db/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -9,7 +10,7 @@ import { AuthService } from '../../../services/db/auth.service';
 })
 export class TemplateComponent implements OnInit {
 
-  constructor(private _auth:AuthService) { }
+  constructor(private _auth:AuthService,public _router:Router) { }
 
   user!:User;
   hideMenu:boolean = false;

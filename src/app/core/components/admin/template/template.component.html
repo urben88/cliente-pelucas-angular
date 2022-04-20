@@ -11,9 +11,13 @@
         <!-- TODO Submenu -->
         <div [ngClass]="hideMenu ? 'col-12' : 'col-10' " class="submenu">
             <admin-nav (menuStatus)="statusMenu($event)"></admin-nav>
+
             <div class="apartado">
-                <router-outlet></router-outlet>
-            </div>
+                <div class="caja" [ngClass]="_router.isActive('/admin/auth/update',false) ? 'update' : ''">
+                    <router-outlet></router-outlet>
+                </div>
+                
+            </div>        
         </div>
         
     </div>
