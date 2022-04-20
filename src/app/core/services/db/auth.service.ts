@@ -6,10 +6,12 @@ import { environment } from 'src/environments/environment';
 import { Observable, Subject } from 'rxjs';
 //? Interfaces
 import {Singup,Singin,Login} from '../../models/Auth.interface'
-import {User} from '../../models/User.interface'
+import {User,Rol} from '../../models/User.interface'
 
+//?Enums
+import { RolesEnum } from '../../enums/Roles';
 //?Servicios
-import { Router } from '@angular/router';
+import { ResolveStart, Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
@@ -69,6 +71,16 @@ export class AuthService {
     this.statusToken$.next(false)
 
   }
+  isAdmin(user:User){
+    let admin:boolean = false;
+    user.rol?.forEach((rol:Rol)=>{
+      if(rol.role == RolesEnum.admin){
+        admin=true;
+      }
+    })
+    return admin;
+  }
+
   setToken(token:string){
     localStorage.setItem('token',token)
     this.statusToken$.next(true)
@@ -78,6 +90,7 @@ export class AuthService {
     return localStorage.getItem('token')
   }
   getUser(){
+    // this.statusToken$.next(true)
     return this.http.get<any>(this.urlAuth + '/user')
   }
 

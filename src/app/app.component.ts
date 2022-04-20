@@ -8,14 +8,25 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'PelucasAngular';
 
-  constructor( private router:Router){
-
+  constructor( public router:Router){
   }
   mostrarFooter(){
-    if(this.router.isActive('/auth',false)){
+    console.log("Se actia mostrar Footer")
+    if(this.router.isActive('/auth',false) || this.router.isActive('/admin',false)){
       return 'esconder';
     }else{
-      return ''
+      return 'fondo';
     }
+    
+  }
+  mostrarNav(){
+    console.log("Se actia mostrar Nav")
+    if(this.router.isActive('/admin',false)){
+      return 'esconder';
+    }else{
+      return 'fondo';
+    }
+
+    
   }
 }

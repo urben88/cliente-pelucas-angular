@@ -28,17 +28,35 @@ export class NavComponent implements OnInit {
   notileng:string = String(0);
   user!:User;
 
-   ngOnInit(){
+  ngOnInit(){
     this._auth.getUser().subscribe(
       (res:User)=>{
         this.user = res;
+        console.log(this.user)
       },
       (err:any)=>{
         throw err
       }
     )
-    this._auth.getStatusToken$().subscribe(statustoken =>{
-
+    
+    this._notificaciones.getActual().subscribe(
+      (res)=>{
+      console.log(res)
+        if(res.status == 404){
+          this.notileng = String(0);
+        }else{
+          console.log(res)
+          this.notileng = String(res.body.length)
+          this.notificaciones = res.body
+        }
+      },
+      (err:HttpErrorResponse)=>{
+        console.log(err.error)
+     
+      }
+    )
+   this._auth.getStatusToken$().subscribe(statustoken =>{
+    console.log("Entra a GET STATUS TOKEN")
       if(statustoken){
 
         this._notificaciones.getActual().subscribe(
@@ -61,6 +79,7 @@ export class NavComponent implements OnInit {
       }
 
     })
+    
   }
   irSettings(){
     this._router.navigate(['/auth/settings'])

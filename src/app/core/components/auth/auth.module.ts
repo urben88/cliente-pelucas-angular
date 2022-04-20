@@ -7,19 +7,23 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreModule } from '../../core.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserSettingsComponent } from './pages/user-settings/user-settings.component';
+import { AdminModule } from '../admin/admin.module';
+import { TemplateComponent } from './template/template.component';
 
 // import { HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    TemplateComponent
   ],
   imports:[
     CommonModule,
     AuthRoutingModule,
     SharedModule,
     ReactiveFormsModule,
+    AdminModule
     // HttpClientModule
   ],
   providers:[

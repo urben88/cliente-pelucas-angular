@@ -24,6 +24,7 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {ToastModule} from 'primeng/toast';
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
+import {PanelModule} from 'primeng/panel';
 
 
 import { SharedComponent } from './shared.component';
@@ -56,7 +57,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     ScrollPanelModule,
     ProgressSpinnerModule,
     ToastModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    PanelModule
   ],
   exports:[
     NavComponent,
@@ -76,7 +78,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     SpinnerComponent,
     ProgressSpinnerModule,
     ToastModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    ScrollPanelModule,
+    PanelModule
   ]
 })
 export class SharedModule { }

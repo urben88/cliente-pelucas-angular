@@ -1,4 +1,4 @@
-@import "../../../../styles.scss";
+@import "../../../../../../styles.scss";
 //! Diseño de la caja video
 .video{
     // border: 2px solid black;!
@@ -115,7 +115,7 @@
     }
     .foto{
         // border: 2px solid black; 
-        background-image: url('./../../../../assets/img/home/vereda.jpg');
+        background-image: url('./../../../../../../assets/img/home/vereda.jpg');
         background-size: cover;
         background-position-x: center;
     }

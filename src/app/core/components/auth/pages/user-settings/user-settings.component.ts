@@ -64,7 +64,7 @@ export class UserSettingsComponent implements OnInit {
   ) {
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this._auth.getUser().subscribe(
       (res: User) => {
         this.datosUser = res;

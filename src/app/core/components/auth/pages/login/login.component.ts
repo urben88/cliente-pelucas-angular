@@ -4,11 +4,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import patrones from "../../../../utils/validaciones/patterns";
 import { AuthService } from 'src/app/core/services/db/auth.service';
 //? Interaces
-import {Login} from "../../../../models/Auth.interface"
+import {Login, Singin} from "../../../../models/Auth.interface"
 import { ErrorPost } from 'src/app/core/models/Error.interface';
 
 //? Servicio
 import { Router } from '@angular/router';
+import { User } from 'src/app/core/models/User.interface';
 
 @Component({
   selector: 'app-login',
@@ -64,10 +65,15 @@ export class LoginComponent implements OnInit {
       console.log(this.singinForm.value)
       this._auth.singin(this.singinForm.value)
       .subscribe(
-        (res)=>{
+        (res:Singin)=>{
           localStorage.setItem('token',res.token);
           this.singinForm.reset(); //Borra el contenido de los inputs
-          this._router.navigate(['/'])
+          if(this._auth.isAdmin(res.user)){
+            this._router.navigate(['/admin'])
+          }else{
+            this._router.navigate(['/'])
+          }
+
         },
         (error:any) =>{
           console.log(error)
