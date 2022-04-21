@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { SelectItem } from 'primeng/api';
 import { RolesEnum } from 'src/app/core/enums/Roles';
@@ -38,7 +39,8 @@ export class UserEditTableComponent implements OnInit {
   constructor(
     private messageService: MessageService, 
     private _users:UsersService,
-    private _auth:AuthService) { }
+    private _auth:AuthService,
+    public _router:Router) { }
 
   ngOnInit(): void {
     this._users.getUsers().subscribe(
@@ -107,6 +109,17 @@ export class UserEditTableComponent implements OnInit {
       telefono:user.telefono,
       rolesBuscar: rolesname
     }
+    this._users.updateUserAdmin(res).subscribe(
+      (res)=>{
+        console.log(res)
+        this.messageService.add({severity:'success', summary: 'Success', detail:'El usuario ha sido actualizado'});
+      },
+      (err:Error)=>{
+        console.log(err)
+        this.messageService.add({severity:'error', summary: 'Error', detail:err.message});
+
+      }
+      );
      console.log(res)
           // delete this.clonedProducts[user.id];
           this.messageService.add({severity:'success', summary: 'Success', detail:'Product is updated'});

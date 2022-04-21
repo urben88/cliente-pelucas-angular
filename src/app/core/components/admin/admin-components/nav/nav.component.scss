@@ -22,6 +22,12 @@ nav{
                 transform: scale(0.9);
             }
         }
+        .menupag{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px
+        }
     }
     .user{ 
         gap:10px;  
@@ -77,5 +83,13 @@ nav{
             }
         }
 
+    }
+}
+.activado{
+    color: $morado-boton;
+}
+:host ::ng-deep{
+    .p-breadcrumb{
+            padding: 5px 10px;
     }
 }

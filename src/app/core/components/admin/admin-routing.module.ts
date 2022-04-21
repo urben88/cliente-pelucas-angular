@@ -12,10 +12,10 @@ const routes: Routes = [
     component:TemplateComponent,
     children:[
       {path: 'auth/update',component:UpdateComponent},
-      {path: '',component:DashboardComponent},
+      {path: 'dashboard',component:DashboardComponent},
       {path: 'users',component:UsersComponent},
       
-      {path:'**',redirectTo: ''},
+      {path:'**',redirectTo: 'dashboard'},
     ]
   }
 ];

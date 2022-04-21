@@ -19,7 +19,7 @@ export class NavComponent implements OnInit {
   escondido:boolean = false;
 
   constructor(public _auth:AuthService,
-    public _router:Router) { 
+    private _router:Router) { 
   }
 
 

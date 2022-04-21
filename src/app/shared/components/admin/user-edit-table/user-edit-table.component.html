@@ -86,7 +86,7 @@
                                 </div>
                             </ng-template>
                             <ng-template pTemplate="output">
-                                <span *ngFor="let rol of user.rol">{{ rol.role }}</span>
+                                <span *ngFor="let rol of user.rol">{{ rol.role+" " }} </span>
                             </ng-template>
                         </p-cellEditor>
                     </td>
@@ -103,7 +103,7 @@
                     </td>
                     <ng-template #you>
                        <div class="herr" style="display: flex; justify-content:center;align-items:center; height: 100%;text-align:center">
-                           <i class="pi pi-cog"></i> 
+                           <i (click)="_router.navigate(['admin/auth/update'])" class="pi pi-cog"></i> 
                        </div>
                     </ng-template>
                     

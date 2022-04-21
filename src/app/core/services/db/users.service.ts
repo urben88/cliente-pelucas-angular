@@ -19,4 +19,7 @@ export class UsersService {
   getUsers(){
     return this.http.get<User[]>(this.urlUsers)
   }
+  updateUserAdmin(user:any){
+    return this.http.post<User[]>(this.urlUsers+'/updateAdmin',user);
+  }
 }
