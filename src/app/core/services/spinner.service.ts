@@ -17,4 +17,7 @@ export class SpinnerService {
   hide():void{
     this.isLoading$.next(false)
   }
+  getIsLoading$(){
+    return this.isLoading$.asObservable();
+  }
 }

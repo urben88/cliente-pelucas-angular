@@ -14,10 +14,11 @@ import { AdminModule } from './components/admin/admin.module';
 import { TemplateComponent } from './components/home/template/template.component';
 import { MainModule } from './components/home/main.module';
 
+
 @NgModule({
   declarations: [
     CoreComponent,
-    TemplateComponent
+    TemplateComponent,
   ],
   imports: [
     CommonModule,

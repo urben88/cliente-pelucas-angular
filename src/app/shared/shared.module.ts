@@ -27,12 +27,15 @@ import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import {PanelModule} from 'primeng/panel';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
+import {TableModule} from 'primeng/table';
+import {CheckboxModule} from 'primeng/checkbox';
 
 import { SharedComponent } from './shared.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { UpdateComponent } from './components/auth/update/update.component';
+import { UserEditTableComponent } from './components/admin/user-edit-table/user-edit-table.component';
 
 
 @NgModule({
@@ -42,6 +45,7 @@ import { UpdateComponent } from './components/auth/update/update.component';
     FooterComponent,
     SpinnerComponent,
     UpdateComponent,
+    UserEditTableComponent,
   ],
   imports: [
     CommonModule,
@@ -63,7 +67,9 @@ import { UpdateComponent } from './components/auth/update/update.component';
     PanelModule,
     InputSwitchModule,
     ReactiveFormsModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    TableModule,
+    CheckboxModule
   ],
   exports:[
     NavComponent,
@@ -88,7 +94,10 @@ import { UpdateComponent } from './components/auth/update/update.component';
     PanelModule,
     InputSwitchModule,
     UpdateComponent,
-    BreadcrumbModule
+    BreadcrumbModule,
+    UserEditTableComponent,
+    TableModule,
+    CheckboxModule
   ],
   providers: [MessageService,ConfirmationService]
 })

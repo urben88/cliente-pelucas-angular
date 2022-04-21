@@ -9,7 +9,7 @@
                <h1 class="h5">Correo:</h1> 
                 <p class="small">tirolin25@gmail.com</p>
             </div> -->
-        <p class="small" (click)="_router.navigate(['admin/auth/update'])"><i class="pi pi-cog"></i><i class="pi pi-user" style="padding: 5px;"></i>{{ user.email }}</p>
+        <p *ngIf="user" class="small" (click)="_router.navigate(['admin/auth/update'])"><i class="pi pi-cog"></i><i class="pi pi-user" style="padding: 5px;"></i>{{ user.email }}</p>
       
         <button class="btn-blanco" (click)="_auth.logout()">LogOut</button>
             

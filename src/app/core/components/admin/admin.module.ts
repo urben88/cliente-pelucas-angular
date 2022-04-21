@@ -8,13 +8,15 @@ import { MenuComponent } from './admin-components/menu/menu.component';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
 import { NavComponent } from './admin-components/nav/nav.component';
 import { DashboardComponent } from './admin-components/sub-menus/dashboard/dashboard.component';
+import { UsersComponent } from './admin-components/sub-menus/users/users.component';
 
 @NgModule({
   declarations: [
     MenuComponent,
     TemplateComponent,
     NavComponent,
-    DashboardComponent
+    DashboardComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,

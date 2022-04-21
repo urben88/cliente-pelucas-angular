@@ -21,7 +21,7 @@ import { SpinnerInterceptorService } from './core/interceptor/spinner-intercepto
 import { ErrorInterceptorService } from './core/interceptor/error-interceptor.service';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

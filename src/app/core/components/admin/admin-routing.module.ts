@@ -5,6 +5,7 @@ import { TemplateComponent } from './template/template.component';
 import { AuthGuard } from '../../guards/auth.guard';
 import { UpdateComponent } from '../../../shared/components/auth/update/update.component';
 import { DashboardComponent } from './admin-components/sub-menus/dashboard/dashboard.component';
+import { UsersComponent } from './admin-components/sub-menus/users/users.component';
 const routes: Routes = [
   {
     path:'',
@@ -12,6 +13,7 @@ const routes: Routes = [
     children:[
       {path: 'auth/update',component:UpdateComponent},
       {path: '',component:DashboardComponent},
+      {path: 'users',component:UsersComponent},
       
       {path:'**',redirectTo: ''},
     ]

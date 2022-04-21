@@ -1,3 +1,6 @@
+//?Usar JQUERY
+import * as $ from 'jquery';
+
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/User.interface';
 import { AuthService } from '../../../services/db/auth.service';
@@ -24,10 +27,11 @@ export class TemplateComponent implements OnInit {
       (err:any)=>{
         throw err
       }
-    )
+      )
   }
+
   statusMenu(event:any){
-      this.hideMenu = event;
+    this.hideMenu = event;
       console.log(this.hideMenu)
   }
 

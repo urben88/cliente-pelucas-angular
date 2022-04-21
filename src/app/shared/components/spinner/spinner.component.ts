@@ -8,10 +8,14 @@ import { SpinnerService } from '../../../core/services/spinner.service';
 })
 export class SpinnerComponent implements OnInit {
   
-  isLoading$ = this._spinner.isLoading$;
+  isLoading$:boolean = false;
   constructor(private _spinner:SpinnerService) { }
 
   ngOnInit(): void {
+    this._spinner.getIsLoading$().subscribe(cargando=>{
+      this.isLoading$ = cargando
+      console.log("ESTADO DEL SNIPPER",this.isLoading$)
+    })
   }
 
 }

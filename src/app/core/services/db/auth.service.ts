@@ -46,17 +46,21 @@ export class AuthService {
   }
 
   refreshToken(){
-    let newToken = this.http.get<any>(this.urlAuth +'/refresh').subscribe(
-      (res)=>{
-        localStorage.setItem('token',res.token)
-        console.log("📗 Se ha hecho refresh el token")
-        this.statusToken$.next(true)
-        return res.token;
-      },
-      (err)=>{
-        throw "Error al hacer refresh del token"
-      }
-    );
+    if(this.loggedIn()){
+      let newToken = this.http.get<any>(this.urlAuth +'/refresh').subscribe(
+        (res)=>{
+          localStorage.setItem('token',res.token)
+          console.log("📗 Se ha hecho refresh el token")
+          this.statusToken$.next(true)
+          return res.token;
+        },
+        (err)=>{
+          throw "Error al hacer refresh del token"
+        }
+      );
+    }else{
+      console.log("No hay ninguna sesión activa")
+    }
   }
   //!Control de ACCESO
 

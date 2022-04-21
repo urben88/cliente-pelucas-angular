@@ -29,32 +29,33 @@ export class NavComponent implements OnInit {
   user!:User;
 
   ngOnInit(){
-    this._auth.getUser().subscribe(
-      (res:User)=>{
-        this.user = res;
-        console.log(this.user)
-      },
-      (err:any)=>{
-        throw err
-      }
-    )
-    
-    this._notificaciones.getActual().subscribe(
-      (res)=>{
-      console.log(res)
-        if(res.status == 404){
-          this.notileng = String(0);
-        }else{
+    if(this._auth.loggedIn()){
+          this._auth.getUser().subscribe(
+            (res:User)=>{
+              this.user = res;
+              console.log(this.user)
+            },
+            (err:any)=>{
+              throw err
+            }
+          )   
+        this._notificaciones.getActual().subscribe(
+          (res)=>{
           console.log(res)
-          this.notileng = String(res.body.length)
-          this.notificaciones = res.body
-        }
-      },
-      (err:HttpErrorResponse)=>{
-        console.log(err.error)
-     
-      }
-    )
+            if(res.status == 404){
+              this.notileng = String(0);
+            }else{
+              console.log(res)
+              this.notileng = String(res.body.length)
+              this.notificaciones = res.body
+            }
+          },
+          (err:HttpErrorResponse)=>{
+            console.log(err.error)
+        
+          }
+        )
+    }
    this._auth.getStatusToken$().subscribe(statustoken =>{
     console.log("Entra a GET STATUS TOKEN")
       if(statustoken){
@@ -82,7 +83,11 @@ export class NavComponent implements OnInit {
     
   }
   Admin(){
-    return this._auth.isAdmin(this.user)
+    if(this._auth.loggedIn()){
+      return this._auth.isAdmin(this.user)
+    }else{
+      return false;
+    }
   }
   irSettings(){
     this._router.navigate(['/auth/settings'])

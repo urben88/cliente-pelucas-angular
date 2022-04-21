@@ -23,14 +23,14 @@ export class NavComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
+  ngOnInit(){
 
     this.items = [
-        {label: 'Computer'},
-        {label: 'Notebook'},
-        {label: 'Accessories'},
-        {label: 'Backpacks'},
-        {label: 'Item'}
+        {label: 'Productos'},
+        {label: 'Blog'},
+        {label: 'Tips'},
+        {label: 'About us'},
+        {label: 'Sugerencias'}
     ];
     this.home = {icon: 'pi pi-home', routerLink: '/'};
 
