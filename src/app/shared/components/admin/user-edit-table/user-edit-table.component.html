@@ -1,17 +1,52 @@
+<!--? Tabla a seguir Table Lazy  -->
 <p-toast></p-toast>
 <div class="card">
-    <h5>Row Editing</h5> <app-spinner></app-spinner>
-        <p-table [value]="users" dataKey="id" editMode="row" responsiveLayout="scroll">
+  
+    <h5>Filtrar y editar Usuarios</h5> <app-spinner></app-spinner>
+        <p-table [value]="users" 
+        dataKey="id"
+        editMode="row"
+        responsiveLayout="scroll"
+        (onLazyLoad)="loadUsers($event)"
+        [paginator]="true" [rows]="10"
+        >
             <ng-template pTemplate="header">
                 <tr>
-                    <th>id</th>
-                    <th>Email</th>
-                    <th>Nombre</th>
-                    <th>Apellidos</th>
-                    <th>Telefono</th>
-                    <th>Código postal</th>
-                    <th>Roles</th>
+                    <th pSortableColumn="id">id<p-sortIcon field="id"></p-sortIcon></th>
+                    <th pSortableColumn="email">Email<p-sortIcon field="email"></p-sortIcon></th>
+                    <th pSortableColumn="nombre">Nombre<p-sortIcon field="nombre"></p-sortIcon></th>
+                    <th pSortableColumn="apellidos">Apellidos<p-sortIcon field="apellidos"></p-sortIcon></th>
+                    <th pSortableColumn="telefono">Telefono<p-sortIcon field="telefono"></p-sortIcon></th>
+                    <th pSortableColumn="cpostal">Código postal<p-sortIcon field="cpostal"></p-sortIcon></th>
+                    <th pSortableColumn="rol">Roles<p-sortIcon field="rol"></p-sortIcon></th>
                     <th style="width:8rem"></th>
+                </tr>
+                <tr>
+                    <th>
+                        <p-columnFilter type="numeric" field="id"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="email"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter  type="text" field="nombre"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="apellidos"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="telefono"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="cpostal"></p-columnFilter>
+                    </th>
+                    <th>
+                      
+                    </th>
+                    <th>
+
+                    </th>
+                    
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-user let-editing="editing" let-ri="rowIndex">
@@ -30,7 +65,7 @@
                     <td>
                         <p-cellEditor>
                             <ng-template pTemplate="input">
-                                <input pInputText type="text" [(ngModel)]="user.email" required>
+                                <input pInputText type="text" [(ngModel)]="user.email">
                             </ng-template>
                             <ng-template pTemplate="output">
                                 {{user.email}}
@@ -50,7 +85,7 @@
                     <td>
                         <p-cellEditor>
                             <ng-template pTemplate="input">
-                                <input pInputText type="text" [(ngModel)]="user.apellidos" required>
+                                <input pInputText type="text" [(ngModel)]="user.apellidos">
                             </ng-template>
                             <ng-template pTemplate="output">
                                 {{user.apellidos}}
@@ -60,7 +95,7 @@
                     <td>
                         <p-cellEditor>
                             <ng-template pTemplate="input">
-                                <input pInputText type="text" [(ngModel)]="user.telefono" required>
+                                <input pInputText type="text" [(ngModel)]="user.telefono" >
                             </ng-template>
                             <ng-template pTemplate="output">
                                 {{user.telefono}}
@@ -70,7 +105,7 @@
                     <td>
                         <p-cellEditor>
                             <ng-template pTemplate="input">
-                                <input pInputText type="text" [(ngModel)]="user.cpostal" required>
+                                <input pInputText type="text" [(ngModel)]="user.cpostal">
                             </ng-template>
                             <ng-template pTemplate="output">
                                 {{user.cpostal}}
@@ -86,7 +121,7 @@
                                 </div>
                             </ng-template>
                             <ng-template pTemplate="output">
-                                <span *ngFor="let rol of user.rol">{{ rol.role+" " }} </span>
+                                <span *ngFor="let rol of metodos.ordenarJSONDesc(user.rol,'rol') " [ngClass]="badgeRole(rol)">{{ rol.role }} </span>
                             </ng-template>
                         </p-cellEditor>
                     </td>
@@ -98,7 +133,7 @@
                             <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(user)" class="p-button-rounded p-button-text"></button>
                         </ng-template>
                         
-                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(user,editing)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(user,ri,editing)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
                         <button *ngIf="editing && editingStatus" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(user,ri)" class="p-button-rounded p-button-text p-button-danger"></button>
                     </td>
                     <ng-template #you>
@@ -107,7 +142,7 @@
                        </div>
                     </ng-template>
                     
-                </tr>
+                </tr>      
             </ng-template>
         </p-table>
     </div>

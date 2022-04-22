@@ -29,8 +29,12 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {TableModule} from 'primeng/table';
 import {CheckboxModule} from 'primeng/checkbox';
-
+import {CascadeSelectModule} from 'primeng/cascadeselect';
+//* Para los gráficos
+import {ChartModule} from 'primeng/chart';
 import { SharedComponent } from './shared.component';
+
+
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
@@ -69,7 +73,9 @@ import { UserEditTableComponent } from './components/admin/user-edit-table/user-
     ReactiveFormsModule,
     BreadcrumbModule,
     TableModule,
-    CheckboxModule
+    CheckboxModule,
+    CascadeSelectModule,
+    ChartModule
   ],
   exports:[
     NavComponent,
@@ -97,7 +103,9 @@ import { UserEditTableComponent } from './components/admin/user-edit-table/user-
     BreadcrumbModule,
     UserEditTableComponent,
     TableModule,
-    CheckboxModule
+    CheckboxModule,
+    CascadeSelectModule,
+    ChartModule
   ],
   providers: [MessageService,ConfirmationService]
 })

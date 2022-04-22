@@ -35,6 +35,11 @@ import { ErrorInterceptorService } from './core/interceptor/error-interceptor.se
     AuthGuard,
     {
       provide:HTTP_INTERCEPTORS,
+      useClass:ErrorInterceptorService,
+      multi:true
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
       useClass:TokenInterceptorService,
       multi:true
     },
@@ -43,11 +48,7 @@ import { ErrorInterceptorService } from './core/interceptor/error-interceptor.se
       useClass:SpinnerInterceptorService,
       multi:true
     },
-    {
-      provide:HTTP_INTERCEPTORS,
-      useClass:ErrorInterceptorService,
-      multi:true
-    }
+  
   ],
   bootstrap: [AppComponent]
 })

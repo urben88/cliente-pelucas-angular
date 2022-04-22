@@ -124,12 +124,21 @@ export class UpdateComponent implements OnInit {
   
   //?Poner los datos default
 
-  datosDefault() {
-    this.changeForm.controls['nombre'].setValue(this.datosUser.nombre);
-    this.changeForm.controls['apellidos'].setValue(this.datosUser.apellidos);
-    this.changeForm.controls['email'].setValue(this.datosUser.email);
-    this.changeForm.controls['cpostal'].setValue(this.datosUser.cpostal);
-    this.changeForm.controls['telefono'].setValue(this.datosUser.telefono);
+  datosDefault() { 
+    this._auth.getUser().subscribe(
+      (res: User) => {
+        this.datosUser = res; 
+        this.changeForm.controls['nombre'].setValue(this.datosUser.nombre);
+        this.changeForm.controls['apellidos'].setValue(this.datosUser.apellidos);
+        this.changeForm.controls['email'].setValue(this.datosUser.email);
+        this.changeForm.controls['cpostal'].setValue(this.datosUser.cpostal);
+        this.changeForm.controls['telefono'].setValue(this.datosUser.telefono);
+      },
+      (err: any) => {
+        throw err
+      }
+    )
+   
   }
 
   //? Mensajes de error
@@ -221,7 +230,7 @@ export class UpdateComponent implements OnInit {
       if(this.changeForm.controls['passwordStatus'].value){
         resul.password = this.changeForm.value.password1.trim()
       }
-      console.log(resul)
+      console.log("resul",resul)
       this._auth.updateUser(resul)
         .subscribe(
           (res) => {
@@ -231,7 +240,7 @@ export class UpdateComponent implements OnInit {
             // this._router.navigate(['/'])
           },
           (err: ErrorPost) => {
-            console.log(err)
+            console.log("Erroooor quiii",err)
             err.error.errors.forEach((error) => {
               console.log(error)
               if (error.type == "unique violation") {

@@ -2,5 +2,19 @@
     <!--! Titulo -->
     <div class="row">
         <h1 class="" style="text-align: center;">DashBoard</h1>
+        <div class="bloque">
+            <div class="grafico">
+                <div class="card">
+                    <div class="card-header">
+                     <strong>Gráfico circular</strong>, divide en porciones para ilustrar los roles usados en la página
+                    </div>
+                    <div class="card-body">
+                      <blockquote class="blockquote mb-0">
+                       <p-chart type="pie" [data]="userstable"  [style]="{'width': '100%'}"></p-chart>
+                      </blockquote>
+                    </div>
+                  </div>
+            </div>
+        </div>
     </div>
 </div>

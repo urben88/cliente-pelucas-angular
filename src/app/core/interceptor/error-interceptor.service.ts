@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { ErrorPost } from '../models/Error.interface';
@@ -16,10 +16,12 @@ export class ErrorInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     //?Con esto marcamos que queremos hacer un pipe del contenido despues de la peticion
      return next.handle(req).pipe(
-        catchError((err)=> {
+        catchError((err:HttpErrorResponse)=> {
+          console.log("Entra en error-interceptor")
           // console.log(err);
-          if([500].indexOf(err.status)){
-            if(err.name == "TokenExpiredError"){
+          if(err.status == 500 && err.error.error){
+            if(err.error.error.name == "TokenExpiredError"){
+              console.log("Token expirado")
                 this.router.navigate(['/auth/login'])
                 localStorage.removeItem('token')
             }

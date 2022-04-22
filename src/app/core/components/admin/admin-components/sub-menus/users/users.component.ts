@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../../../../../services/db/users.service';
+import { User, Rol } from '../../../../../models/User.interface';
+import { RolesEnum } from '../../../../../enums/Roles';
 
 @Component({
   selector: 'app-users',
@@ -7,9 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
-  constructor() { }
-
   ngOnInit(): void {
+  }
+  constructor(){
+
   }
 
 }
