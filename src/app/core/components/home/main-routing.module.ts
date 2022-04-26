@@ -6,6 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from '../../guards/auth.guard';
 import { TemplateComponent } from './template/template.component';
 import { UserSettingsComponent } from '../auth/pages/user-settings/user-settings.component';
+import { CentrosComponent } from './pages/centros/centros.component';
 const routes: Routes = [
   {
     path:'',
@@ -13,6 +14,8 @@ const routes: Routes = [
     children:[
       {path:'',component:HomeComponent},
       {path:'auth/settings',component:UserSettingsComponent,canActivate:[AuthGuard]},
+      {path:'centros',component:CentrosComponent},
+      
       // {path:'**',redirectTo: ''},
     ]
   }

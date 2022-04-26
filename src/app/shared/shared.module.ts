@@ -30,9 +30,12 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {TableModule} from 'primeng/table';
 import {CheckboxModule} from 'primeng/checkbox';
 import {CascadeSelectModule} from 'primeng/cascadeselect';
+import {GalleriaModule} from 'primeng/galleria';
 //* Para los gráficos
 import {ChartModule} from 'primeng/chart';
 import { SharedComponent } from './shared.component';
+
+
 
 
 import { NavComponent } from './components/nav/nav.component';
@@ -75,7 +78,8 @@ import { UserEditTableComponent } from './components/admin/user-edit-table/user-
     TableModule,
     CheckboxModule,
     CascadeSelectModule,
-    ChartModule
+    ChartModule,
+    GalleriaModule
   ],
   exports:[
     NavComponent,
@@ -105,7 +109,8 @@ import { UserEditTableComponent } from './components/admin/user-edit-table/user-
     TableModule,
     CheckboxModule,
     CascadeSelectModule,
-    ChartModule
+    ChartModule,
+    GalleriaModule
   ],
   providers: [MessageService,ConfirmationService]
 })
