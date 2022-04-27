@@ -34,8 +34,7 @@ import {GalleriaModule} from 'primeng/galleria';
 //* Para los gráficos
 import {ChartModule} from 'primeng/chart';
 import { SharedComponent } from './shared.component';
-
-
+import {GMapModule} from 'primeng/gmap';
 
 
 import { NavComponent } from './components/nav/nav.component';
@@ -43,6 +42,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { UpdateComponent } from './components/auth/update/update.component';
 import { UserEditTableComponent } from './components/admin/user-edit-table/user-edit-table.component';
+import { CentroEditTableComponent } from './components/admin/centro-edit-table/centro-edit-table.component';
+// import { MapComponent } from './components/home/map/map.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { UserEditTableComponent } from './components/admin/user-edit-table/user-
     SpinnerComponent,
     UpdateComponent,
     UserEditTableComponent,
+    CentroEditTableComponent,
   ],
   imports: [
     CommonModule,
@@ -79,7 +81,8 @@ import { UserEditTableComponent } from './components/admin/user-edit-table/user-
     CheckboxModule,
     CascadeSelectModule,
     ChartModule,
-    GalleriaModule
+    GalleriaModule,
+    GMapModule
   ],
   exports:[
     NavComponent,
@@ -110,7 +113,9 @@ import { UserEditTableComponent } from './components/admin/user-edit-table/user-
     CheckboxModule,
     CascadeSelectModule,
     ChartModule,
-    GalleriaModule
+    GalleriaModule,
+    GMapModule,
+    CentroEditTableComponent
   ],
   providers: [MessageService,ConfirmationService]
 })

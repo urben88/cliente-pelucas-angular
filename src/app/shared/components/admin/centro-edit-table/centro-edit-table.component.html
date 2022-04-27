@@ -1,0 +1,163 @@
+<!--? Tabla a seguir Table Lazy  -->
+<p-toast></p-toast>
+<div class="card">
+  
+    <h5>Filtrar y editar Centros</h5> <app-spinner></app-spinner>
+        <p-table [value]="centros" 
+        dataKey="id"
+        editMode="row"
+        responsiveLayout="scroll"
+        (onLazyLoad)="loadCentros()"
+        [paginator]="true" [rows]="5"
+        >
+            <ng-template style="min-height: 600px !important;" pTemplate="header">
+                <tr>
+                    <th pSortableColumn="id">id<p-sortIcon field="id"></p-sortIcon></th>
+                    <th pSortableColumn="nombre">Nombre<p-sortIcon field="nombre"></p-sortIcon></th>
+                    <th pSortableColumn="provincia">Provincia<p-sortIcon field="provincia"></p-sortIcon></th>
+                    <th pSortableColumn="ciudad">Ciudad<p-sortIcon field="ciudad"></p-sortIcon></th>
+                    <th pSortableColumn="info">Info<p-sortIcon field="info"></p-sortIcon></th>
+                    <th pSortableColumn="img">Imagen<p-sortIcon field="img"></p-sortIcon></th>
+                    <th pSortableColumn="createdAt">Creado<p-sortIcon field="createdAt"></p-sortIcon></th>
+                    <th pSortableColumn="updatedAt">Actualizado<p-sortIcon field="updatedAt"></p-sortIcon></th>
+                    <th style="width:8rem"></th>
+                </tr>
+                <tr>
+                    <th style="min-width: 200px !important;">
+                        <p-columnFilter type="numeric" field="id"></p-columnFilter>
+                    </th>
+                    <th style="min-width: 300px;">
+                        <p-columnFilter type="text" field="nombre"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter field="provincia" matchMode="equals">
+                            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                <p-dropdown [ngModel]="value" [options]="provincias" optionLabel="name" optionValue="value"
+                                    (onChange)="filter($event.value)" placeholder="Selecciona un provincia" [showClear]="true">
+                                </p-dropdown>
+                            </ng-template>
+                        </p-columnFilter>
+                    </th>
+                    <th  style="min-width: 200px;">
+                        <p-columnFilter type="text" field="ciudad"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="info"></p-columnFilter>
+                    </th>
+                    <th>
+                        <p-columnFilter type="text" field="img"></p-columnFilter>
+                    </th>
+                    <th>
+                      
+                    </th>
+                    <th>
+                       
+                    </th>
+                    <th>
+
+                    </th>
+                    
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-centro let-editing="editing" let-ri="rowIndex">
+               
+                <tr [pEditableRow]="centro">
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                {{centro.id}} 
+                            </ng-template> 
+                            <ng-template pTemplate="output">
+                                {{centro.id}} 
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="centro.nombre">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{centro.nombre}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <p-dropdown [options]="provinciasselect" [(ngModel)]="selectedProvincia" placeholder="Selecciona una provincia" optionLabel="value"></p-dropdown>
+                                <!-- <input pInputText type="text" [(ngModel)]="centro.provincia" required> -->
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{centro.provincia}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="centro.ciudad">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{centro.ciudad }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td style="overflow:auto; max-width: 300px;" >
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="centro.info" >
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{centro.info}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td style="overflow:auto; max-width: 300px;">
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="centro.img">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{centro.img}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                {{centro.createdAt | date: 'dd/MM/yyyy hh:mm a'}}
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{centro.createdAt | date: 'dd/MM/yyyy hh:mm a' }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                {{centro.updatedAt | date: 'dd/MM/yyyy hh:mm a' }}
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{centro.updatedAt | date: 'dd/MM/yyyy hh:mm a' }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td style="text-align:center;">
+                        <div *ngIf="editingStatus; else otroboton">
+                            <button *ngIf="!editing" pButton pRipple type="button" icon="pi pi-pencil" (click)="onRowEditInit(centro)" class="p-button-rounded p-button-text"></button>
+                        </div>
+                        <ng-template #otroboton>
+                            <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(centro)" class="p-button-rounded p-button-text"></button>
+                        </ng-template>
+                        
+                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(centro,ri,editing)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                        <button *ngIf="editing && editingStatus" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(centro,ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+                    </td>
+                    
+                </tr>      
+            </ng-template>
+        </p-table>
+    </div>

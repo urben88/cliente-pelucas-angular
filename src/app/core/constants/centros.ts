@@ -1,6 +1,7 @@
 export default[
     {
-        nombre:"Ies la Vereda",
+        nombre:"INSTITUT D'EDUCACIÓ SECUNDÀRIA LA VEREDA",
+        ciudad:"LA POBLA DE VALLBONA",
         img:"https://www.infoturia.com/wp-content/uploads/2020/02/IES-LA-VEREDA-scaled.jpg",
         provincia:"Valencia"
     },

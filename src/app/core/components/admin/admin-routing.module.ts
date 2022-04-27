@@ -6,6 +6,7 @@ import { AuthGuard } from '../../guards/auth.guard';
 import { UpdateComponent } from '../../../shared/components/auth/update/update.component';
 import { DashboardComponent } from './admin-components/sub-menus/dashboard/dashboard.component';
 import { UsersComponent } from './admin-components/sub-menus/users/users.component';
+import { CentrosComponent } from './admin-components/sub-menus/centros/centros.component';
 const routes: Routes = [
   {
     path:'',
@@ -14,6 +15,7 @@ const routes: Routes = [
       {path: 'auth/update',component:UpdateComponent},
       {path: 'dashboard',component:DashboardComponent},
       {path: 'users',component:UsersComponent},
+      {path: 'centros',component:CentrosComponent},
       
       {path:'**',redirectTo: 'dashboard'},
     ]

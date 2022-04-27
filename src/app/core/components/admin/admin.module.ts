@@ -9,6 +9,7 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
 import { NavComponent } from './admin-components/nav/nav.component';
 import { DashboardComponent } from './admin-components/sub-menus/dashboard/dashboard.component';
 import { UsersComponent } from './admin-components/sub-menus/users/users.component';
+import { CentrosComponent } from './admin-components/sub-menus/centros/centros.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { UsersComponent } from './admin-components/sub-menus/users/users.compone
     TemplateComponent,
     NavComponent,
     DashboardComponent,
-    UsersComponent
+    UsersComponent,
+    CentrosComponent
   ],
   imports: [
     CommonModule,

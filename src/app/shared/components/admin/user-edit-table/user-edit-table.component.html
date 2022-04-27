@@ -18,6 +18,8 @@
                     <th pSortableColumn="apellidos">Apellidos<p-sortIcon field="apellidos"></p-sortIcon></th>
                     <th pSortableColumn="telefono">Telefono<p-sortIcon field="telefono"></p-sortIcon></th>
                     <th pSortableColumn="cpostal">Código postal<p-sortIcon field="cpostal"></p-sortIcon></th>
+                    <th pSortableColumn="createdAt">Creado<p-sortIcon field="createdAt"></p-sortIcon></th>
+                    <th pSortableColumn="updatedAt">Actualizado<p-sortIcon field="updatedAt"></p-sortIcon></th>
                     <th pSortableColumn="rol">Roles<p-sortIcon field="rol"></p-sortIcon></th>
                     <th style="width:8rem"></th>
                 </tr>
@@ -28,17 +30,23 @@
                     <th>
                         <p-columnFilter type="text" field="email"></p-columnFilter>
                     </th>
-                    <th>
+                    <th style="min-width: 200px;">
                         <p-columnFilter  type="text" field="nombre"></p-columnFilter>
                     </th>
-                    <th>
+                    <th style="min-width: 200px;">
                         <p-columnFilter type="text" field="apellidos"></p-columnFilter>
                     </th>
-                    <th>
+                    <th style="min-width: 200px;">
                         <p-columnFilter type="text" field="telefono"></p-columnFilter>
                     </th>
-                    <th>
+                    <th style="min-width: 200px;">
                         <p-columnFilter type="text" field="cpostal"></p-columnFilter>
+                    </th>
+                    <th>
+                        <!-- <p-columnFilter type="date" field="createdAt"></p-columnFilter> -->
+                    </th>
+                    <th>
+                        <!-- <p-columnFilter type="date" field="updatedAt"></p-columnFilter> -->
                     </th>
                     <th>
                       
@@ -109,6 +117,27 @@
                             </ng-template>
                             <ng-template pTemplate="output">
                                 {{user.cpostal}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                {{user.createdAt | date: 'dd/MM/yyyy hh:mm a'}}
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{user.createdAt | date: 'dd/MM/yyyy hh:mm a' }}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                {{user.updatedAt | date: 'dd/MM/yyyy hh:mm a' }}
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{user.updatedAt | date: 'dd/MM/yyyy hh:mm a' }}
                             </ng-template>
                         </p-cellEditor>
                     </td>

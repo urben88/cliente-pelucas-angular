@@ -4,18 +4,18 @@
     <div class="row hero-centros-info  p-5">
 
         <div class="col-12 col-md-6 foto p-0 m-0">
-            <p-galleria [value]="images" [responsiveOptions]="responsiveOptions" [containerStyle]="{'max-width': '640px'}" [numVisible]="5"> 
+            <p-galleria [value]="images" [responsiveOptions]="responsiveOptions" [containerStyle]="{'max-width': '640px'}" [numVisible]="5" style="user-select: none;"> 
                 <ng-template pTemplate="item" let-item>
-                    <img [src]="item.img" style="width: 100%; display: block;" />
+                    <img [src]="item.img" style="width: 100%; display: block;  height: 300px;" />
                 </ng-template> 
                 <ng-template pTemplate="thumbnail" let-item>
                     <div class="grid grid-nogutter justify-content-center">
-                        <img [src]="item.img" style="display: block;" style="width:100px; padding: 5px;"/>
+                        <img [src]="item.img" style="display: block;" style="width:100px; padding: 5px"/>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="caption" let-item>
                     <h4 style="margin-bottom: .5rem; color: #ffffff;">{{item.nombre}}</h4>
-                    <p>{{ item.provincia}}</p>
+                    <p>{{ item.ciudad }}</p>
                 </ng-template>
             </p-galleria>
         </div>
@@ -37,6 +37,9 @@
     </div>
 
     <!-- ! Segunda fila -->
+    <!-- <app-map></app-map> -->
+
+    <!-- ! Tercera fila -->
     <div class="row w-100">
         <div class="col-12">
             <div class="listacentros">
@@ -44,14 +47,16 @@
                 <div class="provincia">
                     <div class="titulo">
                         <h2>Castellón</h2>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Escut_de_Castell%C3%B3_ornamentat-2.svg/1200px-Escut_de_Castell%C3%B3_ornamentat-2.svg.png" alt="Escudo castellón">
+                        <img class="mancha animate__animated animate__bounce" src="assets/decorados/Mancha.svg">
+                        <img class="animate__animated animate__bounce" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Escut_de_Castell%C3%B3_ornamentat-2.svg/1200px-Escut_de_Castell%C3%B3_ornamentat-2.svg.png" alt="Escudo castellón">
                     </div>
                     <div class="cartas">
-                        <div class="card" style="width: 14rem;">
-                            <img class="card-img" src="https://ceice.gva.es/abc/i_guiadecentros/Fotos/12002889.jpg" alt="Card image cap">
+                        <div *ngFor="let centro of castellon" class="card" style="width: 14rem;" (click)="irInfo(centro.info)">
+                            <img class="card-img" src="{{ centro.img }}" alt="Card image cap">
                             <div class="card-body">
-                              <h5 class="card-title">Ies la vereda</h5>
-                              <p class="card-subtitle mb-2 text-muted">Castellón</p>
+                              <h5 class="card-title">{{ centro.nombre }}</h5>
+                              <p class="card-subtitle mb-2 text-muted">{{ centro.ciudad }}</p>
+                                <small>+ Info</small>
                             </div>
                         </div>
                     </div>
@@ -59,14 +64,16 @@
                 <div class="provincia">
                     <div class="titulo">
                         <h2>Valencia</h2>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Escut_de_Val%C3%A8ncia.svg/1200px-Escut_de_Val%C3%A8ncia.svg.png" alt="Escudo valencia">
+                        <img class="mancha animate__animated animate__bounce" src="assets/decorados/Mancha.svg">
+                        <img class="animate__animated animate__bounce" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Escut_de_Val%C3%A8ncia.svg/1200px-Escut_de_Val%C3%A8ncia.svg.png" alt="Escudo valencia">
                     </div>
                     <div class="cartas">
-                        <div class="card" style="width: 14rem;">
-                            <img class="card-img" src="https://ceice.gva.es/abc/i_guiadecentros/Fotos/12002889.jpg" alt="Card image cap">
+                        <div *ngFor="let centro of valencia" class="card" style="width: 14rem;" (click)="irInfo(centro.info)">
+                            <img class="card-img" src="{{ centro.img }}" alt="Card image cap">
                             <div class="card-body">
-                              <h5 class="card-title">Ies la vereda</h5>
-                              <p class="card-subtitle mb-2 text-muted">Castellón</p>
+                              <h5 class="card-title">{{ centro.nombre }}</h5>
+                              <p class="card-subtitle mb-2 text-muted">{{ centro.ciudad }}</p>
+                              <small>+ Info</small>
                             </div>
                         </div>
                     </div>
@@ -74,14 +81,16 @@
                 <div class="provincia">
                     <div class="titulo">
                         <h2>Alicante</h2>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Escut_d%27Alacant_02.svg/1200px-Escut_d%27Alacant_02.svg.png" alt="Escudo alicante">
+                        <img class="mancha animate__animated animate__bounce" src="assets/decorados/Mancha.svg">
+                        <img class="animate__animated animate__bounce" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Escut_d%27Alacant_02.svg/1200px-Escut_d%27Alacant_02.svg.png" alt="Escudo alicante">
                     </div>
-                    <div class="cartas">
-                        <div class="card" style="width: 14rem;">
-                            <img class="card-img" src="https://ceice.gva.es/abc/i_guiadecentros/Fotos/12002889.jpg" alt="Card image cap">
+                    <div  class="cartas">
+                        <div *ngFor="let centro of alicante" class="card" style="width: 14rem;" (click)="irInfo(centro.info)">
+                            <img class="card-img" src="{{ centro.img }}" alt="Card image cap">
                             <div class="card-body">
-                              <h5 class="card-title">Ies la vereda</h5>
-                              <p class="card-subtitle mb-2 text-muted">Castellón</p>
+                              <h5 class="card-title">{{ centro.nombre }}</h5>
+                              <p class="card-subtitle mb-2 text-muted">{{ centro.ciudad }}</p>
+                              <small>+ Info</small>
                             </div>
                         </div>
                     </div>

@@ -70,7 +70,7 @@
             grid-gap: 10px;
             grid-template-columns: repeat(3, 1fr);
             // border: 2px solid black;
-            background-color: $azul-selected;
+            // background-color: $azul-selected;
             // padding:20px;
             width: 100%;
             .titulo{
@@ -81,11 +81,18 @@
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
+                position: relative;
                 img{
                     width: 200px;
+                    z-index: 2;
+                }
+                .mancha{
+                    position: absolute;
+                    z-index: 0;
+                    width: 100%;
                 }
                 h2{
-                   
+                    z-index: 2;
                 }
                 border-right: 10px solid $morado-footer;
 
@@ -97,7 +104,38 @@
                 flex-direction: row;
                 flex-wrap: wrap;
                 // border: 2px solid black;
+                position: relative;
                 gap: 10px;
+                transition: 0.6s;
+                &:hover{
+                    background-color: $azul-selected;
+                    .titulo{
+                        transform: scale(1.1);
+                    }
+                }
+                .card{
+                    cursor: pointer;
+                    transition: 0.2s;
+                    &:hover{
+                        transform: scale(0.9);
+                        background-color: $morado-boton;
+                        color: white;
+                        p{
+                            color: #F8F8F8 !important;
+                        }
+                        small{
+                            display: block;
+                        }
+                    }
+                    small{
+                        position: absolute;
+                        right: 20px;
+                        bottom: 20px;
+                        font-weight: bold;
+                        color: $rosa;
+                        display: none;
+                    }
+                }
             }
         }
     }
@@ -139,6 +177,9 @@
             border-right: none !important;
             img{
                 width: 100px !important;
+            }
+            .mancha{
+                margin-left: 50%;
             }
         }
     }
