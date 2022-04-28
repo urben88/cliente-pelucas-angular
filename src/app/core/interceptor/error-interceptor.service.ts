@@ -19,12 +19,18 @@ export class ErrorInterceptorService implements HttpInterceptor {
         catchError((err:HttpErrorResponse)=> {
           console.log("Entra en error-interceptor")
           // console.log(err);
-          if(err.status == 500 && err.error.error){
-            if(err.error.error.name == "TokenExpiredError"){
-              console.log("Token expirado")
+          if(err.status == 500){
+              if(err.error.error){
+                if(err.error.error.name == "TokenExpiredError"){
+                  console.log("Token expirado")
+                    this.router.navigate(['/auth/login'])
+                    localStorage.removeItem('token')
+                }
+              }
+              if(err.error.name == "JsonWebTokenError"){
                 this.router.navigate(['/auth/login'])
                 localStorage.removeItem('token')
-            }
+              }
           }
           //? Si es otro error que no sean los del if pues que deje pasar el error
           return throwError(err)

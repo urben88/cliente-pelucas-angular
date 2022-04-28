@@ -7,6 +7,7 @@ import { UpdateComponent } from '../../../shared/components/auth/update/update.c
 import { DashboardComponent } from './admin-components/sub-menus/dashboard/dashboard.component';
 import { UsersComponent } from './admin-components/sub-menus/users/users.component';
 import { CentrosComponent } from './admin-components/sub-menus/centros/centros.component';
+import { NotificacionesComponent } from './admin-components/sub-menus/notificaciones/notificaciones.component';
 const routes: Routes = [
   {
     path:'',
@@ -16,6 +17,7 @@ const routes: Routes = [
       {path: 'dashboard',component:DashboardComponent},
       {path: 'users',component:UsersComponent},
       {path: 'centros',component:CentrosComponent},
+      {path: 'notificaciones',component:NotificacionesComponent},
       
       {path:'**',redirectTo: 'dashboard'},
     ]

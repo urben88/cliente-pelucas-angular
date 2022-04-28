@@ -145,7 +145,7 @@ export class CentroEditTableComponent implements OnInit {
     if (this.validate(res)) {
       this._centro.update(res).subscribe(
         (res:any) => {
-          console.log(res)
+          console.log(res) 
           this.loadCentros()
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'El usuario ha sido actualizado' });
         },
@@ -178,8 +178,8 @@ export class CentroEditTableComponent implements OnInit {
       centro.id = 0;
     }
     console.log(index)
-    // this.users[index] = this.clonedProducts[user.id];
-    // delete this.users[user.id];
+    this.loadCentros()
+
   }
 
   //? Para hacer algunas validaciones caseras

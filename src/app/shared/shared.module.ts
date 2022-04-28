@@ -43,6 +43,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { UpdateComponent } from './components/auth/update/update.component';
 import { UserEditTableComponent } from './components/admin/user-edit-table/user-edit-table.component';
 import { CentroEditTableComponent } from './components/admin/centro-edit-table/centro-edit-table.component';
+import { SelecRowComponent } from './components/admin/selec-row/selec-row.component';
 // import { MapComponent } from './components/home/map/map.component';
 
 
@@ -55,6 +56,7 @@ import { CentroEditTableComponent } from './components/admin/centro-edit-table/c
     UpdateComponent,
     UserEditTableComponent,
     CentroEditTableComponent,
+    SelecRowComponent,
   ],
   imports: [
     CommonModule,
@@ -115,7 +117,8 @@ import { CentroEditTableComponent } from './components/admin/centro-edit-table/c
     ChartModule,
     GalleriaModule,
     GMapModule,
-    CentroEditTableComponent
+    CentroEditTableComponent,
+    SelecRowComponent
   ],
   providers: [MessageService,ConfirmationService]
 })
