@@ -22,6 +22,13 @@ export class DeleteTableComponent implements OnInit,OnChanges {
   idSelect!:number|null;
 
   ngOnInit(): void {
+    console.log(this.patrones)
+    if(this.patrones.fechaUTC.test('2022-04-20T17:35:44.000Z')){
+      console.log("Pttern correct")
+    }else{
+      console.log("Pttern incooo")
+    }
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
