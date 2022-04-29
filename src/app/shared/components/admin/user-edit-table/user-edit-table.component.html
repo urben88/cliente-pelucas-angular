@@ -23,30 +23,30 @@
                     <th pSortableColumn="rol">Roles<p-sortIcon field="rol"></p-sortIcon></th>
                     <th style="width:8rem"></th>
                 </tr>
-                <tr>
-                    <th>
+                <tr class="filtro">
+                    <th >
                         <p-columnFilter type="numeric" field="id"></p-columnFilter>
                     </th>
                     <th>
                         <p-columnFilter type="text" field="email"></p-columnFilter>
                     </th>
-                    <th style="min-width: 200px;">
+                    <th >
                         <p-columnFilter  type="text" field="nombre"></p-columnFilter>
                     </th>
-                    <th style="min-width: 200px;">
+                    <th>
                         <p-columnFilter type="text" field="apellidos"></p-columnFilter>
                     </th>
-                    <th style="min-width: 200px;">
+                    <th>
                         <p-columnFilter type="text" field="telefono"></p-columnFilter>
                     </th>
-                    <th style="min-width: 200px;">
+                    <th>
                         <p-columnFilter type="text" field="cpostal"></p-columnFilter>
                     </th>
-                    <th>
-                        <!-- <p-columnFilter type="date" field="createdAt"></p-columnFilter> -->
+                    <th class="filtrofecha">
+                        <p-columnFilter type="date" field="createdAt"></p-columnFilter>
                     </th>
-                    <th>
-                        <!-- <p-columnFilter type="date" field="updatedAt"></p-columnFilter> -->
+                    <th class="filtrofecha">
+                        <p-columnFilter type="date" field="updatedAt"></p-columnFilter>
                     </th>
                     <th>
                       
@@ -166,9 +166,12 @@
                         <button *ngIf="editing && editingStatus" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(user,ri)" class="p-button-rounded p-button-text p-button-danger"></button>
                     </td>
                     <ng-template #you>
-                       <div class="herr" style="display: flex; justify-content:center;align-items:center; height: 100%;text-align:center">
-                           <i (click)="_router.navigate(['admin/auth/update'])" class="pi pi-cog"></i> 
-                       </div>
+                        <td style="display: flex; justify-content:center;align-items:center; height: 100%;text-align:center">
+                            <div class="herr">
+                                <i (click)="_router.navigate(['admin/auth/update'])" class="pi pi-cog"></i> 
+                            </div>  
+                        </td>
+                      
                     </ng-template>
                     
                 </tr>      

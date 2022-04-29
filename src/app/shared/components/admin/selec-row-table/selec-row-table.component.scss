@@ -1,0 +1,22 @@
+@import "../../../../../styles.scss";
+.filtrofecha{
+    min-width: 400px !important;
+}
+.filtro{
+    min-width: 200px !important
+}
+.data{
+    &:hover{
+        cursor: pointer;
+    }
+    user-select: none;
+}
+.select{
+    animation: 1s;
+    background-color: $azul-selected  !important;
+}
+:host ::ng-deep{
+   .p-datatable,.p-datatable-wrapper{
+        min-height: 600px !important;
+    }
+}

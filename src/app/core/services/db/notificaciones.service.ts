@@ -21,8 +21,8 @@ export class NotificacionesService {
   getActual(){
     return this.http.get<any>(this.urlNotificaciones+"/actual",{observe:'response'})
   }
-  findbyid(id:number){
-    return this.http.get<any>(this.urlNotificaciones+"/find/"+id)
+  findByUserId(id:any){
+    return this.http.get<any>(this.urlNotificaciones+"/findByUserId/"+id)
   }
 
 }

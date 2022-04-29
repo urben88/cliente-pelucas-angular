@@ -1,4 +1,5 @@
 <div class="caja p-5">
     <!--! Titulo -->
-    <admin-selec-row></admin-selec-row>
+    <admin-selec-row-table [rows]="users | selecRow:'users'" (selected)="seleccionaUser($event)"></admin-selec-row-table>
+    <admin-delete-table *ngIf="userSelect !=null" [rows]="notificaciones" (selected)="seleccionaNotificacion($event)"></admin-delete-table>
 </div>

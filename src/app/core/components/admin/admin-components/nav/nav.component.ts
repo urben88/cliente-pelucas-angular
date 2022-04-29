@@ -26,7 +26,7 @@ export class NavComponent implements OnInit {
   ngOnInit(){
 
     this.items = [
-        {label: 'Productos'},
+        {label: 'Centros',routerLink:'/centros'},
         {label: 'Blog'},
         {label: 'Tips'},
         {label: 'About us'},

@@ -43,7 +43,10 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { UpdateComponent } from './components/auth/update/update.component';
 import { UserEditTableComponent } from './components/admin/user-edit-table/user-edit-table.component';
 import { CentroEditTableComponent } from './components/admin/centro-edit-table/centro-edit-table.component';
-import { SelecRowComponent } from './components/admin/selec-row/selec-row.component';
+import { SelecRowTableComponent } from './components/admin/selec-row-table/selec-row-table.component';
+import { SelecRowPipe } from './pipes/inputs/selec-row.pipe';
+import { ChangeDbAtPipe } from './pipes/change-db-at.pipe';
+import { DeleteTableComponent } from './components/admin/delete-table/delete-table.component';
 // import { MapComponent } from './components/home/map/map.component';
 
 
@@ -56,7 +59,10 @@ import { SelecRowComponent } from './components/admin/selec-row/selec-row.compon
     UpdateComponent,
     UserEditTableComponent,
     CentroEditTableComponent,
-    SelecRowComponent,
+    SelecRowTableComponent,
+    SelecRowPipe,
+    ChangeDbAtPipe,
+    DeleteTableComponent,
   ],
   imports: [
     CommonModule,
@@ -118,7 +124,10 @@ import { SelecRowComponent } from './components/admin/selec-row/selec-row.compon
     GalleriaModule,
     GMapModule,
     CentroEditTableComponent,
-    SelecRowComponent
+    SelecRowTableComponent,
+    SelecRowPipe,
+    ChangeDbAtPipe,
+    DeleteTableComponent
   ],
   providers: [MessageService,ConfirmationService]
 })

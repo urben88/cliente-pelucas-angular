@@ -24,9 +24,10 @@ export class NavComponent implements OnInit {
     public _notificaciones:NotificacionesService
     ) { }
 
-  notificaciones!:Notificacion[];
+  notificaciones:Notificacion[] = [];
   notileng:string = String(0);
   user!:User;
+  isAmin:boolean = false;
 
   ngOnInit(){
     if(this._auth.loggedIn()){
@@ -84,7 +85,11 @@ export class NavComponent implements OnInit {
   }
   Admin(){
     if(this._auth.loggedIn()){
-      return this._auth.isAdmin(this.user)
+      if(this._auth.isAdmin(this.user)){
+        return true
+      }else{
+        return false
+      }
     }else{
       return false;
     }

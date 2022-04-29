@@ -6,3 +6,21 @@
     margin-top: 20%; 
     color: blueviolet;
 }
+
+
+.filtro{
+    th{
+        min-width: 200px;
+      
+    }
+    .filtrofecha{
+        min-width: 420px;
+    }
+   
+}
+:host ::ng-deep{
+    .p-datatable,.p-datatable-wrapper{
+         min-height: 600px !important;
+     }
+ }
+ 
