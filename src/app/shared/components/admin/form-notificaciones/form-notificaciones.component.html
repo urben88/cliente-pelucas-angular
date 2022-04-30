@@ -1,7 +1,12 @@
 <p>form-notificaciones works!</p>
 <div class="container">
-    <form [formGroup]="notificacionesForm" class="caja cajaform-1" (submit)="send()">
-        <h1>Notificaciones</h1>
+    <form [formGroup]="notificacionesForm" class="caja cajaform-1">
+        <div class="titulo" style="display: flex; align-items:center; gap:10px">
+              <h1>Notificaciones</h1><icon-refresh (update)="reset($event)" *ngIf="notificacion"></icon-refresh>
+        </div>
+      
+        <h2 *ngIf="!notificacion" style="color: green">Crear</h2>
+        <h2 *ngIf="notificacion" style="color: blue">Actualizar</h2>
 
         <div class="datos">
             <div class="field" style="display: flex; flex-direction: column;">
@@ -9,11 +14,11 @@
                 <!-- <input id="tipo" type="email" aria-describedby="username2-help" pInputText formControlName="tipo" /> -->
                 <div class="tipo">
         
-                    <p-dropdown [options]="TiposNotificaciones" [(ngModel)]="tipoSelected" optionLabel="name" formControlName="tipo" ></p-dropdown>
+                    <p-dropdown [options]="TiposNotificaciones" optionLabel="name" optionValue="code" [showClear]="true" placeholder="Selecciona el tipo" formControlName="tipo" ></p-dropdown>
                     
-                    <i *ngIf="tipoSelected && tipoSelected.code=='success'" class="pi pi-check" style="color:rgb(13, 241, 13)"></i>
-                    <i *ngIf="tipoSelected && tipoSelected.code=='info'" class="pi pi-info-circle" style="color:rgb(13, 43, 241)"></i>
-                    <i *ngIf="tipoSelected && tipoSelected.code=='warn'" class="pi pi-exclamation-triangle" style="color:rgb(241, 154, 13)"></i>
+                    <i *ngIf="notificacionesForm.controls['tipo'].value =='success'" class="pi pi-check" style="color:rgb(13, 241, 13)"></i>
+                    <i *ngIf="notificacionesForm.controls['tipo'].value =='info'" class="pi pi-info-circle" style="color:rgb(13, 43, 241)"></i>
+                    <i *ngIf="notificacionesForm.controls['tipo'].value =='warn'" class="pi pi-exclamation-triangle" style="color:rgb(241, 154, 13)"></i>
 
                 </div>
                 <small id="tipo"  *ngIf="campoEsValido('tipo')" class="p-error block">
@@ -34,9 +39,11 @@
                 <small id="tipo"  *ngIf="campoEsValido('mensaje')" class="p-error block">
                     {{ mensajeErrorMsg }}
                 </small>
+                {{ notificacionesForm.controls['mensaje'].value}}
             </div>
         </div>
-        <button class="btn-morado">Crear</button>
+        <button *ngIf="!notificacion" (click)="send()"  class="btn-morado">Crear</button>
+        <button *ngIf="notificacion" (click)="update()"  class="btn-morado">Actualizar</button>
     </form>
    
     <alert-dberrors [erroresDB]="erroresDB"></alert-dberrors>

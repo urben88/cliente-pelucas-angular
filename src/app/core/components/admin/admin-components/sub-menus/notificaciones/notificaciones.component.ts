@@ -19,8 +19,9 @@ export class NotificacionesComponent implements OnInit {
   constructor(private _notificaciones:NotificacionesService,private _users:UsersService) { }
 
   users!:User[];
-  notificaciones!:Notification[];
+  notificaciones!:Notificacion[];
   userSelect!:User|null;
+  notificacionSelect!:Notificacion|null;
   metodos=metodos;
 
   ngOnInit(): void {
@@ -50,6 +51,8 @@ export class NotificacionesComponent implements OnInit {
   }
   seleccionaNotificacion(event:any){
     console.log(event)
+    this.notificacionSelect = event;
+
   }
   deletenoti(event:Notificacion){
     console.log(event)
@@ -63,5 +66,10 @@ export class NotificacionesComponent implements OnInit {
       }
     )
     
+  }
+  //? Se activa cuando el evento del formulario envia la nueva notificación (Esto es para que se actualice)
+  meterListaNoti(evento:Notificacion){
+
+    this.notificaciones.push(evento);
   }
 }

@@ -1,0 +1,11 @@
+.pi-refresh{
+    color: purple;
+    transition: 0.2s;
+    &:hover{
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+    &:active{
+        transform: scale(0.8);
+    }
+}

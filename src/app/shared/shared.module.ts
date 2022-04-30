@@ -50,6 +50,7 @@ import { ChangeDbAtPipe } from './pipes/change-db-at.pipe';
 import { DeleteTableComponent } from './components/admin/delete-table/delete-table.component';
 import { FormNotificacionesComponent } from './components/admin/form-notificaciones/form-notificaciones.component';
 import { AlertDBerrorsComponent } from './components/generic/alert-dberrors/alert-dberrors.component';
+import { IconRefreshComponent } from './components/generic/icon-refresh/icon-refresh.component';
 // import { MapComponent } from './components/home/map/map.component';
 
 
@@ -68,6 +69,7 @@ import { AlertDBerrorsComponent } from './components/generic/alert-dberrors/aler
     DeleteTableComponent,
     FormNotificacionesComponent,
     AlertDBerrorsComponent,
+    IconRefreshComponent,
   ],
   imports: [
     CommonModule,
@@ -138,7 +140,8 @@ import { AlertDBerrorsComponent } from './components/generic/alert-dberrors/aler
     FormNotificacionesComponent,
     InputTextareaModule,
     AlertDBerrorsComponent,
-    EditorModule
+    EditorModule,
+    IconRefreshComponent,
   ],
   providers: [MessageService,ConfirmationService]
 })

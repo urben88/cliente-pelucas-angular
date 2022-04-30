@@ -2,5 +2,5 @@
     <!--! Titulo -->
     <admin-selec-row-table [rows]="users | selecRow:'users'" (selected)="seleccionaUser($event)"></admin-selec-row-table>
     <admin-delete-table *ngIf="userSelect !=null" [rows]="notificaciones" [sort]="false" (selected)="seleccionaNotificacion($event)" (delete)="deletenoti($event)"></admin-delete-table>
-    <admin-form-notificaciones *ngIf="userSelect !=null"></admin-form-notificaciones>
+    <admin-form-notificaciones *ngIf="userSelect !=null" [notificacion]="notificacionSelect" [user]="userSelect" (new)="meterListaNoti($event)"></admin-form-notificaciones>
 </div>

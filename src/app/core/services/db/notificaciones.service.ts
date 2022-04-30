@@ -8,6 +8,7 @@ import {User} from '../../models/User.interface'
 
 //?Servicios
 import { Router } from '@angular/router';
+import { Notificacion } from '../../models/Notificacion';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,12 @@ export class NotificacionesService {
   delete(id:any){
     return this.http.delete<any>(this.urlNotificaciones+"/"+id)
   }
+  create(Notificacion:Notificacion){
+    return this.http.post<any>(this.urlNotificaciones+"/create",Notificacion)
+  }
+  show(id:any){
+    return this.http.get<any>(this.urlNotificaciones+"/"+id);
+  }
+
 
 }

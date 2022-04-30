@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, OnChanges } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import patrones from '../../../../core/utils/validaciones/patterns'
 interface rowFiltro{
   campo:string,
@@ -7,11 +8,14 @@ interface rowFiltro{
 @Component({
   selector: 'admin-delete-table',
   templateUrl: './delete-table.component.html',
-  styleUrls: ['./delete-table.component.scss']
+  styleUrls: ['./delete-table.component.scss'],
+  providers: [MessageService]
 })
 export class DeleteTableComponent implements OnInit,OnChanges {
 
-  constructor() { }
+  constructor(
+    private _message:MessageService
+  ) { }
 
   @Input() rows:any; 
   @Input() sort:boolean = false; 
@@ -46,8 +50,17 @@ export class DeleteTableComponent implements OnInit,OnChanges {
    
   }
    //? Método que uso para imprimir los datos
+   //!Tranformo el texto para quitar etiquetas HTML del mensaje
   getData(object:any){
-    return Object.values<any>(object)
+    let array = Object.values<any>(object)
+    let solu =array.map((valor)=>{
+      if(typeof valor == "string"){
+        return valor.replace(/<[^>]*>?/g, '')
+      }
+      return valor
+    })
+    // console.log(solu)
+    return solu;
   }
    //? Para emitir el seleccionado
    clickselect(row:any){
@@ -73,6 +86,7 @@ export class DeleteTableComponent implements OnInit,OnChanges {
   //? Cuando da click a eliminar
   clickdelete(data:any){
     console.log("click en tablaa borrar")
+    this._message.add({severity:'error', summary: 'Eliminado', detail: 'Se ha eliminado el campo'})
     this.delete.emit(data)
   }
 
