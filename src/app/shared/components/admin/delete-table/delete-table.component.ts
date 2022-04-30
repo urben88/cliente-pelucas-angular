@@ -14,7 +14,9 @@ export class DeleteTableComponent implements OnInit,OnChanges {
   constructor() { }
 
   @Input() rows:any; 
+  @Input() sort:boolean = false; 
   @Output() selected = new EventEmitter<any>();
+  @Output() delete = new EventEmitter<any>();
 
   patrones = patrones
   tipos:rowFiltro[] =[];
@@ -66,6 +68,12 @@ export class DeleteTableComponent implements OnInit,OnChanges {
       return 'select'
     }
     return '';
+  }
+
+  //? Cuando da click a eliminar
+  clickdelete(data:any){
+    console.log("click en tablaa borrar")
+    this.delete.emit(data)
   }
 
 }

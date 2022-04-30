@@ -1,0 +1,45 @@
+<p>form-notificaciones works!</p>
+<div class="container">
+    <form [formGroup]="notificacionesForm" class="caja cajaform-1" (submit)="send()">
+        <h1>Notificaciones</h1>
+
+        <div class="datos">
+            <div class="field" style="display: flex; flex-direction: column;">
+                <label for="tipo" class="block">Tipo</label>
+                <!-- <input id="tipo" type="email" aria-describedby="username2-help" pInputText formControlName="tipo" /> -->
+                <div class="tipo">
+        
+                    <p-dropdown [options]="TiposNotificaciones" [(ngModel)]="tipoSelected" optionLabel="name" formControlName="tipo" ></p-dropdown>
+                    
+                    <i *ngIf="tipoSelected && tipoSelected.code=='success'" class="pi pi-check" style="color:rgb(13, 241, 13)"></i>
+                    <i *ngIf="tipoSelected && tipoSelected.code=='info'" class="pi pi-info-circle" style="color:rgb(13, 43, 241)"></i>
+                    <i *ngIf="tipoSelected && tipoSelected.code=='warn'" class="pi pi-exclamation-triangle" style="color:rgb(241, 154, 13)"></i>
+
+                </div>
+                <small id="tipo"  *ngIf="campoEsValido('tipo')" class="p-error block">
+                    {{ tipoErrorMsg }}
+                </small>
+            </div>
+
+            <div class="field" style="display: flex; flex-direction: column;">
+                <label for="header" class="block">Cabecera</label>
+                <textarea [rows]="5" [cols]="30" pInputTextarea [autoResize]="true"  formControlName="header" ></textarea>
+                <!-- <input id="password" type="password" aria-describedby="username2-help" pInputText formControlName="password" /> -->
+                <small id="header" *ngIf="campoEsValido('header')" class="p-error block">
+                    {{ headerErrorMsg }}
+                </small>
+            </div>
+            <div class="editor">
+                <p-editor formControlName="mensaje" [style]="{'height':'320px','width':'100%'}"></p-editor>
+                <small id="tipo"  *ngIf="campoEsValido('mensaje')" class="p-error block">
+                    {{ mensajeErrorMsg }}
+                </small>
+            </div>
+        </div>
+        <button class="btn-morado">Crear</button>
+    </form>
+   
+    <alert-dberrors [erroresDB]="erroresDB"></alert-dberrors>
+<!-- <p>{{ singinForm.value | json }}</p>
+<p>{{ singinForm.valid | json }}</p> -->
+</div>

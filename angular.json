@@ -111,7 +111,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": ["./node_modules/jquery/dist/jquery.min.js","./node_modules/chart.js/dist/Chart.js"]
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/chart.js/dist/Chart.js"
+            ]
           }
         }
       }

@@ -24,5 +24,8 @@ export class NotificacionesService {
   findByUserId(id:any){
     return this.http.get<any>(this.urlNotificaciones+"/findByUserId/"+id)
   }
+  delete(id:any){
+    return this.http.delete<any>(this.urlNotificaciones+"/"+id)
+  }
 
 }

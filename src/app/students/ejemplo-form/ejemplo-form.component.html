@@ -1,9 +1,4 @@
-<!-- <app-nav></app-nav> -->
-<!--? Decorados -->
-<img class="circulo1" src="assets/decorados/circulo.svg">
-<img class="circulo2" src="assets/decorados/circulo.svg">
-
-<div class="container">
+<!-- <div class="container">
     <form [formGroup]="singinForm" class="caja cajaform-1" (submit)="send()">
         <h1>Loguearte</h1>
 
@@ -23,12 +18,11 @@
                 </small>
             </div>
         </div>
-        <alert-dberrors [erroresDB]="erroresDB"></alert-dberrors>
+        <div *ngFor="let error of erroresDB" class="animate__animated animate__flipInX alert alert-danger" role="alert">
+          {{ error }}
+        </div>
         <button class="btn-morado">Login</button>
     </form>
-<!-- <p>{{ singinForm.value | json }}</p>
+<p>{{ singinForm.value | json }}</p>
 <p>{{ singinForm.valid | json }}</p> -->
-</div>
-
-<!-- <app-footer></app-footer> -->
- 
+<!-- </div>  -->

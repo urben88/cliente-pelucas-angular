@@ -86,9 +86,7 @@
                 Tipo de centa:
             <p-dropdown [options]="roles" id="rol" formControlName="rol " placeholder="Tipo de cuenta" optionLabel="name" [showClear]="false"></p-dropdown></label> -->
         </div>
-        <div *ngFor="let error of erroresDB" class="animate__animated animate__flipInX alert alert-danger" role="alert">
-            {{ error }}
-          </div>
+        <alert-dberrors [erroresDB]="erroresDB"></alert-dberrors>
         <button class="btn-morado" style="align-self: flex-end;">Register</button>
     </form>
 </div>

@@ -25,5 +25,12 @@ export default {
     ordenarJSONDesc(p_array_json:any, p_key:any) {
         this.ordenarJSONAsc(p_array_json, p_key); 
         return p_array_json.reverse(); 
-     }
+    },
+    deleteArrayById(array:any,id:any){
+        array.forEach((element:any,index:any) => {
+            if(element.id == id){
+                array.splice(index,index+1)
+            }
+        });
+    }
 }

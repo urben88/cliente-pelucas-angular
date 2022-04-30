@@ -35,7 +35,8 @@ import {GalleriaModule} from 'primeng/galleria';
 import {ChartModule} from 'primeng/chart';
 import { SharedComponent } from './shared.component';
 import {GMapModule} from 'primeng/gmap';
-
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {EditorModule} from 'primeng/editor';
 
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -47,6 +48,8 @@ import { SelecRowTableComponent } from './components/admin/selec-row-table/selec
 import { SelecRowPipe } from './pipes/inputs/selec-row.pipe';
 import { ChangeDbAtPipe } from './pipes/change-db-at.pipe';
 import { DeleteTableComponent } from './components/admin/delete-table/delete-table.component';
+import { FormNotificacionesComponent } from './components/admin/form-notificaciones/form-notificaciones.component';
+import { AlertDBerrorsComponent } from './components/generic/alert-dberrors/alert-dberrors.component';
 // import { MapComponent } from './components/home/map/map.component';
 
 
@@ -63,6 +66,8 @@ import { DeleteTableComponent } from './components/admin/delete-table/delete-tab
     SelecRowPipe,
     ChangeDbAtPipe,
     DeleteTableComponent,
+    FormNotificacionesComponent,
+    AlertDBerrorsComponent,
   ],
   imports: [
     CommonModule,
@@ -90,7 +95,9 @@ import { DeleteTableComponent } from './components/admin/delete-table/delete-tab
     CascadeSelectModule,
     ChartModule,
     GalleriaModule,
-    GMapModule
+    GMapModule,
+    InputTextareaModule,
+    EditorModule
   ],
   exports:[
     NavComponent,
@@ -127,7 +134,11 @@ import { DeleteTableComponent } from './components/admin/delete-table/delete-tab
     SelecRowTableComponent,
     SelecRowPipe,
     ChangeDbAtPipe,
-    DeleteTableComponent
+    DeleteTableComponent,
+    FormNotificacionesComponent,
+    InputTextareaModule,
+    AlertDBerrorsComponent,
+    EditorModule
   ],
   providers: [MessageService,ConfirmationService]
 })

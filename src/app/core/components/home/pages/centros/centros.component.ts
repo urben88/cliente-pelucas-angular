@@ -13,7 +13,6 @@ import centros from "../../../../constants/centros"
 export class CentrosComponent implements OnInit {
 
   images!: any[];
-
   valencia  !:Centro[];
   alicante  !:Centro[];
   castellon !:Centro[];

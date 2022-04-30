@@ -5,6 +5,9 @@ import { Centro } from '../../../../../models/Centro.interface';
 import { NotificacionesService } from '../../../../../services/db/notificaciones.service';
 import { UsersService } from '../../../../../services/db/users.service';
 import { User } from '../../../../../models/User.interface';
+import { Notificacion } from '../../../../../models/Notificacion';
+import medotos from '../../../../../utils/metodos'
+import metodos from '../../../../../utils/metodos';
 
 @Component({
   selector: 'app-notificaciones',
@@ -18,6 +21,7 @@ export class NotificacionesComponent implements OnInit {
   users!:User[];
   notificaciones!:Notification[];
   userSelect!:User|null;
+  metodos=metodos;
 
   ngOnInit(): void {
     this._users.getUsers().subscribe(
@@ -33,16 +37,31 @@ export class NotificacionesComponent implements OnInit {
     this.userSelect = event;
     console.log(this.userSelect)
     console.log(event)
-    this._notificaciones.findByUserId(this.userSelect.id).subscribe(
+    if(event){
+      this._notificaciones.findByUserId(this.userSelect.id).subscribe(
+        (res)=>{
+          this.notificaciones = res;
+        },
+        (err)=>{
+          console.error(err)
+        }
+      )
+    }
+  }
+  seleccionaNotificacion(event:any){
+    console.log(event)
+  }
+  deletenoti(event:Notificacion){
+    console.log(event)
+    this._notificaciones.delete(event.id).subscribe(
       (res)=>{
-        this.notificaciones = res;
+        console.log("Eliminado correctamente")
+        this.metodos.deleteArrayById(this.notificaciones,event.id)
       },
       (err)=>{
         console.error(err)
       }
     )
-  }
-  seleccionaNotificacion(event:any){
-    console.log(event)
+    
   }
 }

@@ -1,14 +1,23 @@
 
 <p-table [value]="rows" responsiveLayout="scroll">
     <ng-template pTemplate="header">
-        <tr>
-            <th *ngFor="let col of columns">{{ col | changeDbAt}}</th>
+        <tr *ngIf="sort">
+            <th *ngFor="let col of columns" pSortableColumn="{{col}}">{{ col | changeDbAt}}<p-sortIcon field="{{col}}"></p-sortIcon></th>
+            <th></th>
         </tr>
+        <tr *ngIf="!sort">
+            <th *ngFor="let col of columns" >{{ col | changeDbAt}}</th>
+            <th></th>
+        </tr>
+        
     </ng-template>
     <ng-template pTemplate="body" let-data>
         <tr class="data" (click)="clickselect(data)" [ngClass]="styleselect(data)" style="transition: 0.1s;">
             <td *ngFor="let val of getData(data)">
                 {{ patrones.fechaUTC.test(val)? (val | date: 'dd/MM/yyyy hh:mm a') : val }}
+            </td>
+            <td>
+                <i (click)="clickdelete(data)" style="color: red" class="fa-solid fa-xmark"></i>
             </td>
         </tr>
     </ng-template>
