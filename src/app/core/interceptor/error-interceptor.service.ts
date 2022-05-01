@@ -11,30 +11,30 @@ import { ErrorPost } from '../models/Error.interface';
 })
 export class ErrorInterceptorService implements HttpInterceptor {
 
-  constructor(private router:Router) { }
+  constructor(private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     //?Con esto marcamos que queremos hacer un pipe del contenido despues de la peticion
-     return next.handle(req).pipe(
-        catchError((err:HttpErrorResponse)=> {
-          console.log("Entra en error-interceptor")
-          // console.log(err);
-          if(err.status == 500){
-              if(err.error.error){
-                if(err.error.error.name == "TokenExpiredError"){
-                  console.log("Token expirado")
-                    this.router.navigate(['/auth/login'])
-                    localStorage.removeItem('token')
-                }
-              }
-              if(err.error.name == "JsonWebTokenError"){
-                this.router.navigate(['/auth/login'])
-                localStorage.removeItem('token')
-              }
+    return next.handle(req).pipe(
+      catchError((err: HttpErrorResponse) => {
+        console.log("Entra en error-interceptor")
+        // console.log(err);
+        if (err.status == 500) {
+
+          if (err.error.name == "TokenExpiredError") {
+            console.log("Token expirado")
+            this.router.navigate(['/auth/login'])
+            localStorage.removeItem('token')
           }
-          //? Si es otro error que no sean los del if pues que deje pasar el error
-          return throwError(err)
-        })
-     );
+
+          if (err.error.name == "JsonWebTokenError") {
+            this.router.navigate(['/auth/login'])
+            localStorage.removeItem('token')
+          }
+        }
+        //? Si es otro error que no sean los del if pues que deje pasar el error
+        return throwError(err)
+      })
+    );
   }
 }

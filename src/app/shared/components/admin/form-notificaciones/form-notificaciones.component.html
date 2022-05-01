@@ -1,4 +1,6 @@
-<p>form-notificaciones works!</p>
+<!-- ! Mensajes info -->
+<p-toast position="top-center" style="margin-top:300px"></p-toast>
+
 <div class="container">
     <form [formGroup]="notificacionesForm" class="caja cajaform-1">
         <div class="titulo" style="display: flex; align-items:center; gap:10px">
@@ -39,14 +41,15 @@
                 <small id="tipo"  *ngIf="campoEsValido('mensaje')" class="p-error block">
                     {{ mensajeErrorMsg }}
                 </small>
-                {{ notificacionesForm.controls['mensaje'].value}}
+                <!-- {{ notificacionesForm.controls['mensaje'].value}} -->
             </div>
         </div>
+        <alert-dberrors [erroresDB]="erroresDB"></alert-dberrors>
         <button *ngIf="!notificacion" (click)="send()"  class="btn-morado">Crear</button>
         <button *ngIf="notificacion" (click)="update()"  class="btn-morado">Actualizar</button>
     </form>
    
-    <alert-dberrors [erroresDB]="erroresDB"></alert-dberrors>
+   
 <!-- <p>{{ singinForm.value | json }}</p>
 <p>{{ singinForm.valid | json }}</p> -->
 </div>

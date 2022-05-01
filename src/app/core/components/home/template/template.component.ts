@@ -18,6 +18,14 @@ export class TemplateComponent implements OnInit {
     }
     
   }
+  mostrarOla(){
+    if(this.router.isActive('/auth/settings',false)){
+      return false;
+    }else{
+      return true;
+    }
+    
+  }
 
   ngOnInit(): void {
   }

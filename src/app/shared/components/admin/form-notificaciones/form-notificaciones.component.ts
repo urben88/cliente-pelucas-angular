@@ -6,10 +6,12 @@ import { Notificacion } from '../../../../core/models/Notificacion';
 import {TiposNotificaciones} from '../../../../core/enums/Notificaciones'
 import { NotificacionesService } from '../../../../core/services/db/notificaciones.service';
 import { User } from '../../../../core/models/User.interface';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'admin-form-notificaciones',
   templateUrl: './form-notificaciones.component.html',
-  styleUrls: ['./form-notificaciones.component.scss']
+  styleUrls: ['./form-notificaciones.component.scss'],
+  providers: [MessageService]
 })
 export class FormNotificacionesComponent implements OnInit,OnChanges {
   
@@ -22,8 +24,10 @@ export class FormNotificacionesComponent implements OnInit,OnChanges {
   @Input() notificacion!:Notificacion |null; 
   @Input() user!:User;
   @Output() new = new EventEmitter<Notificacion>();
+  @Output() newupdate = new EventEmitter<Notificacion>();
 
   ngOnInit(): void {
+    this.notificacion = null;
   }
 
   erroresDB:String[] =[];
@@ -37,6 +41,7 @@ export class FormNotificacionesComponent implements OnInit,OnChanges {
     private _builder: FormBuilder,
     private _auth: AuthService,
     private _notificaciones:NotificacionesService,
+    private _message:MessageService,
     private _router: Router,
   ) { }
 
@@ -46,6 +51,9 @@ export class FormNotificacionesComponent implements OnInit,OnChanges {
       this.notificacionesForm.controls['tipo'].setValue(this.notificacion?.tipo );
       this.notificacionesForm.controls['header'].setValue(this.notificacion?.header);
       this.notificacionesForm.controls['mensaje'].setValue(this.notificacion?.mensaje);
+    }
+    if(changes['user']){
+      console.log(this.user,"Cambia useeer")
     }
   }
 
@@ -112,19 +120,30 @@ export class FormNotificacionesComponent implements OnInit,OnChanges {
       console.log(this.notificacionesForm.value)
       let resul:any={
         user_id: this.user.id,
-        tipo:this.notificacionesForm.controls['tipo'].value.code,
+        tipo:this.notificacionesForm.controls['tipo'].value,
         header:this.notificacionesForm.controls['header'].value,
         mensaje:this.notificacionesForm.controls['mensaje'].value
       }
+      console.log(resul)
       this._notificaciones.create(resul)
       .subscribe(
         (res)=>{
           this.new.emit(res)
+          this._message.add({severity:'success', summary: 'Creado', detail: 'Se ha creado la notificación correctamente'});
           this.notificacionesForm.reset(); //Borra el contenido de los inputs
         },
         (error:any) =>{
           console.log(error)
-          this.erroresDB.push(error.error.msg)
+          if(error.error.msg){
+            this.erroresDB.push(error.error.msg)
+            this._message.add({severity:'error', summary: 'Error', detail: error.error.msg});
+          }else{
+            if(error.statusText == "Payload Too Large"){
+              this._message.add({severity:'error', summary: 'Error', detail: "No puedes subir un mensaje tan pesado"});
+              this.erroresDB.push("No puedes subir un mensaje tan pesado")
+            }
+          }
+
         }
       )
     }
@@ -132,5 +151,41 @@ export class FormNotificacionesComponent implements OnInit,OnChanges {
   //TODO Falta hacer la actualización de notificaciones
   update(){
     console.log("Click en actualizar")
+    this.erroresDB = [];
+    if(this.notificacionesForm.invalid){
+      this.notificacionesForm.markAllAsTouched();
+      console.log("Formulario invalido")
+    }else{
+      console.log(this.notificacionesForm.value)
+      let resul:any={
+        tipo:this.notificacionesForm.controls['tipo'].value,
+        header:this.notificacionesForm.controls['header'].value,
+        mensaje:this.notificacionesForm.controls['mensaje'].value
+      }
+      console.log(resul)
+      this._notificaciones.update(this.notificacion?.id,resul)
+      .subscribe(
+        (res)=>{
+          console.log(res)
+          this.newupdate.emit(res)
+          this._message.add({severity:'success', summary: 'Creado', detail: 'Se ha actualizado la notificación correctamente'});
+          // this.notificacionesForm.reset(); //Borra el contenido de los inputs
+        },
+        (error:any) =>{
+          console.log(error)
+          if(error.error.msg){
+            this.erroresDB.push(error.error.msg)
+            this._message.add({severity:'error', summary: 'Error', detail: error.error.msg});
+          }else{
+            if(error.statusText == "Payload Too Large"){
+              this._message.add({severity:'error', summary: 'Error', detail: "No puedes subir un mensaje tan pesado"});
+              this.erroresDB.push("No puedes subir un mensaje tan pesado")
+            }
+          }
+
+        }
+      )
+    }
+
   }
 }

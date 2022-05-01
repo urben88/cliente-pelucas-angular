@@ -36,6 +36,7 @@ export class NotificacionesComponent implements OnInit {
   }
   seleccionaUser(event:User){
     this.userSelect = event;
+    this.notificacionSelect = null;
     console.log(this.userSelect)
     console.log(event)
     if(event){
@@ -71,5 +72,13 @@ export class NotificacionesComponent implements OnInit {
   meterListaNoti(evento:Notificacion){
 
     this.notificaciones.push(evento);
+  }
+  //?Para cuando haga una actualizacion
+  cambiarNoti(event:Notificacion){
+    this.notificaciones.forEach((elem,index)=>{
+      if(elem.id == event.id){
+        this.notificaciones[index]=event;
+      }
+    })
   }
 }

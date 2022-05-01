@@ -1,3 +1,4 @@
+@import "../../../../../../../styles.scss";
 .caja{
     overflow: auto;
     background-color: white;
@@ -14,8 +15,18 @@
             width: 30%;
         } 
     }
+    
+    .notificacionestable{
+        margin-top: 50px;
+        strong{
+            color: $morado-boton;
+        }
+    }
     admin-selec-row{
       
+    }
+    admin-delete-table{
+        margin-top: 50px !important;
     }
    
 }

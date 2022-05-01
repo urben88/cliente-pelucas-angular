@@ -34,6 +34,9 @@ export class NotificacionesService {
   show(id:any){
     return this.http.get<any>(this.urlNotificaciones+"/"+id);
   }
+  update(id:any,Notificacion:Notificacion){
+    return this.http.put<any>(this.urlNotificaciones+"/"+id,Notificacion);
+  }
 
 
 }
