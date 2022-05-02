@@ -37,6 +37,9 @@ export class NotificacionesService {
   update(id:any,Notificacion:Notificacion){
     return this.http.put<any>(this.urlNotificaciones+"/"+id,Notificacion);
   }
+  isFromActualUser(id:number){
+    return this.http.get<any>(this.urlNotificaciones+"/isFromActualUser/"+id);
+  }
 
 
 }

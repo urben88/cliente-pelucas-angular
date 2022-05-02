@@ -1,0 +1,51 @@
+<div class="caja">
+    <h1 class="titulo">Tus notificaciones <i class="pi pi-bell animate__animated animate__swing"></i></h1>
+    <div class="notificaciones">
+        <div class="info">
+          <h1><i style="color: blue;" class="pi pi-info-circle"></i> Notificaciones de <span style="color: blue;">Info</span></h1>
+          <div class="cajaNotificaciones">
+            <div *ngIf="!info" class="alert alert-info" role="alert">
+                No tienes notificaciones
+            </div>
+            <p-panel *ngFor="let noti of info" header="{{noti.header}}" [collapsed]="true" [toggleable]="true">
+                <p>{{ noti.mensaje }}</p>
+                <div class="fecha" style="display: flex; align-self: flex-end; justify-content: flex-end; align-items: center;">
+                    <strong class="me-2">Enviado el:</strong>
+                    <small class="small">{{noti.updatedAt | date: 'dd/MM/yyyy hh:mm a'}}</small>
+                </div>
+            </p-panel>
+          </div>
+        </div>
+        <div class="success">
+            <h1><i class="pi pi-check" style="color: green;"></i> Notificaciones de <span style="color: green;">Éxito</span> </h1>
+            <div class="cajaNotificaciones">
+                <div *ngIf="!success" class="alert alert-info" role="alert">
+                    No tienes notificaciones
+                </div>
+              <p-panel *ngFor="let noti of success" header="{{noti.header}}" [collapsed]="true" [toggleable]="true">
+                  <p [innerHTML]="noti.mensaje"></p>
+                  <div class="fecha" style="display: flex; align-self: flex-end; justify-content: flex-end; align-items: center;">
+                      <strong class="me-2">Enviado el:</strong>
+                      <small class="small">{{noti.updatedAt | date: 'dd/MM/yyyy hh:mm a'}}</small>
+                  </div>
+              </p-panel>
+            </div>
+        </div>
+        <div class="warn">
+            <h1><i class="pi pi-exclamation-triangle"  style="color: orange;"></i> Notificaciones de <span style="color: orange;"> Aviso </span></h1>
+            <div class="cajaNotificaciones">
+                <div *ngIf="!warn" class="alert alert-info" role="alert">
+                    No tienes notificaciones
+                </div>
+              <p-panel *ngFor="let noti of warn" header="{{noti.header}}" [collapsed]="true" [toggleable]="true">
+                  <p>{{ noti.mensaje }}</p>
+                  <div class="fecha" style="display: flex; align-self: flex-end; justify-content: flex-end; align-items: center;">
+                      <strong class="me-2">Enviado el:</strong>
+                      <small class="small">{{noti.updatedAt | date: 'dd/MM/yyyy hh:mm a'}}</small>
+                  </div>
+              </p-panel>
+            </div>
+        </div>
+
+    </div>
+</div>

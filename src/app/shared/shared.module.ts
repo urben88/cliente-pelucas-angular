@@ -37,6 +37,7 @@ import { SharedComponent } from './shared.component';
 import {GMapModule} from 'primeng/gmap';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {EditorModule} from 'primeng/editor';
+import {FieldsetModule} from 'primeng/fieldset';
 
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -51,6 +52,8 @@ import { DeleteTableComponent } from './components/admin/delete-table/delete-tab
 import { FormNotificacionesComponent } from './components/admin/form-notificaciones/form-notificaciones.component';
 import { AlertDBerrorsComponent } from './components/generic/alert-dberrors/alert-dberrors.component';
 import { IconRefreshComponent } from './components/generic/icon-refresh/icon-refresh.component';
+import { ShowNotificacionesComponent } from './components/home/show-notificaciones/show-notificaciones.component';
+import { ShowNotificacionComponent } from './components/home/show-notificaciones/show-notificacion/show-notificacion.component';
 // import { MapComponent } from './components/home/map/map.component';
 
 
@@ -70,6 +73,9 @@ import { IconRefreshComponent } from './components/generic/icon-refresh/icon-ref
     FormNotificacionesComponent,
     AlertDBerrorsComponent,
     IconRefreshComponent,
+    ShowNotificacionesComponent,
+    ShowNotificacionComponent,
+
   ],
   imports: [
     CommonModule,
@@ -99,7 +105,8 @@ import { IconRefreshComponent } from './components/generic/icon-refresh/icon-ref
     GalleriaModule,
     GMapModule,
     InputTextareaModule,
-    EditorModule
+    EditorModule,
+    FieldsetModule
   ],
   exports:[
     NavComponent,
@@ -142,6 +149,10 @@ import { IconRefreshComponent } from './components/generic/icon-refresh/icon-ref
     AlertDBerrorsComponent,
     EditorModule,
     IconRefreshComponent,
+    ShowNotificacionesComponent,
+    FieldsetModule,
+    ShowNotificacionComponent,
+
   ],
   providers: [MessageService,ConfirmationService]
 })
