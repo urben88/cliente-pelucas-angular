@@ -1,0 +1,37 @@
+<div class="caja">
+    <form [formGroup]="medidasForm">
+        <h1>Medidas de la cabeza</h1>
+        <div class="datos">
+            <div class="campo">
+
+                <div class="carta">
+                    <div class="cajaimg">
+                        <img src="assets/img/medidas/redondo.PNG">
+                    </div>
+                    <div class="field" style="display: flex; flex-direction: column;">
+                        <label>Redondo <small>cm</small></label>
+                        <p-inputNumber inputId="minmaxfraction" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="5"  [(ngModel)]="val">
+                        </p-inputNumber>
+                        <small *ngIf="campoEsValido('enfermedades')" class="p-error block">
+                            <!-- {{ enfermedadesErrorMsg }} -->
+                        </small>
+                    </div>
+                </div>
+
+                <div class="carta">
+                    <div class="cajaimg">
+                        <img src="assets/img/medidas/redondo.PNG">
+                    </div>
+                    <div class="field" style="display: flex; flex-direction: column;">
+                        <label>Redondo <small>cm</small></label>
+                        <input type="number">
+                        <small *ngIf="campoEsValido('enfermedades')" class="p-error block">
+                            <!-- {{ enfermedadesErrorMsg }} -->
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

@@ -38,6 +38,10 @@ import {GMapModule} from 'primeng/gmap';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {EditorModule} from 'primeng/editor';
 import {FieldsetModule} from 'primeng/fieldset';
+import {MultiSelectModule} from 'primeng/multiselect';
+
+
+
 
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -54,6 +58,9 @@ import { AlertDBerrorsComponent } from './components/generic/alert-dberrors/aler
 import { IconRefreshComponent } from './components/generic/icon-refresh/icon-refresh.component';
 import { ShowNotificacionesComponent } from './components/home/show-notificaciones/show-notificaciones.component';
 import { ShowNotificacionComponent } from './components/home/show-notificaciones/show-notificacion/show-notificacion.component';
+import { DatosClinicosFormComponent } from './components/user/datos-clinicos-form/datos-clinicos-form.component';
+import { MedidasFormComponent } from './components/user/medidas-form/medidas-form.component';
+
 // import { MapComponent } from './components/home/map/map.component';
 
 
@@ -75,6 +82,9 @@ import { ShowNotificacionComponent } from './components/home/show-notificaciones
     IconRefreshComponent,
     ShowNotificacionesComponent,
     ShowNotificacionComponent,
+    DatosClinicosFormComponent,
+    MedidasFormComponent,
+    
 
   ],
   imports: [
@@ -106,7 +116,9 @@ import { ShowNotificacionComponent } from './components/home/show-notificaciones
     GMapModule,
     InputTextareaModule,
     EditorModule,
-    FieldsetModule
+    FieldsetModule,
+    MultiSelectModule,
+    InputNumberModule
   ],
   exports:[
     NavComponent,
@@ -152,6 +164,9 @@ import { ShowNotificacionComponent } from './components/home/show-notificaciones
     ShowNotificacionesComponent,
     FieldsetModule,
     ShowNotificacionComponent,
+    DatosClinicosFormComponent,
+    MedidasFormComponent,
+    MultiSelectModule,
 
   ],
   providers: [MessageService,ConfirmationService]

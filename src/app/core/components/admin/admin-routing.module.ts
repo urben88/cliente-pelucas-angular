@@ -8,6 +8,8 @@ import { DashboardComponent } from './admin-components/sub-menus/dashboard/dashb
 import { UsersComponent } from './admin-components/sub-menus/users/users.component';
 import { CentrosComponent } from './admin-components/sub-menus/centros/centros.component';
 import { NotificacionesComponent } from './admin-components/sub-menus/notificaciones/notificaciones.component';
+import { MedidasComponent } from './admin-components/sub-menus/medidas/medidas.component';
+import { DatosClinicosComponent } from './admin-components/sub-menus/datos-clinicos/datos-clinicos.component';
 const routes: Routes = [
   {
     path:'',
@@ -18,6 +20,8 @@ const routes: Routes = [
       {path: 'users',component:UsersComponent},
       {path: 'centros',component:CentrosComponent},
       {path: 'notificaciones',component:NotificacionesComponent},
+      {path: 'datos_clinicos',component:DatosClinicosComponent},
+      {path: 'medidas',component:MedidasComponent},
       
       {path:'**',redirectTo: 'dashboard'},
     ]
