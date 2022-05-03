@@ -1,3 +1,5 @@
 <div class="caja">
-    <app-medidas-form></app-medidas-form>
+    <h1>juiojioj</h1>
+    <admin-selec-row-table [rows]="users | selecRow:'users'" (selected)="userSelect($event)"></admin-selec-row-table>
+    <app-medidas-form *ngIf="userSelected" [user]="userSelected"></app-medidas-form>
 </div>

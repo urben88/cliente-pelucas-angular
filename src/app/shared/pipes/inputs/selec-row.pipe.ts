@@ -13,8 +13,6 @@ export class SelecRowPipe implements PipeTransform {
         case'users':
           this.users(element)
         break;
-
-
       }
 
     });
