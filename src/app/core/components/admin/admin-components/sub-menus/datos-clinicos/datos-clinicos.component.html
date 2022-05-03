@@ -1,3 +1,4 @@
 <div class="caja">
-    <app-datos-clinicos-form></app-datos-clinicos-form>
+    <admin-selec-row-table [rows]="users | selecRow:'users'" (selected)="userSelect($event)"></admin-selec-row-table>
+    <app-datos-clinicos-form *ngIf="userSelected" [user]="userSelected"></app-datos-clinicos-form>
 </div>

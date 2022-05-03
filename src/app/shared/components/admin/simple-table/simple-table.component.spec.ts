@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteTableComponent } from './delete-table.component';
+import { SimpleTableComponent } from './simple-table.component';
 
-describe('DeleteTableComponent', () => {
-  let component: DeleteTableComponent;
-  let fixture: ComponentFixture<DeleteTableComponent>;
+describe('SimpleTableComponent ', () => {
+  let component: SimpleTableComponent ;
+  let fixture: ComponentFixture<SimpleTableComponent >;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeleteTableComponent ]
+      declarations: [ SimpleTableComponent  ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeleteTableComponent);
+    fixture = TestBed.createComponent(SimpleTableComponent );
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

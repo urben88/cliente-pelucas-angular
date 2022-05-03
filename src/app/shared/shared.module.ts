@@ -52,7 +52,7 @@ import { CentroEditTableComponent } from './components/admin/centro-edit-table/c
 import { SelecRowTableComponent } from './components/admin/selec-row-table/selec-row-table.component';
 import { SelecRowPipe } from './pipes/inputs/selec-row.pipe';
 import { ChangeDbAtPipe } from './pipes/change-db-at.pipe';
-import { DeleteTableComponent } from './components/admin/delete-table/delete-table.component';
+import { SimpleTableComponent } from './components/admin/simple-table/simple-table.component';
 import { FormNotificacionesComponent } from './components/admin/form-notificaciones/form-notificaciones.component';
 import { AlertDBerrorsComponent } from './components/generic/alert-dberrors/alert-dberrors.component';
 import { IconRefreshComponent } from './components/generic/icon-refresh/icon-refresh.component';
@@ -76,7 +76,7 @@ import { MedidasFormComponent } from './components/user/medidas-form/medidas-for
     SelecRowTableComponent,
     SelecRowPipe,
     ChangeDbAtPipe,
-    DeleteTableComponent,
+    SimpleTableComponent,
     FormNotificacionesComponent,
     AlertDBerrorsComponent,
     IconRefreshComponent,
@@ -155,7 +155,7 @@ import { MedidasFormComponent } from './components/user/medidas-form/medidas-for
     SelecRowTableComponent,
     SelecRowPipe,
     ChangeDbAtPipe,
-    DeleteTableComponent,
+    SimpleTableComponent,
     FormNotificacionesComponent,
     InputTextareaModule,
     AlertDBerrorsComponent,

@@ -4,7 +4,7 @@
     <div *ngIf="userSelect !=null" class="notificacionestable">
         <h1>Notificaciones del usuario:</h1>
         <h3><strong>{{ userSelect.nombre  | titlecase }} {{ userSelect.apellidos  | titlecase }}</strong> con id: <strong>{{ userSelect.id}}</strong></h3>
-        <admin-delete-table [rows]="notificaciones" [sort]="true" (selected)="seleccionaNotificacion($event)" (delete)="deletenoti($event)"></admin-delete-table>
+        <admin-simple-table [canDelete]="true" [rows]="notificaciones" [sort]="true" (selected)="seleccionaNotificacion($event)" (delete)="deletenoti($event)"></admin-simple-table>
     </div>
     <admin-form-notificaciones *ngIf="userSelect !=null" [notificacion]="notificacionSelect" [user]="userSelect" (new)="meterListaNoti($event)" (newupdate)="cambiarNoti($event)"></admin-form-notificaciones>
 </div>

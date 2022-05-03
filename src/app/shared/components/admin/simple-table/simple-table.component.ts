@@ -6,17 +6,18 @@ interface rowFiltro{
   tipo:string
 }
 @Component({
-  selector: 'admin-delete-table',
-  templateUrl: './delete-table.component.html',
-  styleUrls: ['./delete-table.component.scss'],
+  selector: 'admin-simple-table',
+  templateUrl: './simple-table.component.html',
+  styleUrls: ['./simple-table.component.scss'],
   providers: [MessageService]
 })
-export class DeleteTableComponent implements OnInit,OnChanges {
+export class SimpleTableComponent implements OnInit,OnChanges {
 
   constructor(
     private _message:MessageService
   ) { }
 
+  @Input() canDelete:boolean = true;
   @Input() rows:any; 
   @Input() sort:boolean = false; 
   @Output() selected = new EventEmitter<any>();

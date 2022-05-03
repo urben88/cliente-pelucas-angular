@@ -11,7 +11,7 @@
         </tr>
         <tr *ngIf="!sort">
             <th *ngFor="let col of columns" >{{ col | changeDbAt}}</th>
-            <th></th>
+            <th *ngIf="canDelete"></th>
         </tr>
         
     </ng-template>
@@ -20,7 +20,7 @@
             <td *ngFor="let val of getData(data)">
                 {{ patrones.fechaUTC.test(val)? (val | date: 'dd/MM/yyyy hh:mm a') : val }}
             </td>
-            <td>
+            <td *ngIf="canDelete">
                 <i (click)="clickdelete(data)" style="color: red" class="fa-solid fa-xmark"></i>
             </td>
         </tr>

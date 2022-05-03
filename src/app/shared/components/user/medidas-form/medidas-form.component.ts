@@ -37,7 +37,7 @@ export class MedidasFormComponent implements OnInit,OnChanges {
                 this.reset(true)
                 console.log("entraa",this.haveMedidas,this.user)
              }else{
-              //  console.error(err)
+                console.error(err)
              }
            }
          )
@@ -202,7 +202,7 @@ export class MedidasFormComponent implements OnInit,OnChanges {
     this.erroresDB = [];
     if(this.medidasForm.invalid){
       this.medidasForm.markAllAsTouched();
-      console.log("Formulario invalido")
+      console.log("Formulario inválido")
     }else{
       console.log(this.medidasForm.value)
       let resul = this.medidasForm.value;

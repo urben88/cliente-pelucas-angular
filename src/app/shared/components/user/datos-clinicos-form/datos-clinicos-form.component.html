@@ -1,6 +1,18 @@
+<!-- ! Mensajes info -->
+<p-toast position="top-center" style="margin-top:300px"></p-toast>
+
 <div class="caja">
     <form [formGroup]="datosclinicosForm">
-        <h1>Datos clínicos</h1>
+        <div class="titulo">
+            <h1>Medidas de la cabeza</h1>
+            <icon-refresh *ngIf="haveDatosClinicos" (update)="reset()"></icon-refresh>
+        </div>
+        <div *ngIf="!haveDatosClinicos" class="alert alert-danger" role="alert">
+            Este usuario no tiene registrado datos clínicos, puedes crearlos
+        </div>
+        <div *ngIf="haveDatosClinicos" class="alert alert-primary" role="alert">
+            El usuario tiene datos clínicos registrados, puedes modificarlos
+        </div>
         <div class="datos" [ngClass]="posicion()">
             <div class="campo">
                 <div class="switch">
@@ -14,7 +26,7 @@
                         <textarea id="enfermedades" [rows]="5" [cols]="30" [autoResize]="true" [maxlength]="300"
                             pInputTextarea formControlName="enfermedades"></textarea>
                         <small *ngIf="campoEsValido('enfermedades')" class="p-error block">
-                            <!-- {{ enfermedadesErrorMsg }} -->
+                            {{ enfermedadesErrorMsg }}
                         </small>
                     </div>
                     <div class="field" style="display: flex; flex-direction: column;">
@@ -22,7 +34,7 @@
                         <textarea id="tratamiento_actual" [rows]="5" [cols]="30" [autoResize]="true" [maxlength]="300"
                             pInputTextarea formControlName="tratamiento_actual"></textarea>
                         <small *ngIf="campoEsValido('tratamiento_actual')" class="p-error block">
-                            <!-- {{ enfermedadesErrorMsg }} -->
+                            {{ tratamiento_actualErrorMsg }}
                         </small>
                     </div>
                     <div class="field" style="display: flex; flex-direction: column;">
@@ -30,7 +42,7 @@
                         <textarea id="medicacion" [rows]="5" [cols]="30" [autoResize]="true" [maxlength]="300"
                             pInputTextarea formControlName="medicacion"></textarea>
                         <small *ngIf="campoEsValido('medicacion')" class="p-error block">
-                            <!-- {{ enfermedadesErrorMsg }} -->
+                            {{ medicacionErrorMsg }}
                         </small>
                     </div>
                 </div>
@@ -45,8 +57,8 @@
                     <div class="field" style="display: flex; flex-direction: column;">
                         <label for="enfermedades" class="block">¿Que alergia/s padeces? Escríbelas</label>
                         <textarea id="enfermedades" [rows]="5" [cols]="30" [autoResize]="true" [maxlength]="300" pInputTextarea formControlName="alergias"></textarea>
-                        <small *ngIf="campoEsValido('enfermedades')" class="p-error block">
-                            <!-- {{ enfermedadesErrorMsg }} -->
+                        <small *ngIf="campoEsValido('alergias')" class="p-error block">
+                            {{ alergiasErrorMsg }}
                         </small>
                     </div>
                     <div class="field" style="display: flex; flex-direction: column;">
@@ -54,11 +66,18 @@
                             alergia</label>
                         <textarea id="tratamiento_actual" [rows]="5" [cols]="20" [autoResize]="true"
                             [maxlength]="300" pInputTextarea formControlName="alergias_medicacion"></textarea>
-                        <small *ngIf="campoEsValido('tratamiento_actual')" class="p-error block">
-                            <!-- {{ enfermedadesErrorMsg }} -->
+                        <small *ngIf="campoEsValido('alergias_medicacion')" class="p-error block">
+                            {{ alergias_medicacionErrorMsg }}
                         </small>
                     </div>
                 </div>
+            </div>
+            <div class="botones">
+                <button *ngIf="btnStatusUpdate()" (click)="update()" class="btn-morado">Actualizar</button>
+                <button *ngIf="btnStatusCreate()" (click)="crear()" class="btn-morado">Crear</button>
+                <p-confirmPopup></p-confirmPopup>
+                <button (click)="eliminar($event)"  pButton  *ngIf="btnStatusUpdate()" class="btn-rojo">Eliminar registro</button>
+                <alert-dberrors [erroresDB]="erroresDB"></alert-dberrors>
             </div>
         </div>
 
