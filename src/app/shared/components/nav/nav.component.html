@@ -9,7 +9,7 @@
             <div class="btn-menu">Tips</div>
             <div class="btn-menu">About us</div>
             <div class="btn-menu">Sugerencias</div>
-            <div *ngIf="_auth.loggedIn()" [routerLink]="['/notificaciones']" routerLinkActive="btnActive" class="btn-menu">Tus Notificaciones</div>
+            <div *ngIf="_auth.loggedIn()" [routerLink]="['/notificaciones']" routerLinkActive="activado"class="btn-menu">Tus Notificaciones</div>
         </div>
         <div *ngIf="!_auth.loggedIn(); else logged" class="botones">
             <button [routerLink]="['/auth/login']" routerLinkActive="btnActive" class="btn-blanco">Log in</button>

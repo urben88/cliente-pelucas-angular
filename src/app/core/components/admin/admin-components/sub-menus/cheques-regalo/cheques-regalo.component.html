@@ -3,5 +3,7 @@
     <div class="tabla">
         <admin-selec-row-table [rows]="cheques  | selecRow:'cheques_regalo'" (selected)="chequeSelect($event)"></admin-selec-row-table>
     </div>
-    <admin-cheques-regalo-form></admin-cheques-regalo-form>
+    <div class="form">
+        <admin-cheques-regalo-form [chequeRegalo]="chequeSelected"></admin-cheques-regalo-form>
+    </div>
 </div>

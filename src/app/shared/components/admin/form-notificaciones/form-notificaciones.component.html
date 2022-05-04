@@ -1,7 +1,7 @@
 <!-- ! Mensajes info -->
 <p-toast position="top-center" style="margin-top:300px"></p-toast>
 
-<div class="container">
+<div class="container animate__animated animate__backInLeft">
     <form [formGroup]="notificacionesForm" class="caja cajaform-1">
         <div class="titulo" style="display: flex; align-items:center; gap:10px">
               <h1>Notificaciones</h1><icon-refresh (update)="reset($event)" *ngIf="notificacion"></icon-refresh>

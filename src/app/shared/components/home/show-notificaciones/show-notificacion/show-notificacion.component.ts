@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { Notificacion } from 'src/app/core/models/Notificacion';
 import { NotificacionesService } from 'src/app/core/services/db/notificaciones.service';
@@ -7,7 +7,7 @@ import { NotificacionesService } from 'src/app/core/services/db/notificaciones.s
 @Component({
   selector: 'app-show-notificacion',
   templateUrl: './show-notificacion.component.html',
-  styleUrls: ['./show-notificacion.component.scss']
+  styleUrls: ['./show-notificacion.component.scss'],
 })
 export class ShowNotificacionComponent implements OnInit,OnChanges{
 
@@ -37,6 +37,7 @@ export class ShowNotificacionComponent implements OnInit,OnChanges{
         
     }
   }
+
 
   @Input() id!:number;
   ngOnInit(): void {

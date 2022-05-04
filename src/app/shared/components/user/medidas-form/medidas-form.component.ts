@@ -221,6 +221,8 @@ export class MedidasFormComponent implements OnInit,OnChanges {
           if(error.error.msg){
             this.erroresDB.push(error.error.msg)
             this._message.add({severity:'error', summary: 'Error', detail: error.error.msg});
+          }else{
+            this.erroresDB.push(error.error.name)
           }
         }
       )
@@ -252,6 +254,8 @@ export class MedidasFormComponent implements OnInit,OnChanges {
           if(error.error.msg){
             this.erroresDB.push(error.error.msg)
             this._message.add({severity:'error', summary: 'Error', detail: error.error.msg});
+          }else{
+            this.erroresDB.push(error.error.name)
           }
 
         }
@@ -262,7 +266,7 @@ export class MedidasFormComponent implements OnInit,OnChanges {
   eliminar(event:any){
     this._confirmationService.confirm({
       target: event.target,
-      message: 'Estas seguro que quieres eliminarlas?',
+      message: '¿Estas seguro que quieres eliminarlas?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
           this._medidas.delete(this.medidasUser?.id).subscribe(
@@ -274,6 +278,7 @@ export class MedidasFormComponent implements OnInit,OnChanges {
             },
             (err)=>{
               console.error(err)
+              this.erroresDB.push(err.error.name)
             }
           )
       

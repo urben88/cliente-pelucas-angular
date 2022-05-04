@@ -4,6 +4,6 @@
         <admin-selec-row-table [rows]="users | selecRow:'users'" (selected)="userSelect($event)"></admin-selec-row-table>
     </div>
     
-    <generic-info-user *ngIf="userSelected" [user]="userSelected" title="Medidas del usuario:" ></generic-info-user>
+    <generic-info-user *ngIf="userSelected" [user]="userSelected" [title]="'Medidas del usuario:'" ></generic-info-user>
     <app-medidas-form *ngIf="userSelected" [user]="userSelected"></app-medidas-form>
 </div>

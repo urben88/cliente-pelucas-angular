@@ -6,12 +6,20 @@
             <h1 *ngSwitchCase="'info'" style="color:blue"><i style="color: blue;" class="pi pi-info-circle"></i>Info</h1>  
             <h1 *ngSwitchCase="'warn'" style="color:orange"><i class="pi pi-exclamation-triangle"  style="color: orange;"></i> Aviso</h1>  
         </container-element>
-        <p-fieldset legend="Título">
-            <h3>{{ notificacion.header }}</h3>
-        </p-fieldset>
-        <p-fieldset legend="Mensaje">
-            <p [innerHTML]="notificacion.mensaje" class="body"></p>
-        </p-fieldset>
+
+        <div class="titulo">
+            <!-- <p-fieldset legend="Título"> -->
+                        <h3>{{ notificacion.header }}</h3>
+            <!-- </p-fieldset> -->
+        </div>
+      
+        <div class="mensaje">
+            <!-- <p-fieldset legend="Mensaje"> -->
+                <div [innerHTML]="notificacion.mensaje"></div>
+                <span>{{ notificacion.mensaje }}</span>
+                
+            <!-- </p-fieldset> -->
+        </div>
         <div class="info" style="align-self: flex-end;">
             <div class="creado">
                 <strong>Creado: </strong><small> {{ notificacion.createdAt | date: 'dd/MM/yyyy hh:mm a'}}</small>

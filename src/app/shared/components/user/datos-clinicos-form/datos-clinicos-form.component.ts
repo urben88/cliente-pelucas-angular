@@ -220,6 +220,8 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
           if(error.error.msg){
             this.erroresDB.push(error.error.msg)
             this._message.add({severity:'error', summary: 'Error', detail: error.error.msg});
+          }else{
+            this.erroresDB.push(error.error.name)
           }
         }
       )
@@ -252,6 +254,8 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
           if(error.error.msg){
             this.erroresDB.push(error.error.msg)
             this._message.add({severity:'error', summary: 'Error', detail: error.error.msg});
+          }else{
+            this.erroresDB.push(error.error.name)
           }
 
         }
@@ -263,7 +267,7 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
   eliminar(event:any){
     this._confirmationService.confirm({
       target: event.target,
-      message: 'Estas seguro que quieres eliminar los datos clínicos?',
+      message: '¿Estas seguro que quieres eliminar los datos clínicos?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
           this._datosClinicos.delete(this.DatosClinicosUser?.id).subscribe(
@@ -275,6 +279,7 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
               // this.delete.emit(true)
             },
             (err)=>{
+              this.erroresDB.push(err.error.name)
               console.error(err)
             }
           )

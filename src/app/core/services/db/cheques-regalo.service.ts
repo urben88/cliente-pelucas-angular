@@ -23,6 +23,15 @@ export class ChequesRegaloService {
   getAll(){
     return this.http.get<ChequeRegalo[]>(this.urlChequesRegalo+"/findAll")
   }
+  create(cheque:ChequeRegalo){
+    return this.http.post<any>(this.urlChequesRegalo+"/create",cheque)
+  }
+  update(id:any , cheque:any){
+    return this.http.put<ChequeRegalo>(this.urlChequesRegalo+"/"+id,cheque)
+  }
+  delete(id:any){
+    return this.http.delete<any>(this.urlChequesRegalo+"/"+id)
+  }
   // findBy(attr:string,value:string){
   //   return this.http.get<any>(this.urlChequesRegalo+"/findBy/"+attr+"/"+value)
   // }

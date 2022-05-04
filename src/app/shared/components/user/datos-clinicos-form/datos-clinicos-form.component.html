@@ -1,13 +1,13 @@
 <!-- ! Mensajes info -->
 <p-toast position="top-center" style="margin-top:300px"></p-toast>
 
-<div class="caja">
+<div class="caja animate__animated animate__backInLeft">
     <form [formGroup]="datosclinicosForm">
         <div class="titulo">
             <h1>Medidas de la cabeza</h1>
             <icon-refresh *ngIf="haveDatosClinicos" (update)="reset()"></icon-refresh>
         </div>
-        <div *ngIf="!haveDatosClinicos" class="alert alert-danger" role="alert">
+        <div *ngIf="!haveDatosClinicos" class="alert alert-success" role="alert">
             Este usuario no tiene registrado datos clínicos, puedes crearlos
         </div>
         <div *ngIf="haveDatosClinicos" class="alert alert-primary" role="alert">

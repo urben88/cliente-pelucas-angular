@@ -13,6 +13,7 @@ export class ChequesRegaloComponent implements OnInit {
   constructor(private _chequesRegalo:ChequesRegaloService) { }
 
   cheques!:ChequeRegalo[];
+  chequeSelected!:ChequeRegalo;
 
   ngOnInit(): void {
     this._chequesRegalo.getAll().subscribe(
@@ -26,7 +27,8 @@ export class ChequesRegaloComponent implements OnInit {
     )
   }
   chequeSelect(event:any){
-
+    this.chequeSelected = event;
+    console.log(this.chequeSelected)
   }
 
 }

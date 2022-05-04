@@ -30,7 +30,8 @@ export class NavComponent implements OnInit {
         {label: 'Blog'},
         {label: 'Tips'},
         {label: 'About us'},
-        {label: 'Sugerencias'}
+        {label: 'Sugerencias'},
+        {label: 'Tus Notificaciones',routerLink:'/notificaciones'}
     ];
     this.home = {icon: 'pi pi-home', routerLink: '/'};
 
