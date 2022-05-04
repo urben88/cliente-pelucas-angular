@@ -13,6 +13,7 @@ import { CentrosComponent } from './admin-components/sub-menus/centros/centros.c
 import { NotificacionesComponent } from './admin-components/sub-menus/notificaciones/notificaciones.component';
 import { MedidasComponent } from './admin-components/sub-menus/medidas/medidas.component';
 import { DatosClinicosComponent } from './admin-components/sub-menus/datos-clinicos/datos-clinicos.component';
+import { ChequesRegaloComponent } from './admin-components/sub-menus/cheques-regalo/cheques-regalo.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DatosClinicosComponent } from './admin-components/sub-menus/datos-clini
     CentrosComponent,
     NotificacionesComponent,
     MedidasComponent,
-    DatosClinicosComponent
+    DatosClinicosComponent,
+    ChequesRegaloComponent
   ],
   imports: [
     CommonModule,

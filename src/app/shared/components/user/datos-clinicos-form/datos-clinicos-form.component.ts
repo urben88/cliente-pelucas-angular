@@ -186,11 +186,11 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
         this.datosclinicosForm.controls['alergias_medicacion'].setValue(this.DatosClinicosUser?.alergias_medicacion);
       }
     }else{
-      this.datosclinicosForm.controls['have_enfermedades'].setValue('');
+      this.datosclinicosForm.controls['have_enfermedades'].setValue(false);
       this.datosclinicosForm.controls['enfermedades'].setValue('');
       this.datosclinicosForm.controls['tratamiento_actual'].setValue('');
       this.datosclinicosForm.controls['medicacion'].setValue('');
-      this.datosclinicosForm.controls['have_alergias'].setValue('');
+      this.datosclinicosForm.controls['have_alergias'].setValue(false);
       this.datosclinicosForm.controls['alergias'].setValue('');
       this.datosclinicosForm.controls['alergias_medicacion'].setValue('');
     }
@@ -271,6 +271,7 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
               this._message.add({severity:'info', summary:'Eliminado', detail:'Se ha eliminado las medidas del usuario'});
               this.DatosClinicosUser =null;
               this.haveDatosClinicos =false;
+              this.datosclinicosForm.reset()
               // this.delete.emit(true)
             },
             (err)=>{

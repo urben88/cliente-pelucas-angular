@@ -7,10 +7,10 @@
             <h1>Medidas de la cabeza</h1>
             <icon-refresh *ngIf="haveMedidas" (update)="reset()"></icon-refresh>
         </div>
-        <div *ngIf="!haveMedidas" class="alert alert-danger" role="alert">
+        <div *ngIf="!haveMedidas && !medidasUser" class="alert alert-danger" role="alert">
             Este usuario no tiene registradas medidas, puedes crearlas
         </div>
-        <div *ngIf="haveMedidas" class="alert alert-primary" role="alert">
+        <div *ngIf="haveMedidas && medidasUser" class="alert alert-primary" role="alert">
             El usuario tiene medidas registradas puedes modificarlas
         </div>
         <div class="datos">

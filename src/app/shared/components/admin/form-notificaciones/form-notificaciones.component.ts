@@ -119,15 +119,16 @@ export class FormNotificacionesComponent implements OnInit,OnChanges {
 
       console.log(this.notificacionesForm.value)
       let resul:any={
-        user_id: this.user.id,
         tipo:this.notificacionesForm.controls['tipo'].value,
         header:this.notificacionesForm.controls['header'].value,
-        mensaje:this.notificacionesForm.controls['mensaje'].value
+        mensaje:this.notificacionesForm.controls['mensaje'].value,
+        user_id: this.user.id,
       }
       console.log(resul)
       this._notificaciones.create(resul)
       .subscribe(
         (res)=>{
+          console.log(res,'creado en form notificaciones')
           this.new.emit(res)
           this._message.add({severity:'success', summary: 'Creado', detail: 'Se ha creado la notificación correctamente'});
           this.notificacionesForm.reset(); //Borra el contenido de los inputs

@@ -60,6 +60,8 @@ import { ShowNotificacionesComponent } from './components/home/show-notificacion
 import { ShowNotificacionComponent } from './components/home/show-notificaciones/show-notificacion/show-notificacion.component';
 import { DatosClinicosFormComponent } from './components/user/datos-clinicos-form/datos-clinicos-form.component';
 import { MedidasFormComponent } from './components/user/medidas-form/medidas-form.component';
+import { InfoUserComponent } from './components/generic/info-user/info-user.component';
+import { ChequesRegaloFormComponent } from './components/admin/cheques-regalo-form/cheques-regalo-form.component';
 
 // import { MapComponent } from './components/home/map/map.component';
 
@@ -84,6 +86,8 @@ import { MedidasFormComponent } from './components/user/medidas-form/medidas-for
     ShowNotificacionComponent,
     DatosClinicosFormComponent,
     MedidasFormComponent,
+    InfoUserComponent,
+    ChequesRegaloFormComponent,
     
 
   ],
@@ -167,6 +171,8 @@ import { MedidasFormComponent } from './components/user/medidas-form/medidas-for
     DatosClinicosFormComponent,
     MedidasFormComponent,
     MultiSelectModule,
+    InfoUserComponent,
+    ChequesRegaloFormComponent
 
   ],
   providers: [MessageService,ConfirmationService]

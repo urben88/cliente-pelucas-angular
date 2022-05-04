@@ -65,18 +65,27 @@ export class SelecRowTableComponent implements OnInit, OnChanges {
              tipo:'text'
            })
            break
+
          case 'number':
           this.tipos.push({
             campo:key,
             tipo:'numeric'
           })
            break
+
          case 'boolean':
           this.tipos.push({
             campo:key,
             tipo:'boolean'
           })
-           break
+          break
+         case null:
+          this.tipos.push({
+            campo:key,
+            tipo:'text'
+          })
+          break
+
          case 'undefined':
            console.error("Error en selec-row Poner tipo Undefined")
            break

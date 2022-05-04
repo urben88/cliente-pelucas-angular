@@ -70,7 +70,8 @@ export class NotificacionesComponent implements OnInit {
   }
   //? Se activa cuando el evento del formulario envia la nueva notificación (Esto es para que se actualice)
   meterListaNoti(evento:Notificacion){
-
+    
+    console.log(evento,"Añade aqui")
     this.notificaciones.push(evento);
   }
   //?Para cuando haga una actualizacion

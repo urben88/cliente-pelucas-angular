@@ -1,0 +1,76 @@
+@import "../../../../../styles.scss";
+.caja{
+    background-color: white;
+    z-index: 9;
+    width: 100%;
+    min-width: 200px;
+    border: 2px solid black;
+    padding: 30px;
+    .titulo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    
+    }
+    .datos{
+        font-size: 100%;
+        // border: 2px solid black;
+        margin: 20px 0px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 30px;
+        input{
+            width: 100%;
+        }
+        .field{
+            margin-bottom: 10px;
+        }
+        .doble{
+            display: flex;
+            justify-content: space-around;
+            // border: 2px solid black;
+            gap: 20px;
+            width: 100%;
+            p-inputNumber{
+                width: 100% !important;
+            }
+        }
+        .campo{
+            display: flex;
+            flex-direction: column !important;
+            flex-wrap: wrap;
+            gap: 30px;
+            .switch{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .more{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                 gap: 30px; 
+            }
+        }
+        .botones{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+    }
+    button{
+        width: 180px;
+    }
+}
+.flexrow{
+    flex-direction: row !important;
+}
+.flexcolumn{
+    flex-direction: column !important;
+}

@@ -10,6 +10,7 @@ import { CentrosComponent } from './admin-components/sub-menus/centros/centros.c
 import { NotificacionesComponent } from './admin-components/sub-menus/notificaciones/notificaciones.component';
 import { MedidasComponent } from './admin-components/sub-menus/medidas/medidas.component';
 import { DatosClinicosComponent } from './admin-components/sub-menus/datos-clinicos/datos-clinicos.component';
+import { ChequesRegaloComponent } from './admin-components/sub-menus/cheques-regalo/cheques-regalo.component';
 const routes: Routes = [
   {
     path:'',
@@ -22,6 +23,7 @@ const routes: Routes = [
       {path: 'notificaciones',component:NotificacionesComponent},
       {path: 'datos_clinicos',component:DatosClinicosComponent},
       {path: 'medidas',component:MedidasComponent},
+      {path: 'cheques_regalo',component:ChequesRegaloComponent},
       
       {path:'**',redirectTo: 'dashboard'},
     ]

@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { ChequeRegalo } from 'src/app/core/models/ChequeRegalo';
 import { User } from '../../../core/models/User.interface';
 
 @Pipe({
@@ -13,6 +14,9 @@ export class SelecRowPipe implements PipeTransform {
         case'users':
           this.users(element)
         break;
+        case'cheques_regalo':
+          this.cheques_regalo(element)
+        break;
       }
 
     });
@@ -24,6 +28,10 @@ export class SelecRowPipe implements PipeTransform {
       delete element.rol
       element.createdAt = new Date(`${element.createdAt}`);
       element.updatedAt = new Date(`${element.updatedAt}`);
+  }
+  cheques_regalo(element:ChequeRegalo){
+    element.createdAt = new Date(`${element.createdAt}`);
+    element.updatedAt = new Date(`${element.updatedAt}`);
   }
 
 

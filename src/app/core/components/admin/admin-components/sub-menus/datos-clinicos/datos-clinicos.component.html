@@ -1,4 +1,10 @@
 <div class="caja">
-    <admin-selec-row-table [rows]="users | selecRow:'users'" (selected)="userSelect($event)"></admin-selec-row-table>
+    <h1>Administrar datos clínicos de los usuarios</h1>
+
+    <div class="tabla">
+        <admin-selec-row-table [rows]="users | selecRow:'users'" (selected)="userSelect($event)"></admin-selec-row-table>
+    </div>
+   
+    <generic-info-user *ngIf="userSelected" [user]="userSelected" title="Datos clínicos del usuario:" ></generic-info-user>
     <app-datos-clinicos-form *ngIf="userSelected" [user]="userSelected"></app-datos-clinicos-form>
 </div>
