@@ -7,7 +7,7 @@
             <div class="btn-menu" routerLink="/centros" routerLinkActive="activado">Centros</div>
             <div class="btn-menu">Blog</div>
             <div class="btn-menu">Tips</div>
-            <div class="btn-menu">About us</div>
+            <div class="btn-menu" routerLink="/about_us" routerLinkActive="activado">About us</div>
             <div class="btn-menu">Sugerencias</div>
             <div *ngIf="_auth.loggedIn()" [routerLink]="['/notificaciones']" routerLinkActive="activado"class="btn-menu">Tus Notificaciones</div>
         </div>

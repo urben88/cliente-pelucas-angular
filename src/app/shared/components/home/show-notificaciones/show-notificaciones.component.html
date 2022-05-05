@@ -8,7 +8,7 @@
                 No tienes notificaciones
             </div>
             <p-panel *ngFor="let noti of info" header="{{noti.header}}" [collapsed]="true" [toggleable]="true">
-                <p>{{ noti.mensaje }}</p>
+                <div [innerHTML]="noti.mensaje | sanitizeHtml:'html'" class="ql-editor ql-blank"></div>
                 <div class="fecha" style="display: flex; align-self: flex-end; justify-content: flex-end; align-items: center;">
                     <strong class="me-2">Enviado el:</strong>
                     <small class="small">{{noti.updatedAt | date: 'dd/MM/yyyy hh:mm a'}}</small>
@@ -23,7 +23,7 @@
                     No tienes notificaciones
                 </div>
               <p-panel *ngFor="let noti of success" header="{{noti.header}}" [collapsed]="true" [toggleable]="true">
-                  <p [innerHTML]="noti.mensaje"></p>
+                  <span [innerHTML]="noti.mensaje | sanitizeHtml:'html'" class="ql-editor ql-blank"></span>
                   <div class="fecha" style="display: flex; align-self: flex-end; justify-content: flex-end; align-items: center;">
                       <strong class="me-2">Enviado el:</strong>
                       <small class="small">{{noti.updatedAt | date: 'dd/MM/yyyy hh:mm a'}}</small>
@@ -38,7 +38,7 @@
                     No tienes notificaciones
                 </div>
               <p-panel *ngFor="let noti of warn" header="{{noti.header}}" [collapsed]="true" [toggleable]="true">
-                  <p>{{ noti.mensaje }}</p>
+                  <span [innerHTML]="noti.mensaje | sanitizeHtml:'html'" class="ql-editor ql-blank"></span>
                   <div class="fecha" style="display: flex; align-self: flex-end; justify-content: flex-end; align-items: center;">
                       <strong class="me-2">Enviado el:</strong>
                       <small class="small">{{noti.updatedAt | date: 'dd/MM/yyyy hh:mm a'}}</small>

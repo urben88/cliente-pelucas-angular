@@ -4,7 +4,7 @@
     <div class="row hero-centros-info  p-5">
 
         <div class="col-12 col-md-6 foto p-0 m-0">
-            <p-galleria [value]="images" [responsiveOptions]="responsiveOptions" [containerStyle]="{'max-width': '640px'}" [numVisible]="5" style="user-select: none;"> 
+            <p-galleria id="start" [value]="images" [responsiveOptions]="responsiveOptions" [containerStyle]="{'max-width': '640px'}" [numVisible]="5" style="user-select: none;"> 
                 <ng-template pTemplate="item" let-item>
                     <img [src]="item.img" style="width: 100%; display: block;  height: 300px;" />
                 </ng-template> 

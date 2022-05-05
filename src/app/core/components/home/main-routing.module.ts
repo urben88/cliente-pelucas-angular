@@ -9,6 +9,7 @@ import { UserSettingsComponent } from '../auth/pages/user-settings/user-settings
 import { CentrosComponent } from './pages/centros/centros.component';
 import { NotificacionesComponent } from './pages/notificaciones/notificaciones.component';
 import { NotificacionComponent } from './pages/notificaciones/notificacion/notificacion.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
 const routes: Routes = [
   {
     path:'',
@@ -19,6 +20,7 @@ const routes: Routes = [
       {path:'centros',component:CentrosComponent},
       {path:'notificaciones',component:NotificacionesComponent},
       {path:'notificacion/:id',component:NotificacionComponent},
+      {path:'about_us',component:AboutUsComponent},
       
       // {path:'**',redirectTo: ''},
     ]

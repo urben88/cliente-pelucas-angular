@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   constructor(private _auth:AuthService) { }
 
   ngOnInit(): void {
+    window.scroll(0,0)
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     document.body.appendChild(tag);

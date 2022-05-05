@@ -62,6 +62,7 @@ import { DatosClinicosFormComponent } from './components/user/datos-clinicos-for
 import { MedidasFormComponent } from './components/user/medidas-form/medidas-form.component';
 import { InfoUserComponent } from './components/generic/info-user/info-user.component';
 import { ChequesRegaloFormComponent } from './components/admin/cheques-regalo-form/cheques-regalo-form.component';
+import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 
 // import { MapComponent } from './components/home/map/map.component';
 
@@ -88,6 +89,7 @@ import { ChequesRegaloFormComponent } from './components/admin/cheques-regalo-fo
     MedidasFormComponent,
     InfoUserComponent,
     ChequesRegaloFormComponent,
+    SanitizeHtmlPipe,
     
 
   ],
@@ -172,7 +174,9 @@ import { ChequesRegaloFormComponent } from './components/admin/cheques-regalo-fo
     MedidasFormComponent,
     MultiSelectModule,
     InfoUserComponent,
-    ChequesRegaloFormComponent
+    ChequesRegaloFormComponent,
+    SanitizeHtmlPipe,
+
 
   ],
   providers: [MessageService,ConfirmationService]

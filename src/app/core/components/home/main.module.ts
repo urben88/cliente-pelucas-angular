@@ -6,6 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CentrosComponent } from './pages/centros/centros.component';
 import { NotificacionesComponent } from './pages/notificaciones/notificaciones.component';
 import { NotificacionComponent } from './pages/notificaciones/notificacion/notificacion.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
 
 
 
@@ -14,7 +15,8 @@ import { NotificacionComponent } from './pages/notificaciones/notificacion/notif
     HomeComponent,
     CentrosComponent,
     NotificacionesComponent,
-    NotificacionComponent
+    NotificacionComponent,
+    AboutUsComponent
   ],
   imports: [
     CommonModule,
