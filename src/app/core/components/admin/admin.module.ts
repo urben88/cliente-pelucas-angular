@@ -14,6 +14,7 @@ import { NotificacionesComponent } from './admin-components/sub-menus/notificaci
 import { MedidasComponent } from './admin-components/sub-menus/medidas/medidas.component';
 import { DatosClinicosComponent } from './admin-components/sub-menus/datos-clinicos/datos-clinicos.component';
 import { ChequesRegaloComponent } from './admin-components/sub-menus/cheques-regalo/cheques-regalo.component';
+import { SolicitudesComponent } from './admin-components/sub-menus/solicitudes/solicitudes.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ChequesRegaloComponent } from './admin-components/sub-menus/cheques-reg
     NotificacionesComponent,
     MedidasComponent,
     DatosClinicosComponent,
-    ChequesRegaloComponent
+    ChequesRegaloComponent,
+    SolicitudesComponent
   ],
   imports: [
     CommonModule,

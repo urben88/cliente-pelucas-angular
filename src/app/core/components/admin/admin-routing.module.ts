@@ -11,6 +11,7 @@ import { NotificacionesComponent } from './admin-components/sub-menus/notificaci
 import { MedidasComponent } from './admin-components/sub-menus/medidas/medidas.component';
 import { DatosClinicosComponent } from './admin-components/sub-menus/datos-clinicos/datos-clinicos.component';
 import { ChequesRegaloComponent } from './admin-components/sub-menus/cheques-regalo/cheques-regalo.component';
+import { SolicitudesComponent } from './admin-components/sub-menus/solicitudes/solicitudes.component';
 const routes: Routes = [
   {
     path:'',
@@ -24,6 +25,7 @@ const routes: Routes = [
       {path: 'datos_clinicos',component:DatosClinicosComponent},
       {path: 'medidas',component:MedidasComponent},
       {path: 'cheques_regalo',component:ChequesRegaloComponent},
+      {path: 'solicitudes',component:SolicitudesComponent},
       
       {path:'**',redirectTo: 'dashboard'},
     ]

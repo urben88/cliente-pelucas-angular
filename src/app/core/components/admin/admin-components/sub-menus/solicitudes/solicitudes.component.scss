@@ -1,0 +1,17 @@
+.caja{
+    overflow: auto;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.206) 0px 0px 7px;
+    padding: 20px;
+   .tabla{
+       margin-bottom: 40px;
+   }
+   .form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    admin-cheques-regalo-form{
+        width: 50%;
+    }
+   }
+}

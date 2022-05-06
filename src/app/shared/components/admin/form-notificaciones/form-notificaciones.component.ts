@@ -20,6 +20,7 @@ export class FormNotificacionesComponent implements OnInit,OnChanges {
     {name:"Información", code:TiposNotificaciones.info},
     {name:"Aviso", code:TiposNotificaciones.warn},
   ]
+  formats: string[] = ['bold', 'italic','video'];
   tipoSelected:any ={name:"Exito", code:TiposNotificaciones.success};
   @Input() notificacion!:Notificacion |null; 
   @Input() user!:User;

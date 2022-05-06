@@ -63,6 +63,8 @@ import { MedidasFormComponent } from './components/user/medidas-form/medidas-for
 import { InfoUserComponent } from './components/generic/info-user/info-user.component';
 import { ChequesRegaloFormComponent } from './components/admin/cheques-regalo-form/cheques-regalo-form.component';
 import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
+import { TextEditorQuillComponent } from './components/generic/text-editor-quill/text-editor-quill.component';
+import { SolicitudesFormComponent } from './components/admin/solicitudes-form/solicitudes-form.component';
 
 // import { MapComponent } from './components/home/map/map.component';
 
@@ -90,6 +92,8 @@ import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
     InfoUserComponent,
     ChequesRegaloFormComponent,
     SanitizeHtmlPipe,
+    TextEditorQuillComponent,
+    SolicitudesFormComponent,
     
 
   ],
@@ -176,6 +180,7 @@ import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
     InfoUserComponent,
     ChequesRegaloFormComponent,
     SanitizeHtmlPipe,
+    TextEditorQuillComponent,
 
 
   ],
