@@ -15,6 +15,7 @@ export class SelecRowTableComponent implements OnInit, OnChanges {
   constructor() { }
  
   @Input() rows:any; 
+  @Input() desselect:boolean = false;
   @Output() selected = new EventEmitter<any>();
   
   idSelect!:number|null;
@@ -22,15 +23,23 @@ export class SelecRowTableComponent implements OnInit, OnChanges {
   tipos:rowFiltro[] =[];
   //? Interfaz SimpleChanges
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes['rows'].currentValue)
-
-    if(changes['rows'].currentValue){
+    // console.log(changes['rows'].currentValue,"Valor actual ")
+      if(changes['desselect']){
+            console.log(changes['desselect'].currentValue)
+            if(changes['desselect'].currentValue){
+              this.idSelect = null;
+            }
+          }
+    if(changes['rows']){
       let values = changes['rows'].currentValue;
+      // console.log(values)
       if(values.length != 0){
         this.columns = Object.keys(values[0]);
+        // console.log(this.columns)
         this.ponerTipos(values[0])
       }
     }
+    
   }
 
   // itemsp =[{

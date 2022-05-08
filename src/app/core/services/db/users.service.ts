@@ -22,4 +22,8 @@ export class UsersService {
   updateUserAdmin(user:any){
     return this.http.post<User[]>(this.urlUsers+'/updateAdmin',user);
   }
+  showOne(id:any){
+    return this.http.get<User>(this.urlUsers+'/'+id);
+  }
+
 }

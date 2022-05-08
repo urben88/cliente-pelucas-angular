@@ -3,6 +3,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
+    "experimentalDecorators": true, // 👈️ must be enabled
+    "emitDecoratorMetadata": true,
     "types": []
   },
   "files": [

@@ -1,8 +1,15 @@
 <div class="caja">
-    <h1>Administrar solicitudes de los usuarios</h1>
-    <div class="tabla">
-        <admin-selec-row-table [rows]="users | selecRow:'users'" (selected)="userSelect($event)"></admin-selec-row-table>
+    <div class="tablas">
+        <h1>Administrar solicitudes</h1>
+        <div class="tabla">
+            <admin-selec-row-table [rows]="solicitudes | selecRow:'solicitudes'" (selected)="solicitudSelect($event)" [desselect]="userSelected ? true : false"></admin-selec-row-table>
+        </div>
+        <!-- <admin-simple-table [rows]="solicitudes"></admin-simple-table> -->
+        <h1>Administrar solicitudes de los usuarios</h1>
+        <div class="tabla">
+            <admin-selec-row-table [rows]="users | selecRow:'users'" (selected)="userSelect($event)" [desselect]="solicitudSelected ? true : false"></admin-selec-row-table>
+        </div>
     </div>
-    <div class="form">
-    </div>
+    <solicitud-cabellos-form></solicitud-cabellos-form>
+
 </div>

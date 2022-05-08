@@ -65,6 +65,9 @@ import { ChequesRegaloFormComponent } from './components/admin/cheques-regalo-fo
 import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 import { TextEditorQuillComponent } from './components/generic/text-editor-quill/text-editor-quill.component';
 import { SolicitudesFormComponent } from './components/admin/solicitudes-form/solicitudes-form.component';
+import { CabellosFormComponent } from './components/solicitud/cabellos-form/cabellos-form.component';
+import { ProtesisFormComponent } from './components/solicitud/protesis-form/protesis-form.component';
+import { TextilesFormComponent } from './components/solicitud/textiles-form/textiles-form.component';
 
 // import { MapComponent } from './components/home/map/map.component';
 
@@ -94,6 +97,9 @@ import { SolicitudesFormComponent } from './components/admin/solicitudes-form/so
     SanitizeHtmlPipe,
     TextEditorQuillComponent,
     SolicitudesFormComponent,
+    CabellosFormComponent,
+    ProtesisFormComponent,
+    TextilesFormComponent,
     
 
   ],
@@ -181,7 +187,9 @@ import { SolicitudesFormComponent } from './components/admin/solicitudes-form/so
     ChequesRegaloFormComponent,
     SanitizeHtmlPipe,
     TextEditorQuillComponent,
-
+    CabellosFormComponent,
+    ProtesisFormComponent,
+    TextilesFormComponent,
 
   ],
   providers: [MessageService,ConfirmationService]
