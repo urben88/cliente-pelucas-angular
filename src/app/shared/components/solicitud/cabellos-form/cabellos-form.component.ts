@@ -22,6 +22,7 @@ export class CabellosFormComponent implements OnInit {
   formas=formas;
   color=color;
   longitud=longitud;
+  colorProtesis:string = ""
 
   cabellosForm:FormGroup = this._build.group({
     forma:["",Validators.required],
@@ -64,5 +65,32 @@ export class CabellosFormComponent implements OnInit {
   campoEsValido( campo:string){
       return this.cabellosForm.controls[campo].errors && this.cabellosForm.controls[campo].touched;
     }
+
+  colorPeluca(){
+    switch (this.cabellosForm.controls['color'].value){
+      case this.color[0].value:
+        return 'assets/decorados/pelucas/rubio.svg'
+        break;
+      case this.color[1].value:
+        return 'assets/decorados/pelucas/castano.svg'
+        break;
+      case this.color[2].value:
+        return 'assets/decorados/pelucas/moreno.svg'
+        break;
+      case this.color[3].value:
+        return 'assets/decorados/pelucas/mechado.svg'
+        break;
+      case this.color[4].value:
+        return 'assets/decorados/pelucas/cano.svg'
+        break;
+      case this.color[5].value:
+        return 'assets/decorados/pelucas/rojizo.svg'
+        break;
+
+      default:
+        return ''
+    }
+
+  }
   
 }

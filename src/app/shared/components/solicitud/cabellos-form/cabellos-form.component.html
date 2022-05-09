@@ -9,27 +9,37 @@
         </div> -->
         <div class="field" style="display: flex; flex-direction: column;">
             <label for="tratamiento_actual" class="block">Forma del cabello</label>
-                <p-dropdown [options]="formas" optionLabel="name" optionValue="value" formControlName="forma" 
-                     placeholder="Selecciona la forma" [showClear]="true">
-                </p-dropdown>
+                <div class="cajainput">
+                    <p-dropdown [options]="formas" optionLabel="name" optionValue="value" formControlName="forma" 
+                         placeholder="Selecciona la forma" [showClear]="true">
+                    </p-dropdown>
+                </div>
             <small *ngIf="campoEsValido('forma')" class="p-error block">
                 {{ formaErrorMsg }}
             </small>
         </div>
         <div class="field" style="display: flex; flex-direction: column;">
             <label for="tratamiento_actual" class="block">Color del cabello</label>
+            <div class="cajainput">
                 <p-dropdown [options]="color" optionLabel="name" optionValue="value" formControlName="color" 
-                     placeholder="Selecciona la forma" [showClear]="true">
-                </p-dropdown>
+                     placeholder="Selecciona el color" [showClear]="true">
+                </p-dropdown>     
+                <img [src]="colorPeluca()" class="pelucamini">
+            </div>
             <small *ngIf="campoEsValido('color')" class="p-error block">
                 {{ colorErrorMsg }}
             </small>
         </div>
         <div class="field" style="display: flex; flex-direction: column;">
-            <label for="tratamiento_actual" class="block">Color del cabello</label>
+            <label for="tratamiento_actual" class="block">Largura</label>
+            <div class="cajainput">
                 <p-dropdown [options]="longitud" optionLabel="name" optionValue="value" formControlName="longitud" 
-                     placeholder="Selecciona la forma" [showClear]="true">
+                     placeholder="Selecciona la largura" [showClear]="true">
                 </p-dropdown>
+                <img *ngIf="cabellosForm.controls['longitud'].value == 'corto'" src="../../../../../assets/img/icons/largura/corto.png" class="pelucamini">
+                <img *ngIf="cabellosForm.controls['longitud'].value == 'medio'" src="../../../../../assets/img/icons/largura/medio.png" class="pelucamini">
+                <img *ngIf="cabellosForm.controls['longitud'].value == 'largo'" src="../../../../../assets/img/icons/largura/largo.png" class="pelucamini">
+            </div>
             <small *ngIf="campoEsValido('longitud')" class="p-error block">
                 {{ longitudErrorMsg }}
             </small>
