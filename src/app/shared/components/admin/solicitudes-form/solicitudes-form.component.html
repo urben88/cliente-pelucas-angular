@@ -1,10 +1,12 @@
+
+
 <!-- ! Mensajes info -->
 <p-toast position="top-center" style="margin-top:300px"></p-toast>
 
 <div class="caja animate__animated animate__backInLeft">
     <form [formGroup]="solicitudesForm">
         <div class="titulo">
-            <h1>Medidas de la cabeza</h1>
+            <h1>Solicitud</h1>
             <icon-refresh *ngIf="haveDatosClinicos" (update)="reset()"></icon-refresh>
         </div>
         <div *ngIf="!haveDatosClinicos" class="alert alert-success" role="alert">
@@ -15,63 +17,53 @@
         </div>
         <div class="datos">
             <div class="campo">
-                <div class="switch">
-                    <!-- <label><strong>¿Padece alguna enfermedad?</strong></label>
-                    <p-inputSwitch (onChange)="cambiarSwitchEnfermedades($event)" formControlName="have_enfermedades">
-                    </p-inputSwitch> -->
-                </div>
-                <div *ngIf="solicitudesForm.controls['have_enfermedades'].value" class="more">
-                    <div class="field" style="display: flex; flex-direction: column;">
-                        <label for="enfermedades" class="block">Comente sus enfermedades</label>
-                        <textarea id="enfermedades" [rows]="5" [cols]="30" [autoResize]="true" [maxlength]="300"
-                            pInputTextarea formControlName="enfermedades"></textarea>
-                        <small *ngIf="campoEsValido('enfermedades')" class="p-error block">
-                            <!-- {{ enfermedadesErrorMsg }} -->
-                        </small>
-                    </div>
-                    <div class="field" style="display: flex; flex-direction: column;">
-                        <label for="tratamiento_actual" class="block">Comente el tratamiento que realiza</label>
-                        <textarea id="tratamiento_actual" [rows]="5" [cols]="30" [autoResize]="true" [maxlength]="300"
-                            pInputTextarea formControlName="tratamiento_actual"></textarea>
-                        <small *ngIf="campoEsValido('tratamiento_actual')" class="p-error block">
-                            <!-- {{ tratamiento_actualErrorMsg }} -->
-                        </small>
-                    </div>
-                    <div class="field" style="display: flex; flex-direction: column;">
-                        <label for="medicacion" class="block">En caso de que tome un medicamento, escríbelo</label>
-                        <textarea id="medicacion" [rows]="5" [cols]="30" [autoResize]="true" [maxlength]="300"
-                            pInputTextarea formControlName="medicacion"></textarea>
-                        <small *ngIf="campoEsValido('medicacion')" class="p-error block">
-                            <!-- {{ medicacionErrorMsg }} -->
-                        </small>
-                    </div>
+                <h1>¿Que desea solicitar?</h1>
+                <div class="solicitud-principal">
+                    <p-toggleButton (onChange)="protesisChange($event)" [onLabel]="'Quiero una prótesis'" offLabel="Prótesis" onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}" formControlName="have_protesis"></p-toggleButton>
+                    <small *ngIf="campoEsValido('have_protesis')" class="p-error block">
+                        {{ have_protesisErrorMsg }}
+                    </small>
+                    <p-toggleButton (onChange)="cabelloChange($event)" [onLabel]="'Quiero cabello natural'" offLabel="Cabello natural" onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}" formControlName="have_cabello"></p-toggleButton>
+                    <small *ngIf="campoEsValido('have_cabello')" class="p-error block">
+                        {{ have_cabelloErrorMsg }}
+                    </small>
                 </div>
             </div>
             <div class="campo">
-                <div class="switch">
-                    <!-- <label><strong>¿Padece alguna alergia?</strong></label>
-                    <p-inputSwitch (onChange)="cambiarSwitchAlergias($event)" formControlName="have_alergias">
-                    </p-inputSwitch> -->
-                </div>
-                <div *ngIf="solicitudesForm.controls['have_alergias'].value" class="more">
-                    <div class="field" style="display: flex; flex-direction: column;">
-                        <label for="enfermedades" class="block">¿Que alergia/s padeces? Escríbelas</label>
-                        <textarea id="enfermedades" [rows]="5" [cols]="30" [autoResize]="true" [maxlength]="300" pInputTextarea formControlName="alergias"></textarea>
-                        <small *ngIf="campoEsValido('alergias')" class="p-error block">
-                            <!-- {{ alergiasErrorMsg }} -->
-                        </small>
-                    </div>
-                    <div class="field" style="display: flex; flex-direction: column;">
-                        <label for="tratamiento_actual" class="block">Comente si toma algún medicamento para la
-                            alergia</label>
-                        <textarea id="tratamiento_actual" [rows]="5" [cols]="20" [autoResize]="true"
-                            [maxlength]="300" pInputTextarea formControlName="alergias_medicacion"></textarea>
-                        <small *ngIf="campoEsValido('alergias_medicacion')" class="p-error block">
-                            <!-- {{ alergias_medicacionErrorMsg }} -->
-                        </small>
-                    </div>
+                <div *ngIf="solicitudesForm.controls['have_protesis'].value" class="more">
+                    <solicitud-protesis-form (protesisValue)="getProtesis($event)"></solicitud-protesis-form>
                 </div>
             </div>
+            <div class="campo">
+                <div *ngIf="solicitudesForm.controls['have_cabello'].value" class="more">
+                    <solicitud-cabellos-form (cabelloValue)="getCabello($event)"></solicitud-cabellos-form>
+                </div>
+            </div>
+            <div class="campo">
+                <div class="titulo">
+                    <h3>¿Quiere tambien un pañuelo?</h3>
+                    <div class="switchYesNo">
+                        <span [ngClass]="!solicitudesForm.controls['have_panuelo'].value?'activate':''" >No</span><p-inputSwitch  formControlName="have_panuelo"></p-inputSwitch><span [ngClass]="solicitudesForm.controls['have_panuelo'].value?'activate':''">Si</span>
+                    </div>
+                    <solicitud-textiles-form *ngIf="solicitudesForm.controls['have_panuelo'].value" (textilValue)="getTextil($event)"></solicitud-textiles-form>
+                </div>
+
+            </div>
+            <div class="campo">
+                    <h1>¿Que parte del dia desearia recoger su peluca?</h1>
+                    <p-dropdown [options]="disponibilidad" formControlName="disponibilidad" [editable]="true" optionLabel="name" optionValue="name" ></p-dropdown>
+                    <small style="margin-top: -30px;" *ngIf="campoEsValido('disponibilidad')" class="p-error block" >
+                        {{ disponibilidadErrorMsg }}
+                    </small>
+            </div>
+            <div class="campo">
+                    <h1>¿Donde desearia recoger los productos?</h1>
+                    <p-dropdown [options]="disponibilidad" formControlName="disponibilidad" [editable]="true" optionLabel="name" optionValue="name" ></p-dropdown>
+                    <!-- <small style="margin-top: -30px;" *ngIf="campoEsValido('disponibilidad')" class="p-error block" >
+                        {{ disponibilidadErrorMsg }}
+                    </small> -->
+            </div>
+
             <div class="botones">
                 <button *ngIf="btnStatusUpdate()" (click)="update()" class="btn-morado">Actualizar</button>
                 <button *ngIf="btnStatusCreate()" (click)="crear()" class="btn-morado">Crear</button>

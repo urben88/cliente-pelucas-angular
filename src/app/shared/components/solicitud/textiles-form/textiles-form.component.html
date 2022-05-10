@@ -1,1 +1,16 @@
-<p>textiles-form works!</p>
+<form [formGroup]="textilForm">
+    <div class="datos">
+        <div class="field" style="display: flex; flex-direction: column;">
+            <label for="tratamiento_actual" class="block">Color del pañuelo</label>
+            <div class="cajainput">
+                <p-dropdown [options]="coloresBasicos" optionLabel="nombreColor" optionValue="nombreColor" formControlName="color" 
+                     placeholder="Selecciona el color" [showClear]="true">
+                </p-dropdown>     
+                <img *ngIf="textilForm.controls['color'].value" [src]="colorPanuelo()" class="pelucamini">
+            </div>
+            <small *ngIf="campoEsValido('color')" class="p-error block">
+                {{ colorErrorMsg }}
+            </small>
+        </div>
+    </div>
+</form>

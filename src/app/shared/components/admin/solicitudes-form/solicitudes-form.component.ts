@@ -5,7 +5,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DatosClinicos } from 'src/app/core/models/DatosClinicos';
 import { User } from 'src/app/core/models/User.interface';
 import { DatosClinicosService } from 'src/app/core/services/db/datos-clinicos.service';
-
+import { disponibilidad } from '../../../../core/enums/Solicitudes'
 @Component({
   selector: 'admin-solicitudes-form',
   templateUrl: './solicitudes-form.component.html',
@@ -22,35 +22,25 @@ export class SolicitudesFormComponent implements OnInit {
     ) { }
 
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if(changes['user']){
-      this._datosClinicos.findUserDatosClinicos(this.user.id).subscribe(
-        (res)=>{
-         this.DatosClinicosUser = res;
-         this.haveDatosClinicos = true;
-         console.log(res)
-         this.reset()
-        },
-        (err:HttpErrorResponse)=>{
-          if(err.status == 404){
-             this.DatosClinicosUser =null;
-             this.haveDatosClinicos = false;
-             this.reset(true)
-          }else{
-            console.error(err)
-          }
-        }
-      )
-    }
+  ngOnChanges( ): void {
+  
   }
 
-  solicitudesForm:FormGroup = this._build.group({
-    have_enfermedades:[false,Validators.required],
+    solicitudesForm:FormGroup = this._build.group({
+    disponibilidad:["",[Validators.required,Validators.maxLength(100)]],
+    centrosId:[1,Validators.required],
+    cheques_regaloId:[1,Validators.required],
+    have_protesis:[false,Validators.required],
+    have_cabello:[false,Validators.required],
+    have_panuelo:[false,Validators.required],
+    
   })
 
   erroresDB:String[] =[];
   haveDatosClinicos:boolean = false;
   DatosClinicosUser!:DatosClinicos |null;
+
+  disponibilidad:any = disponibilidad;
 
   ngOnInit(): void {
   }
@@ -58,10 +48,57 @@ export class SolicitudesFormComponent implements OnInit {
   @Input() user!:User;
 
   //? Mensages de error
-  get have_enfermedadesErrorMsg(): string{
-    const errors = this.solicitudesForm.get('have_enfermedades')?.errors;
+  get disponibilidadErrorMsg(): string{
+    const errors = this.solicitudesForm.get('disponibilidad')?.errors;
     if(errors?.['required']){
-      return 'Have enfermedades es obligatorio'
+      return 'La disponibilidad es obligatoria'
+    }else if(errors?.['pattern']){
+      return 'Formato no válido'
+    }else if(errors?.['maxlength']){
+      return 'Límite de texto superado'
+    }
+    return '';
+  }
+  get centrosIdErrorMsg(): string{
+    const errors = this.solicitudesForm.get('centrosId')?.errors;
+    if(errors?.['required']){
+      return 'El centro es obligatorio'
+    }else if(errors?.['pattern']){
+      return 'Formato no válido'
+    }
+    return '';
+  }
+  get cheques_regaloIdErrorMsg(): string{
+    const errors = this.solicitudesForm.get('cheques_regaloId')?.errors;
+    if(errors?.['required']){
+      return 'El cheque regalo es obligatorio'
+    }else if(errors?.['pattern']){
+      return 'Formato no válido'
+    }
+    return '';
+  }
+  get have_protesisErrorMsg(): string{
+    const errors = this.solicitudesForm.get('have_protesis')?.errors;
+    if(errors?.['required']){
+      return 'Es obligatorio seleccionarlo'
+    }else if(errors?.['pattern']){
+      return 'Formato no válido'
+    }
+    return '';
+  }
+  get have_cabelloErrorMsg(): string{
+    const errors = this.solicitudesForm.get('have_cabello')?.errors;
+    if(errors?.['required']){
+      return 'Es obligatorio seleccionarlo'
+    }else if(errors?.['pattern']){
+      return 'Formato no válido'
+    }
+    return '';
+  }
+  get have_panueloErrorMsg(): string{
+    const errors = this.solicitudesForm.get('have_panuelo')?.errors;
+    if(errors?.['required']){
+      return 'Es obligatorio seleccionarlo'
     }else if(errors?.['pattern']){
       return 'Formato no válido'
     }
@@ -82,6 +119,16 @@ export class SolicitudesFormComponent implements OnInit {
     return this.solicitudesForm.controls[campo].errors && this.solicitudesForm.controls[campo].touched;
   }
 
+  getCabello(event:any){
+    console.log(event)
+  }
+  getTextil(event:any){
+    console.log(event)
+  }
+  getProtesis(event:any){
+    console.log(event)
+  }
+
 
   btnStatusCreate(){
     if(this.user && this.DatosClinicosUser == null && !this.haveDatosClinicos){
@@ -96,7 +143,23 @@ export class SolicitudesFormComponent implements OnInit {
     return false;
   }
 
-  //? Resetear datos
+  protesisChange(event:any){
+    if(event.checked){
+      this.solicitudesForm.controls['have_cabello'].setValue(false)
+    }else{
+      // this.solicitudesForm.controls['have_cabello'].setValue(true)
+    }
+  }
+  cabelloChange(event:any){
+    if(event.checked){
+      this.solicitudesForm.controls['have_protesis'].setValue(false)
+    }else{
+      // this.solicitudesForm.controls['have_protesis'].setValue(true)
+    }
+  }
+
+
+  // //? Resetear datos
   reset(valuedefault = false){
 
     if(!valuedefault){
@@ -108,6 +171,7 @@ export class SolicitudesFormComponent implements OnInit {
     }
 
   }
+
 
   crear(){
     // this.erroresDB = [];

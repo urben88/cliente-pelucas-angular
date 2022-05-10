@@ -39,7 +39,7 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {EditorModule} from 'primeng/editor';
 import {FieldsetModule} from 'primeng/fieldset';
 import {MultiSelectModule} from 'primeng/multiselect';
-
+import {ToggleButtonModule} from 'primeng/togglebutton';
 
 
 
@@ -100,7 +100,7 @@ import { TextilesFormComponent } from './components/solicitud/textiles-form/text
     CabellosFormComponent,
     ProtesisFormComponent,
     TextilesFormComponent,
-    
+
 
   ],
   imports: [
@@ -134,7 +134,8 @@ import { TextilesFormComponent } from './components/solicitud/textiles-form/text
     EditorModule,
     FieldsetModule,
     MultiSelectModule,
-    InputNumberModule
+    InputNumberModule,
+    ToggleButtonModule,
   ],
   exports:[
     NavComponent,
@@ -187,9 +188,11 @@ import { TextilesFormComponent } from './components/solicitud/textiles-form/text
     ChequesRegaloFormComponent,
     SanitizeHtmlPipe,
     TextEditorQuillComponent,
+    SolicitudesFormComponent,
     CabellosFormComponent,
     ProtesisFormComponent,
     TextilesFormComponent,
+    ToggleButtonModule
 
   ],
   providers: [MessageService,ConfirmationService]

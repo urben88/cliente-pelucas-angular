@@ -1,0 +1,41 @@
+export default [{
+    "nombreColor":"rojo",
+    "valorHexadec":"#f00"
+},
+{
+    "nombreColor":"verde",
+    "valorHexadec":"#40D440"
+},
+{
+    "nombreColor":"azul",
+    "valorHexadec":"#00f"
+},
+{
+    "nombreColor":"cyan",
+    "valorHexadec":"#1EE2E2"
+},
+{
+    "nombreColor":"magenta",
+    "valorHexadec":"#D31ED3"
+},
+{
+    "nombreColor":"amarillo",
+    "valorHexadec":"#ff0"
+},
+{
+    "nombreColor":"negro",
+    "valorHexadec":"#000"
+},
+{
+    "nombreColor":"marron",
+    "valorHexadec":"#D3751E"
+},
+{
+    "nombreColor":"blanco",
+    "valorHexadec":"#F8EDE4"
+},
+{
+    "nombreColor":"gris",
+    "valorHexadec":"#CFCCC9"
+},
+]

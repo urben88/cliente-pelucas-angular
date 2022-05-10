@@ -11,6 +11,12 @@
         justify-content: center;
         align-items: center;
         gap: 20px;
+        .switchYesNo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
     
     }
     .datos{
@@ -18,7 +24,7 @@
         // border: 2px solid black;
         margin: 20px 0px;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
         flex-wrap: wrap;
@@ -42,12 +48,27 @@
         .campo{
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
             flex-wrap: wrap;
             gap: 30px;
-            .switch{
+            min-width: 100%;
+            h1{
+                margin-top: 30px;
+                border-bottom: #8C239E solid 2px;
+                padding: 0px 40px 10px 40px;
+                color: $morado-input ;
+                font-weight: bold;
+            }
+            .solicitud-principal{
                 display: flex;
-                flex-direction: column;
-                gap: 10px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: space-around;
+                align-items: center;
+                min-width: 100%;
+              
             }
             .more{
                 display: flex;
@@ -73,4 +94,16 @@
 }
 .flexcolumn{
     flex-direction: column !important;
+}
+.activate{
+    color: #8C239E !important;
+    font-weight: bold;
+}
+//? Para los botones de elegir o prótesis o cabello
+:host ::ng-deep{
+    .p-togglebutton{
+        width: 400px !important;
+        height: 200px !important;
+        font-size: 40px !important;
+    }
 }

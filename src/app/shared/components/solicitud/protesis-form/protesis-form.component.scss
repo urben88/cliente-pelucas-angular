@@ -1,0 +1,96 @@
+form{
+    .datos{
+        font-size: 100%;
+        // border: 2px solid black;
+        margin: 20px 0px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 30px;
+        input{
+            width: 100%;
+        }
+        .field{
+            margin-bottom: 10px;
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            .cajainput{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img{
+                    color: white;
+                    width: 50px;
+                }
+                .pelucamini{
+                    width: 100px !important;
+                    margin-bottom: 10px;
+                    transform: rotate(0deg);
+                    margin-left: 20px;
+                    
+                }
+            }
+        }
+        .doble{
+            display: flex;
+            justify-content: space-around;
+            // border: 2px solid black;
+            gap: 20px;
+            width: 100%;
+            p-inputNumber{
+                width: 100% !important;
+            }
+        }
+        .campo{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 30px;
+            .switch{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .more{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                 gap: 30px; 
+            }
+        }
+        .botones{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+    }
+}
+
+.formamini{
+    width: 100px !important;
+}
+// //! Página para tranformar los filtros en colores: https://codepen.io/sosuke/pen/Pjoqqp
+// .rubio{
+//     filter: invert(79%) sepia(71%) saturate(546%) hue-rotate(356deg) brightness(100%) contrast(104%);
+// }
+// .castano{
+//     filter: invert(41%) sepia(4%) saturate(4557%) hue-rotate(341deg) brightness(101%) contrast(69%);
+// }
+// .moreno{
+//     filter: invert(28%) sepia(3%) saturate(3206%) hue-rotate(327deg) brightness(93%) contrast(82%);
+// }
+// .mechado{
+//     filter: invert(69%) sepia(2%) saturate(2753%) hue-rotate(353deg) brightness(95%) contrast(99%);
+// }
+// .cano{
+//     filter: invert(87%) sepia(8%) saturate(182%) hue-rotate(349deg) brightness(83%) contrast(83%);
+// }
+// .rojizo{
+//     filter: invert(27%) sepia(31%) saturate(1963%) hue-rotate(330deg) brightness(97%) contrast(87%);
+// }

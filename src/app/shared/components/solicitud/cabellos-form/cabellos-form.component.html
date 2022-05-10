@@ -13,6 +13,9 @@
                     <p-dropdown [options]="formas" optionLabel="name" optionValue="value" formControlName="forma" 
                          placeholder="Selecciona la forma" [showClear]="true">
                     </p-dropdown>
+                    <img *ngIf="cabellosForm.controls['forma'].value == 'liso'" src="../../../../../assets/decorados/formasPelo/liso.svg" class="formamini">
+                    <img *ngIf="cabellosForm.controls['forma'].value == 'rizado'" src="../../../../../assets/decorados/formasPelo/rizado.svg" class="formamini">
+                    <img *ngIf="cabellosForm.controls['forma'].value == 'ondulado'" src="../../../../../assets/decorados/formasPelo/ondulado.svg" class="formamini">
                 </div>
             <small *ngIf="campoEsValido('forma')" class="p-error block">
                 {{ formaErrorMsg }}
@@ -24,7 +27,7 @@
                 <p-dropdown [options]="color" optionLabel="name" optionValue="value" formControlName="color" 
                      placeholder="Selecciona el color" [showClear]="true">
                 </p-dropdown>     
-                <img [src]="colorPeluca()" class="pelucamini">
+                <img  *ngIf="cabellosForm.controls['color'].value" [src]="colorPeluca()" class="pelucamini">
             </div>
             <small *ngIf="campoEsValido('color')" class="p-error block">
                 {{ colorErrorMsg }}
