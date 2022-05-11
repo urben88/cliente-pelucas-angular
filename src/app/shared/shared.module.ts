@@ -40,8 +40,8 @@ import {EditorModule} from 'primeng/editor';
 import {FieldsetModule} from 'primeng/fieldset';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {ToggleButtonModule} from 'primeng/togglebutton';
-
-
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {DialogModule} from 'primeng/dialog';
 
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -68,6 +68,8 @@ import { SolicitudesFormComponent } from './components/admin/solicitudes-form/so
 import { CabellosFormComponent } from './components/solicitud/cabellos-form/cabellos-form.component';
 import { ProtesisFormComponent } from './components/solicitud/protesis-form/protesis-form.component';
 import { TextilesFormComponent } from './components/solicitud/textiles-form/textiles-form.component';
+import { CentrosSelectComponent } from './components/solicitud/centros-select/centros-select.component';
+import { ChequesRegaloSelectComponent } from './components/solicitud/cheques-regalo-select/cheques-regalo-select.component';
 
 // import { MapComponent } from './components/home/map/map.component';
 
@@ -100,7 +102,8 @@ import { TextilesFormComponent } from './components/solicitud/textiles-form/text
     CabellosFormComponent,
     ProtesisFormComponent,
     TextilesFormComponent,
-
+    CentrosSelectComponent,
+    ChequesRegaloSelectComponent,
 
   ],
   imports: [
@@ -136,6 +139,8 @@ import { TextilesFormComponent } from './components/solicitud/textiles-form/text
     MultiSelectModule,
     InputNumberModule,
     ToggleButtonModule,
+    RadioButtonModule,
+    DialogModule
   ],
   exports:[
     NavComponent,
@@ -192,7 +197,11 @@ import { TextilesFormComponent } from './components/solicitud/textiles-form/text
     CabellosFormComponent,
     ProtesisFormComponent,
     TextilesFormComponent,
-    ToggleButtonModule
+    ToggleButtonModule,
+    CentrosSelectComponent,
+    ChequesRegaloSelectComponent,
+    RadioButtonModule,
+    DialogModule
 
   ],
   providers: [MessageService,ConfirmationService]

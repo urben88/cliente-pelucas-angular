@@ -17,13 +17,18 @@ export class ProtesisFormComponent implements OnInit {
 
     ) { }
 
-  @Output() protesisValue = new EventEmitter<any>();
+  @Output() protesis = new EventEmitter<any>();
+  @Output() valid = new EventEmitter<any>(false);
 
   ngOnInit(): void {
     console.log(formas,"FORMAS")
     this.protesisForm.valueChanges.subscribe(
       (res)=>{
-        this.protesisValue.emit(this.protesisForm.value)
+        this.protesis.emit( {
+          value: this.protesisForm.value,
+          valid: this.protesisForm.valid
+        })
+        this.valid.emit(this.protesisForm.valid)
       },
       (err)=>{
         console.log(err)

@@ -23,6 +23,9 @@ export class ChequesRegaloService {
   getAll(){
     return this.http.get<ChequeRegalo[]>(this.urlChequesRegalo+"/findAll")
   }
+  findBy(attr:string,value:string){
+    return this.http.get<ChequeRegalo[]>(this.urlChequesRegalo+"/findBy/"+attr+"/"+value)
+  }
   create(cheque:ChequeRegalo){
     return this.http.post<any>(this.urlChequesRegalo+"/create",cheque)
   }

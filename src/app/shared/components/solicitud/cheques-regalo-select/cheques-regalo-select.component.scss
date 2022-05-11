@@ -1,0 +1,90 @@
+@import "../../../../../styles.scss";
+.caja{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px;
+    position: relative;
+    .cajaTipo{
+        h1{
+            font-weight: bold;
+            color: $morado-boton;
+        }
+        .cajaCheques{
+            margin-bottom: 5px;
+            position: relative;
+
+            label{
+                margin-left: 10px;
+                &:hover{
+                    text-decoration: underline;
+                    cursor: pointer;
+                    color: $morado-input;
+                }
+            }
+            .info{
+                padding: 5px;
+                display: none;
+                background-color: white;
+                color: $morado-input;
+                border: 1px solid rgba(0, 0, 0, 0.222);
+                text-align: center;
+                position: absolute;
+                z-index: 5;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.282);
+
+            }
+        }
+    }
+    p-dialog{
+        top: 400px !important;
+    }
+
+}
+
+.show{
+    display: flex !important;
+}
+.hidden{
+    display: none !important;
+}
+
+:host ::ng-deep{
+    p-dialog{
+        margin-top: 400px;
+        position: relative;
+    }
+}
+
+// `xs` devuelve solo un conjunto de reglas y ninguna consulta de medios
+// ... { ... }
+
+// `sm` se aplica a dispositivos x-small (teléfonos verticales, menos de 576px)
+@media (max-width: 575.98px) { 
+    .caja{
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+    }
+ }
+
+// `md` se aplica a dispositivos pequeños (teléfonos horizontales, menos de 768px)
+@media (max-width: 767.98px) { 
+    .caja{
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+    }
+}
+
+// "lg" se aplica a dispositivos medianos (tabletas, menos de 992 px)
+@media (max-width: 991.98px) { 
+    .caja{
+        justify-content: center !important;
+        align-items: baseline !important;
+    }
+ }
+
+// `xl` se aplica a dispositivos grandes (computadoras de escritorio, menos de 1200 px)
+@media (max-width: 1199.98px) {  }
+
+// `xxl` se aplica a dispositivos de gran tamaño (escritorios grandes, menos de 1400px)
+@media (max-width: 1399.98px) {  }

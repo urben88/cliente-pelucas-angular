@@ -2,41 +2,47 @@
 
 <!-- ! Mensajes info -->
 <p-toast position="top-center" style="margin-top:300px"></p-toast>
-
+{{this.solicitudesForm.errors | json}}
+{{this.solicitudesForm.valid | json}}
 <div class="caja animate__animated animate__backInLeft">
     <form [formGroup]="solicitudesForm">
         <div class="titulo">
-            <h1>Solicitud</h1>
+            <h1 *ngIf="!haveDatosClinicos && forAdmin ">Solicitud</h1>
             <icon-refresh *ngIf="haveDatosClinicos" (update)="reset()"></icon-refresh>
         </div>
-        <div *ngIf="!haveDatosClinicos" class="alert alert-success" role="alert">
+        <div *ngIf="!haveDatosClinicos && forAdmin " class="alert alert-success" role="alert">
             Este usuario no tiene registrado datos clínicos, puedes crearlos
         </div>
-        <div *ngIf="haveDatosClinicos" class="alert alert-primary" role="alert">
+        <div *ngIf="haveDatosClinicos && forAdmin" class="alert alert-primary" role="alert">
             El usuario tiene datos clínicos registrados, puedes modificarlos
         </div>
         <div class="datos">
             <div class="campo">
                 <h1>¿Que desea solicitar?</h1>
                 <div class="solicitud-principal">
-                    <p-toggleButton (onChange)="protesisChange($event)" [onLabel]="'Quiero una prótesis'" offLabel="Prótesis" onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}" formControlName="have_protesis"></p-toggleButton>
-                    <small *ngIf="campoEsValido('have_protesis')" class="p-error block">
-                        {{ have_protesisErrorMsg }}
-                    </small>
-                    <p-toggleButton (onChange)="cabelloChange($event)" [onLabel]="'Quiero cabello natural'" offLabel="Cabello natural" onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}" formControlName="have_cabello"></p-toggleButton>
-                    <small *ngIf="campoEsValido('have_cabello')" class="p-error block">
-                        {{ have_cabelloErrorMsg }}
+                    <div class="botones">
+                        <p-toggleButton (onChange)="protesisChange($event)" [onLabel]="'Quiero una prótesis'" offLabel="Prótesis" onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}" formControlName="have_protesis"></p-toggleButton>
+                        <small *ngIf="campoEsValido('have_protesis')" class="p-error block">
+                            {{ have_protesisErrorMsg }}
+                        </small>
+                        <p-toggleButton (onChange)="cabelloChange($event)" [onLabel]="'Quiero cabello natural'" offLabel="Cabello natural" onIcon="pi pi-check" offIcon="pi pi-times" [style]="{'width': '10em'}" formControlName="have_cabello"></p-toggleButton>
+                        <small *ngIf="campoEsValido('have_cabello')" class="p-error block">
+                            {{ have_cabelloErrorMsg }}
+                        </small>
+                    </div>
+                    <small *ngIf="this.solicitudesForm.errors" class="p-error block">
+                        {{ this.solicitudesForm.errors['productos']}}
                     </small>
                 </div>
             </div>
             <div class="campo">
                 <div *ngIf="solicitudesForm.controls['have_protesis'].value" class="more">
-                    <solicitud-protesis-form (protesisValue)="getProtesis($event)"></solicitud-protesis-form>
+                    <solicitud-protesis-form (protesis)="getProtesis($event)" (protesisValue)="getProtesis($event)"></solicitud-protesis-form>
                 </div>
             </div>
             <div class="campo">
                 <div *ngIf="solicitudesForm.controls['have_cabello'].value" class="more">
-                    <solicitud-cabellos-form (cabelloValue)="getCabello($event)"></solicitud-cabellos-form>
+                    <solicitud-cabellos-form (cabello)="getCabello($event)"></solicitud-cabellos-form>
                 </div>
             </div>
             <div class="campo">
@@ -45,28 +51,42 @@
                     <div class="switchYesNo">
                         <span [ngClass]="!solicitudesForm.controls['have_panuelo'].value?'activate':''" >No</span><p-inputSwitch  formControlName="have_panuelo"></p-inputSwitch><span [ngClass]="solicitudesForm.controls['have_panuelo'].value?'activate':''">Si</span>
                     </div>
-                    <solicitud-textiles-form *ngIf="solicitudesForm.controls['have_panuelo'].value" (textilValue)="getTextil($event)"></solicitud-textiles-form>
+                    <solicitud-textiles-form (textil)="getTextil($event)" *ngIf="solicitudesForm.controls['have_panuelo'].value" (textilValue)="getTextil($event)"></solicitud-textiles-form>
                 </div>
 
             </div>
             <div class="campo">
-                    <h1>¿Que parte del dia desearia recoger su peluca?</h1>
+                    <h1><i class="fa-solid fa-clock"></i>  ¿Que parte del dia desearia recoger su peluca?</h1>
+                    <div *ngIf="(solicitudesForm.controls['disponibilidad'].value == null) || (solicitudesForm.controls['disponibilidad'].value == '')" class="alert alert-info" role="alert">
+                        <i class="fa-solid fa-circle-info"></i>  Puedes escribir o seleccionar parte del dia
+                    </div>
                     <p-dropdown [options]="disponibilidad" formControlName="disponibilidad" [editable]="true" optionLabel="name" optionValue="name" ></p-dropdown>
+                    <img *ngIf="solicitudesForm.controls['disponibilidad'].value == 'Mañanas' " src="assets/img/solicitud/partes-dia/manana.PNG">
+                    <img *ngIf="solicitudesForm.controls['disponibilidad'].value == 'Medios días' " src="assets/img/solicitud/partes-dia/medio-dia.PNG">
+                    <img *ngIf="solicitudesForm.controls['disponibilidad'].value == 'Tardes' " src="assets/img/solicitud/partes-dia/tarde.PNG">
+                    <img *ngIf="disponibilidadDefault()" src="assets/img/solicitud/partes-dia/otro.PNG">
                     <small style="margin-top: -30px;" *ngIf="campoEsValido('disponibilidad')" class="p-error block" >
                         {{ disponibilidadErrorMsg }}
                     </small>
             </div>
             <div class="campo">
-                    <h1>¿Donde desearia recoger los productos?</h1>
-                    <p-dropdown [options]="disponibilidad" formControlName="disponibilidad" [editable]="true" optionLabel="name" optionValue="name" ></p-dropdown>
+                    <h1><i class="fa-solid fa-location-dot"></i>  ¿Donde desearia recoger los productos?</h1>
+                   <solicitud-centros-select (centro)="getCentro($event)" style="width: 100% !important;"></solicitud-centros-select>
                     <!-- <small style="margin-top: -30px;" *ngIf="campoEsValido('disponibilidad')" class="p-error block" >
                         {{ disponibilidadErrorMsg }}
                     </small> -->
             </div>
+            <div class="campo">
+                <h1>Puedes seleccionar un servicio gratuito <img style="width: 40px;" src="assets/img/icons/tijeras-y-peine.png"></h1>
+                <solicitud-cheques-regalo-select (cheques_regalo)="getChequeRegalo($event)"></solicitud-cheques-regalo-select>
+                <!-- <small style="margin-top: -30px;" *ngIf="campoEsValido('disponibilidad')" class="p-error block" >
+                    {{ disponibilidadErrorMsg }}
+                </small> -->
+            </div>
 
             <div class="botones">
                 <button *ngIf="btnStatusUpdate()" (click)="update()" class="btn-morado">Actualizar</button>
-                <button *ngIf="btnStatusCreate()" (click)="crear()" class="btn-morado">Crear</button>
+                <button *ngIf="btnStatusCreate()" (click)="crear()" class="btn-morado">Enviar solicitud</button>
                 <p-confirmPopup></p-confirmPopup>
                 <button (click)="eliminar($event)"  pButton  *ngIf="btnStatusUpdate()" class="btn-rojo">Eliminar registro</button>
                 <alert-dberrors [erroresDB]="erroresDB"></alert-dberrors>
@@ -74,4 +94,6 @@
         </div>
 
     </form>
+    {{this.solicitudesForm.errors | json}}
+    {{this.solicitudesForm.valid | json}}
 </div>

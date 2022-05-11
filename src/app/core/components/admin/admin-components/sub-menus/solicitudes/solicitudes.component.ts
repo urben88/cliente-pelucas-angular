@@ -34,7 +34,7 @@ export class SolicitudesComponent implements OnInit {
     )
     this._solicitudes.getAllSimple().subscribe(
       (res:Solicitud[])=>{
-        console.log(res)
+        console.log(res,'solicitudes')
         this.solicitudes = res;
       },
       (err:HttpErrorResponse)=>{

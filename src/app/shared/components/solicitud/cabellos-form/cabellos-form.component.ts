@@ -16,13 +16,19 @@ export class CabellosFormComponent implements OnInit {
 
     ) { }
 
-  @Output() cabelloValue = new EventEmitter<any>();
+  @Output() cabello = new EventEmitter<any>();
+  @Output() valid = new EventEmitter<any>(false)
 
   ngOnInit(): void {
     console.log(formas,"FORMAS")
     this.cabellosForm.valueChanges.subscribe(
       (res)=>{
-        this.cabelloValue.emit(this.cabellosForm.value)
+        this.cabello.emit(
+          {
+            value: this.cabellosForm.value,
+            valid: this.cabellosForm.valid
+          })
+        this.valid.emit(this.cabellosForm.valid)
       },
       (err)=>{
         console.log(err)

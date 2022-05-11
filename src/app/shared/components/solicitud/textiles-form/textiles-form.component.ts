@@ -16,12 +16,17 @@ export class TextilesFormComponent implements OnInit {
 
     ) { }
 
-    @Output() textilValue = new EventEmitter<any>();
+    @Output() textil = new EventEmitter<any>();
+    @Output() valid = new EventEmitter<any>();
 
   ngOnInit(): void {
     this.textilForm.valueChanges.subscribe(
       (res)=>{
-        this.textilValue.emit(this.textilForm.value)
+        this.textil.emit({
+          value: this.textilForm.value,
+          valid: this.textilForm.valid
+        })
+        this.valid.emit(this.textilForm.valid)
       },
       (err)=>{
         console.log(err)
