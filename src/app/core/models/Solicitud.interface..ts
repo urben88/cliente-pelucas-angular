@@ -4,11 +4,12 @@ export interface Solicitud {
     createdAt?:        Date;
     updatedAt?:        Date;
     user_id:          number;
+    disponibilidad?:   string;
     cheques_regaloId: number|null;
     centrosId:        number;
-    cabello:          Cabello|null;
-    protesis:         Protesis|null;
-    textil:           Textil|null;
+    cabello?:          Cabello|null;
+    protesis?:         Protesis|null;
+    textil?:           Textil|null;
     cheque_regalo:    ChequeRegalo|null;
 }
 

@@ -22,6 +22,10 @@ export class SolicitudesComponent implements OnInit {
   solicitudes!:Solicitud[]|null;
   userSelected!:User|null;
   solicitudSelected!:Solicitud|null;
+
+  solicitud!:Solicitud;
+
+  userHave:boolean = false;
   ngOnInit(): void {
     this._user.getUsers().subscribe(
       (res:User[])=>{
@@ -49,6 +53,25 @@ export class SolicitudesComponent implements OnInit {
     if(event){
       this.userSelected = event;
       console.log(this.userSelected)
+      this._solicitudes.userHave(this.userSelected?.id).subscribe(
+        (res:any)=>{
+          console.log(res)
+          this.userHave = res.have;
+          if(this.userHave){
+            this._solicitudes.getOneByUser(this.userSelected?.id).subscribe(
+              (res:Solicitud)=>{
+                this.solicitud = res;
+              },
+              (err)=>{
+                console.error(err);
+              }
+            )
+          }
+        },
+        (err:HttpErrorResponse)=>{
+          console.error(err)
+        },
+      )
     }
   }
   solicitudSelect(event:any){
@@ -56,7 +79,36 @@ export class SolicitudesComponent implements OnInit {
     this.solicitudSelected = null;
     if(event){
       this.solicitudSelected = event;
-      console.log(this.solicitudSelected)
+      console.log(this.solicitudSelected?.id)
+      this._solicitudes.userHave(this.solicitudSelected?.user_id).subscribe(
+        (res:any)=>{
+          console.log(res)
+          this.userHave = res.have;
+          if(this.userHave){
+            this._solicitudes.getOneByUser(this.solicitudSelected?.user_id).subscribe(
+              (res:Solicitud)=>{
+                this.solicitud = res;
+              },
+              (err)=>{
+                console.error(err);
+              }
+            )
+          }
+        },
+        (err:HttpErrorResponse)=>{
+          console.error(err)
+        },
+      )
+    }
+  }
+
+  passId(){
+    if(this.userSelected){
+      return this.userSelected.id;
+    }else if(this.solicitudSelected){
+      return this.solicitudSelected.user_id;
+    }else{
+      return 0;
     }
   }
 }

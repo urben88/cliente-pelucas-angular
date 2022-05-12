@@ -70,6 +70,7 @@ import { ProtesisFormComponent } from './components/solicitud/protesis-form/prot
 import { TextilesFormComponent } from './components/solicitud/textiles-form/textiles-form.component';
 import { CentrosSelectComponent } from './components/solicitud/centros-select/centros-select.component';
 import { ChequesRegaloSelectComponent } from './components/solicitud/cheques-regalo-select/cheques-regalo-select.component';
+import { SolicitudSimpleShowComponent } from './components/admin/solicitudes-form/solicitud-simple-show/solicitud-simple-show.component';
 
 // import { MapComponent } from './components/home/map/map.component';
 
@@ -104,6 +105,7 @@ import { ChequesRegaloSelectComponent } from './components/solicitud/cheques-reg
     TextilesFormComponent,
     CentrosSelectComponent,
     ChequesRegaloSelectComponent,
+    SolicitudSimpleShowComponent,
 
   ],
   imports: [
@@ -201,7 +203,8 @@ import { ChequesRegaloSelectComponent } from './components/solicitud/cheques-reg
     CentrosSelectComponent,
     ChequesRegaloSelectComponent,
     RadioButtonModule,
-    DialogModule
+    DialogModule,
+    SolicitudSimpleShowComponent
 
   ],
   providers: [MessageService,ConfirmationService]

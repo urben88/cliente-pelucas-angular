@@ -19,7 +19,7 @@ export class CentrosSelectComponent implements OnInit {
 
   @Input() error:String|null = null;
 
-  @Output() centro = new EventEmitter<Centro|null>();
+  @Output() centro = new EventEmitter<any>();
   @Output() valid = new EventEmitter<any>(false)
 
   CentrosEnum = CentrosEnum;
@@ -48,8 +48,17 @@ export class CentrosSelectComponent implements OnInit {
     this.buscar(this.provinciaSelected.value);
     this.centrosForm.valueChanges.subscribe(
       (res)=>{
-        this.centro.emit(this.centrosForm.value)
-        this.valid.emit(this.centrosForm.valid)
+        if(this.centrosForm.value.centro != null){
+          this.centro.emit({
+            value:this.centrosForm.value.centro,
+            valid:true
+          })
+        }else{
+          this.centro.emit({
+            value:this.centrosForm.value.centro,
+            valid:false
+          })
+        }
       },
       (err)=>{
         console.log(err)

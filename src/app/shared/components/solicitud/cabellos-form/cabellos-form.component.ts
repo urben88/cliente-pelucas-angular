@@ -1,13 +1,14 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Cabello } from 'src/app/core/models/Solicitud.interface.';
 import { color,formas,longitud } from "../../../../core/enums/Protesis"
 @Component({
   selector: 'solicitud-cabellos-form',
   templateUrl: './cabellos-form.component.html',
   styleUrls: ['./cabellos-form.component.scss']
 })
-export class CabellosFormComponent implements OnInit {
+export class CabellosFormComponent implements OnInit,OnChanges {
 
   constructor(
     private _build:FormBuilder,
@@ -16,8 +17,25 @@ export class CabellosFormComponent implements OnInit {
 
     ) { }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['touch']){
+      if(changes['touch'].currentValue){
+        this.cabellosForm.markAllAsTouched();
+      }
+    }
+    if(changes['set']){
+      let valor = changes['set'].currentValue;
+      console.log(valor)
+      this.cabellosForm.controls['forma'] = valor.forma;
+      this.cabellosForm.controls['color'] = valor.color;
+      this.cabellosForm.controls['longitud'] = valor.longitud;
+    }
+  }
+
   @Output() cabello = new EventEmitter<any>();
   @Output() valid = new EventEmitter<any>(false)
+  @Input() touch = false;
+  @Input() set:any = null;
 
   ngOnInit(): void {
     console.log(formas,"FORMAS")
@@ -108,5 +126,5 @@ export class CabellosFormComponent implements OnInit {
     }
 
   }
-  
+
 }

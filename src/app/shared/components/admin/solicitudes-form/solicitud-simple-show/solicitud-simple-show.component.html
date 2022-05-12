@@ -1,0 +1,80 @@
+<div *ngIf="solicitud" class="caja">
+    <div class="part">
+        <h1>Productos</h1>
+        <div *ngIf="solicitud.cabello" class="producto">
+            <h3>Cabello:</h3>
+            <ul>
+                <li>
+                    {{solicitud.cabello.forma | titlecase}}
+                    <img *ngIf="solicitud.cabello.forma == 'liso'" src="../../../../../assets/decorados/formasPelo/liso.svg" class="formamini">
+                    <img *ngIf="solicitud.cabello.forma  == 'rizado'" src="../../../../../assets/decorados/formasPelo/rizado.svg" class="formamini">
+                    <img *ngIf="solicitud.cabello.forma  == 'ondulado'" src="../../../../../assets/decorados/formasPelo/ondulado.svg" class="formamini">
+                </li>
+                <li>
+                    {{solicitud.cabello.color | titlecase}}
+                    <img [src]="colorPeluca(solicitud.cabello.color )" class="pelucamini">
+                </li>
+                <li>
+                    {{solicitud.cabello.longitud | titlecase}}
+                    <img *ngIf="solicitud.cabello.longitud  == 'corto'" src="../../../../../assets/img/icons/largura/corto.png" class="pelucamini">
+                    <img *ngIf="solicitud.cabello.longitud  == 'medio'" src="../../../../../assets/img/icons/largura/medio.png" class="pelucamini">
+                    <img *ngIf="solicitud.cabello.longitud  == 'largo'" src="../../../../../assets/img/icons/largura/largo.png" class="pelucamini">
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="solicitud.protesis"  class="producto">
+            <h3>Protesis:</h3>
+            <ul>
+                <li>
+                    {{solicitud.protesis.forma | titlecase}}
+                    <img *ngIf="solicitud.protesis.forma == 'liso'" src="../../../../../assets/decorados/formasPelo/liso.svg" class="formamini">
+                    <img *ngIf="solicitud.protesis.forma  == 'rizado'" src="../../../../../assets/decorados/formasPelo/rizado.svg" class="formamini">
+                    <img *ngIf="solicitud.protesis.forma  == 'ondulado'" src="../../../../../assets/decorados/formasPelo/ondulado.svg" class="formamini">
+                </li>
+                <li>
+                    {{solicitud.protesis.color | titlecase}}
+                    <img [src]="colorPeluca(solicitud.protesis.color )" class="pelucamini">
+                </li>
+                <li>
+                    {{solicitud.protesis.longitud | titlecase}}
+                    <img *ngIf="solicitud.protesis.longitud  == 'corto'" src="../../../../../assets/img/icons/largura/corto.png" class="pelucamini">
+                    <img *ngIf="solicitud.protesis.longitud  == 'medio'" src="../../../../../assets/img/icons/largura/medio.png" class="pelucamini">
+                    <img *ngIf="solicitud.protesis.longitud  == 'largo'" src="../../../../../assets/img/icons/largura/largo.png" class="pelucamini">
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="solicitud.textil" class="producto">
+            <h3>Textil</h3>
+            <ul>
+                <li>{{solicitud.textil.color | titlecase}}</li>
+                <img [src]="colorPanuelo(solicitud.textil.color)" class="pelucamini">
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="part">
+        <h1>Disponibilidad</h1>
+        <div class="disponibilidad">
+            <h3>{{ solicitud.disponibilidad }}</h3>
+            <img *ngIf="solicitud.disponibilidad == 'Mañanas' " src="assets/img/solicitud/partes-dia/manana.PNG">
+            <img *ngIf="solicitud.disponibilidad == 'Medios días' " src="assets/img/solicitud/partes-dia/medio-dia.PNG">
+            <img *ngIf="solicitud.disponibilidad == 'Tardes' " src="assets/img/solicitud/partes-dia/tarde.PNG">
+            <img *ngIf="solicitud.disponibilidad != ('Mañanas' || 'Medios días' || 'Tardes')" src="assets/img/solicitud/partes-dia/otro.PNG">
+        </div>
+    </div>
+    <div class="part">
+        <h1>Lugar de recogida</h1>
+        <div class="lugar">
+            <h3>{{centro}}</h3>
+        </div>
+    </div>
+    <div class="part">
+        <h1>Servicio gratuito</h1>
+        <div class="servicio">
+            {{ cheque_regalo[0].servicio}}
+        </div>
+    </div>
+
+
+</div>

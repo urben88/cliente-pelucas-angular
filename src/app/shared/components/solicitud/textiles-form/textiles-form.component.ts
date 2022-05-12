@@ -76,15 +76,6 @@ export class TextilesFormComponent implements OnInit {
     }
 
   colorPanuelo(){
-    // coloresBasicos.forEach(element => {
-    //   console.log(element.nombreColor)
-    //   if(this.textilForm.controls['color'].value == element.nombreColor){
-    //     console.log("entraa y ",element.nombreColor,`assets/decorados/panuelos/panuelo-${element.nombreColor}.svg`)
-    //     return `/assets/decorados/panuelos/panuelo-${element.nombreColor}.svg`;
-    //   }else{
-    //     return ''
-    //   }
-    // });
     switch (this.textilForm.controls['color'].value){
       case coloresBasicos[0].nombreColor:
         return `assets/decorados/panuelos/panuelo-${coloresBasicos[0].nombreColor}.svg`

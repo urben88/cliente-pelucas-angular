@@ -1,0 +1,17 @@
+@import "../../../../../../styles.scss";
+.caja{
+    .part{
+        h1{
+            color: $morado-input;
+            font-weight: bold;
+        }
+        img{
+            width: 40px;
+        }
+        .producto{
+            h3{
+                text-decoration: underline;
+            }
+        }
+    }
+}

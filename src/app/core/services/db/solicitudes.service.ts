@@ -31,5 +31,17 @@ export class SolicitudesService {
   getOneByUser(id:any){
     return this.http.get<Solicitud>(this.urlSolicitudes +"/findOneByUser/"+id)
   }
+  create(solicitud:any){
+    return this.http.post<Solicitud>(this.urlSolicitudes +"/create",solicitud)
+  }
+  userHave(id:any){
+    return this.http.get<Solicitud>(this.urlSolicitudes +"/userHave/"+id)
+  }
+  findOne(id:any){
+    return this.http.get<Solicitud>(this.urlSolicitudes +"/findOne/"+id)
+  }
+  update(id:any,solicitud:Solicitud){
+    return this.http.put<any>(this.urlSolicitudes+"/"+id,solicitud);
+  }
 
 }

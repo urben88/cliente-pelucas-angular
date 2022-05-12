@@ -2,19 +2,20 @@
 
 <!-- ! Mensajes info -->
 <p-toast position="top-center" style="margin-top:300px"></p-toast>
+
 {{this.solicitudesForm.errors | json}}
 {{this.solicitudesForm.valid | json}}
 <div class="caja animate__animated animate__backInLeft">
     <form [formGroup]="solicitudesForm">
         <div class="titulo">
-            <h1 *ngIf="!haveDatosClinicos && forAdmin ">Solicitud</h1>
+            <h1 *ngIf="forAdmin">Administrar Solicitud</h1>
             <icon-refresh *ngIf="haveDatosClinicos" (update)="reset()"></icon-refresh>
         </div>
-        <div *ngIf="!haveDatosClinicos && forAdmin " class="alert alert-success" role="alert">
-            Este usuario no tiene registrado datos clínicos, puedes crearlos
+        <div *ngIf="!userHave && forAdmin " class="alert alert-success" role="alert">
+            Este usuario no tiene ninguna solicitud, puedes crearla
         </div>
-        <div *ngIf="haveDatosClinicos && forAdmin" class="alert alert-primary" role="alert">
-            El usuario tiene datos clínicos registrados, puedes modificarlos
+        <div *ngIf="userHave && forAdmin" class="alert alert-primary" role="alert">
+            El usuario ya tiene una solicitud enviada, puedes modificarla
         </div>
         <div class="datos">
             <div class="campo">
@@ -42,7 +43,7 @@
             </div>
             <div class="campo">
                 <div *ngIf="solicitudesForm.controls['have_cabello'].value" class="more">
-                    <solicitud-cabellos-form (cabello)="getCabello($event)"></solicitud-cabellos-form>
+                    <solicitud-cabellos-form (cabello)="getCabello($event)" ></solicitud-cabellos-form>
                 </div>
             </div>
             <div class="campo">
