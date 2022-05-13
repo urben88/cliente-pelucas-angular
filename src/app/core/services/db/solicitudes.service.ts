@@ -43,5 +43,8 @@ export class SolicitudesService {
   update(id:any,solicitud:Solicitud){
     return this.http.put<any>(this.urlSolicitudes+"/"+id,solicitud);
   }
+  delete(id:any){
+    return this.http.delete<any>(this.urlSolicitudes+"/"+id);
+  }
 
 }

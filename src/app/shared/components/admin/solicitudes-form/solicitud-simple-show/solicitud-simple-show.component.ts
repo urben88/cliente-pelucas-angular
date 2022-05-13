@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Solicitud } from 'src/app/core/models/Solicitud.interface.';
 import { SolicitudesService } from 'src/app/core/services/db/solicitudes.service';
 import {color,formas,longitud} from '../../../../../core/enums/Protesis'
@@ -8,6 +8,7 @@ import { CentrosService } from 'src/app/core/services/db/centros.service';
 import { Centro } from 'src/app/core/models/Centro.interface';
 import { ChequeRegalo } from 'src/app/core/models/ChequeRegalo';
 import { ChequesRegaloService } from 'src/app/core/services/db/cheques-regalo.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'admin-solicitud-simple-show',
@@ -19,7 +20,9 @@ export class SolicitudSimpleShowComponent implements OnInit,OnChanges {
   constructor(
     private _solicitud:SolicitudesService,
     private _centro:CentrosService,
-    private _chequeregalo:ChequesRegaloService
+    private _chequeregalo:ChequesRegaloService,
+    private _confirmationService:ConfirmationService,
+    private _message:MessageService,
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -27,6 +30,7 @@ export class SolicitudSimpleShowComponent implements OnInit,OnChanges {
       this._solicitud.findOne(this.solicitudId).subscribe(
         (res:Solicitud)=>{
           this.solicitud = res;
+          console.log(this.solicitud,"SOLICITUD SIMPLEEEEE")
         },
         (err:HttpErrorResponse)=>{
           console.log(err)
@@ -35,38 +39,45 @@ export class SolicitudSimpleShowComponent implements OnInit,OnChanges {
     }
     if(changes['solicitudSet']){
       this.solicitud = changes['solicitudSet'].currentValue;
-      console.log(this.solicitud)
-      console.log(this.solicitud.cabello)
-      this._centro.findBy('id',`${this.solicitud.centrosId}`).subscribe(
-        (res)=>{
-          this.centro = res;
-        },
-        (err:any)=>{
-          console.error(err)
-        }
-      )
-      this._chequeregalo.findBy('id',`${this.solicitud.cheques_regaloId}`).subscribe(
-        (res:any)=>{
-          this.cheque_regalo = res;
-          console.log(this.cheque_regalo,"jsiojsiosjosjisjsjoisjoi")
-        },
-        (err:any)=>{
-          console.error(err)
-
-        }
-      )
     }
   }
 
   color=color;
   @Input() solicitudId!:number;
   @Input() solicitudSet!:Solicitud;
+  @Output() actualizar = new EventEmitter<any>();
+
   solicitud!:Solicitud;
-  centro!:Centro;
   cheque_regalo!:ChequeRegalo[];
   coloresBasicos = coloresBasicos
   ngOnInit(): void {
 
+  }
+
+  eliminar(event:any){
+    this._confirmationService.confirm({
+      target: event.target,
+      message: '¿Estas seguro que quieres eliminar la solicitud?',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        console.log('Has aceptado')
+        this._solicitud.delete(this.solicitud.id).subscribe(
+          (res:any)=>{
+            console.log(res)
+            this._message.add({severity:'success', summary: 'Creado', detail: 'Se ha actualizado los datos clínicos correctamente'});
+            this.actualizar.emit();
+            // this.solicitudSet = null;
+          },
+          (err:any)=>{
+            console.error(err)
+          }
+        )
+      },
+      reject: () => {
+        console.log('Has cancelado')
+      }
+  });
+   
   }
   colorPeluca(value:any){
     switch (value){

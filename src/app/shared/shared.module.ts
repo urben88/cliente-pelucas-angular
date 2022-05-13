@@ -71,6 +71,8 @@ import { TextilesFormComponent } from './components/solicitud/textiles-form/text
 import { CentrosSelectComponent } from './components/solicitud/centros-select/centros-select.component';
 import { ChequesRegaloSelectComponent } from './components/solicitud/cheques-regalo-select/cheques-regalo-select.component';
 import { SolicitudSimpleShowComponent } from './components/admin/solicitudes-form/solicitud-simple-show/solicitud-simple-show.component';
+import { CentroCardComponent } from './components/solicitud/centros-select/centro-card/centro-card.component';
+import { ChequesRegaloCardComponent } from './components/solicitud/cheques-regalo-select/cheques-regalo-card/cheques-regalo-card.component';
 
 // import { MapComponent } from './components/home/map/map.component';
 
@@ -106,6 +108,8 @@ import { SolicitudSimpleShowComponent } from './components/admin/solicitudes-for
     CentrosSelectComponent,
     ChequesRegaloSelectComponent,
     SolicitudSimpleShowComponent,
+    CentroCardComponent,
+    ChequesRegaloCardComponent,
 
   ],
   imports: [
@@ -204,7 +208,10 @@ import { SolicitudSimpleShowComponent } from './components/admin/solicitudes-for
     ChequesRegaloSelectComponent,
     RadioButtonModule,
     DialogModule,
-    SolicitudSimpleShowComponent
+    SolicitudSimpleShowComponent,
+    CentroCardComponent,
+    ChequesRegaloCardComponent,
+
 
   ],
   providers: [MessageService,ConfirmationService]

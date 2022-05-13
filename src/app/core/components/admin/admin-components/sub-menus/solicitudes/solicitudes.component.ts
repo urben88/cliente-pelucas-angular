@@ -23,19 +23,16 @@ export class SolicitudesComponent implements OnInit {
   userSelected!:User|null;
   solicitudSelected!:Solicitud|null;
 
-  solicitud!:Solicitud;
+  solicitud!:Solicitud|null;
 
   userHave:boolean = false;
   ngOnInit(): void {
-    this._user.getUsers().subscribe(
-      (res:User[])=>{
-        console.log(res)
-        this.users = res;
-      },
-      (err:any)=>{
-        console.log(err)
-      }
-    )
+   this.getUsers();
+   this.getSolicitudes();
+  }
+
+  //? Obtener solicitudes
+  getSolicitudes(){
     this._solicitudes.getAllSimple().subscribe(
       (res:Solicitud[])=>{
         console.log(res,'solicitudes')
@@ -46,10 +43,23 @@ export class SolicitudesComponent implements OnInit {
       }
     )
   }
+  //? Obtener usuarios
+  getUsers(){
+    this._user.getUsers().subscribe(
+      (res:User[])=>{
+        console.log(res)
+        this.users = res;
+      },
+      (err:any)=>{
+        console.log(err)
+      }
+    )
+  }
   //? Método para obtener el usuario seleccionado
   userSelect(event:any){
     this.userSelected = null;
     this.solicitudSelected = null;
+    console.log(event,"eventoooo")
     if(event){
       this.userSelected = event;
       console.log(this.userSelected)
@@ -72,11 +82,15 @@ export class SolicitudesComponent implements OnInit {
           console.error(err)
         },
       )
+    }else{
+      this.solicitud=null;
     }
+    console.log( this.solicitud,"SOLICITUDDDD")
   }
   solicitudSelect(event:any){
     this.userSelected = null;
     this.solicitudSelected = null;
+    console.log(event,"eventoooo")
     if(event){
       this.solicitudSelected = event;
       console.log(this.solicitudSelected?.id)
@@ -99,7 +113,11 @@ export class SolicitudesComponent implements OnInit {
           console.error(err)
         },
       )
+    }else{
+      this.solicitud=null;
     }
+    console.log( this.solicitud,"SOLICITUDDDD")
+
   }
 
   passId(){

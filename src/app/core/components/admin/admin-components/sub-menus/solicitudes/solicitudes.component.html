@@ -10,6 +10,6 @@
             <admin-selec-row-table [rows]="users | selecRow:'users'" (selected)="userSelect($event)" [desselect]="solicitudSelected ? true : false"></admin-selec-row-table>
         </div>
     </div>
-    <admin-solicitud-simple-show [solicitudSet]="solicitud"></admin-solicitud-simple-show>
-   <admin-solicitudes-form *ngIf="true" [forAdmin]="true" [] [user_id]="passId()"></admin-solicitudes-form>
+    <admin-solicitud-simple-show *ngIf="solicitud" (actualizar)="getSolicitudes()" [solicitudSet]="solicitud"></admin-solicitud-simple-show>
+   <admin-solicitudes-form *ngIf="true" [forAdmin]="true" [user_id]="passId()"></admin-solicitudes-form>
 </div>
