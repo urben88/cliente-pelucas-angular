@@ -2,7 +2,9 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Cabello } from 'src/app/core/models/Solicitud.interface.';
+import { SetSolicitudesService } from 'src/app/core/services/forComponents/set-solicitudes.service';
 import { color,formas,longitud } from "../../../../core/enums/Protesis"
+import { Solicitud } from '../../../../core/models/Solicitud.interface.';
 @Component({
   selector: 'solicitud-cabellos-form',
   templateUrl: './cabellos-form.component.html',
@@ -14,7 +16,7 @@ export class CabellosFormComponent implements OnInit,OnChanges {
     private _build:FormBuilder,
     private _confirmationService:ConfirmationService,
     private _message:MessageService,
-
+    private _SetSolicitudesService:SetSolicitudesService
     ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -50,6 +52,18 @@ export class CabellosFormComponent implements OnInit,OnChanges {
       },
       (err)=>{
         console.log(err)
+      }
+    )
+    this._SetSolicitudesService.getSolicitud$().subscribe(
+      (res:Solicitud|null)=>{
+        if(res){
+            let cabello=res.cabello
+            this.cabellosForm.controls['forma'].setValue(cabello?.forma)
+            this.cabellosForm.controls['color'].setValue(cabello?.color)
+            this.cabellosForm.controls['longitud'].setValue(cabello?.longitud)
+        }else{
+          this.cabellosForm.reset();
+        }
       }
     )
   }

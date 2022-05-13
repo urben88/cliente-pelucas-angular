@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Solicitud } from 'src/app/core/models/Solicitud.interface.';
+import { SetSolicitudesService } from 'src/app/core/services/forComponents/set-solicitudes.service';
 import { color,formas,longitud } from "../../../../core/enums/Protesis"
 
 @Component({
@@ -14,6 +16,8 @@ export class ProtesisFormComponent implements OnInit {
     private _build:FormBuilder,
     private _confirmationService:ConfirmationService,
     private _message:MessageService,
+    private _SetSolicitudesService:SetSolicitudesService
+
 
     ) { }
 
@@ -32,6 +36,19 @@ export class ProtesisFormComponent implements OnInit {
       },
       (err)=>{
         console.log(err)
+      }
+    )
+    this._SetSolicitudesService.getSolicitud$().subscribe(
+      (res:Solicitud|null)=>{
+        if(res){
+          console.log(res,'PROTESIIIIIIIIIIIIIIIIIIISSSSSSSSSSSSSSSSSSSSSSSSSSSSS')
+            let protesis=res.protesis;
+            this.protesisForm.controls['forma'].setValue(protesis?.forma)
+            this.protesisForm.controls['color'].setValue(protesis?.color)
+            this.protesisForm.controls['longitud'].setValue(protesis?.longitud)
+        }else{
+          this.protesisForm.reset();
+        }
       }
     )
   }

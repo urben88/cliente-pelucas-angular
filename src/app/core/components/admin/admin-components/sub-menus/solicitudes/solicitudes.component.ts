@@ -5,6 +5,7 @@ import { UsersService } from '../../../../../services/db/users.service';
 import { Solicitud } from '../../../../../models/Solicitud.interface.';
 import { SolicitudesService } from '../../../../../services/db/solicitudes.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { SetSolicitudesService } from '../../../../../services/forComponents/set-solicitudes.service';
 
 @Component({
   selector: 'app-solicitudes',
@@ -15,7 +16,8 @@ export class SolicitudesComponent implements OnInit {
 
   constructor(
     private _user:UsersService,
-    private _solicitudes:SolicitudesService
+    private _solicitudes:SolicitudesService,
+    private SetSolicitudesService:SetSolicitudesService
   ) { }
 
   users!:User[];
@@ -31,6 +33,10 @@ export class SolicitudesComponent implements OnInit {
    this.getSolicitudes();
   }
 
+  actualizar(){
+    this.getSolicitudes();
+    this.getUsers();
+  }
   //? Obtener solicitudes
   getSolicitudes(){
     this._solicitudes.getAllSimple().subscribe(
@@ -59,6 +65,8 @@ export class SolicitudesComponent implements OnInit {
   userSelect(event:any){
     this.userSelected = null;
     this.solicitudSelected = null;
+    this.solicitud=null;
+    this.SetSolicitudesService.setSolicitud(null)
     console.log(event,"eventoooo")
     if(event){
       this.userSelected = event;
@@ -71,6 +79,7 @@ export class SolicitudesComponent implements OnInit {
             this._solicitudes.getOneByUser(this.userSelected?.id).subscribe(
               (res:Solicitud)=>{
                 this.solicitud = res;
+                this.SetSolicitudesService.setSolicitud(this.solicitud)
               },
               (err)=>{
                 console.error(err);
@@ -90,6 +99,8 @@ export class SolicitudesComponent implements OnInit {
   solicitudSelect(event:any){
     this.userSelected = null;
     this.solicitudSelected = null;
+    this.solicitud=null;
+    this.SetSolicitudesService.setSolicitud(null)
     console.log(event,"eventoooo")
     if(event){
       this.solicitudSelected = event;
@@ -102,6 +113,8 @@ export class SolicitudesComponent implements OnInit {
             this._solicitudes.getOneByUser(this.solicitudSelected?.user_id).subscribe(
               (res:Solicitud)=>{
                 this.solicitud = res;
+                this.SetSolicitudesService.setSolicitud(this.solicitud)
+
               },
               (err)=>{
                 console.error(err);

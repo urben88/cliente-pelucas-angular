@@ -11,5 +11,5 @@
         </div>
     </div>
     <admin-solicitud-simple-show *ngIf="solicitud" (actualizar)="getSolicitudes()" [solicitudSet]="solicitud"></admin-solicitud-simple-show>
-   <admin-solicitudes-form *ngIf="true" [forAdmin]="true" [user_id]="passId()"></admin-solicitudes-form>
+   <admin-solicitudes-form *ngIf="userSelected || solicitudSelected" [forAdmin]="true" (actualizar)="getSolicitudes()" [user_id]="passId()"></admin-solicitudes-form>
 </div>

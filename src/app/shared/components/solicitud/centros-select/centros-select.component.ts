@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Centro } from 'src/app/core/models/Centro.interface';
 import { CentrosService } from 'src/app/core/services/db/centros.service';
+import { SetSolicitudesService } from 'src/app/core/services/forComponents/set-solicitudes.service';
 
 import {CentrosEnum} from '../../../../core/enums/Centros'
 @Component({
@@ -14,7 +15,9 @@ export class CentrosSelectComponent implements OnInit {
 
   constructor(
     private _centros:CentrosService,
-    private _build:FormBuilder
+    private _build:FormBuilder,
+    private _SetSolicitudesService:SetSolicitudesService
+
   ) { }
 
   @Input() error:String|null = null;
@@ -62,6 +65,27 @@ export class CentrosSelectComponent implements OnInit {
       },
       (err)=>{
         console.log(err)
+      }
+    )
+    this._SetSolicitudesService.getSolicitud$().subscribe(
+      (res)=>{
+          if(res){
+            this._centros.findBy('id',String(res.centrosId)).subscribe(
+              (res)=>{
+
+                  this.centrosForm.controls['centro'].setValue(res[0])
+                  this.selected =res[0];
+                  this.buscar(res[0].provincia)
+                  this.provinciaSelected = res[0].provincia;
+              }
+              ,
+            (err)=>{
+              console.error(err)
+            }
+          )
+       }else{
+          this.centrosForm.reset();
+        }
       }
     )
     
@@ -117,7 +141,8 @@ export class CentrosSelectComponent implements OnInit {
       // this.centro.emit(null)
     }else{
       this.centrosForm.controls['centro'].setValue(centro)
-      // this.centro.emit(centro)
+      //  this.centro.emit(centro)
+       console.log(centro)
     }
   }
   selectedStyle(centro:Centro){

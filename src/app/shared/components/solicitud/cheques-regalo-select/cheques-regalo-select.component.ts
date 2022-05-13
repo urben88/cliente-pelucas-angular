@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ChequeRegalo } from 'src/app/core/models/ChequeRegalo';
 import { ChequesRegaloService } from 'src/app/core/services/db/cheques-regalo.service';
+import { SetSolicitudesService } from 'src/app/core/services/forComponents/set-solicitudes.service';
 import {TiposChequesRegalo} from '../../../../core/enums/Cheques_regalo'
 @Component({
   selector: 'solicitud-cheques-regalo-select',
@@ -10,7 +11,9 @@ import {TiposChequesRegalo} from '../../../../core/enums/Cheques_regalo'
 export class ChequesRegaloSelectComponent implements OnInit {
 
   constructor(
-    private _chequesregalo:ChequesRegaloService
+    private _chequesregalo:ChequesRegaloService,
+    private _SetSolicitudesService:SetSolicitudesService
+
   ) { }
 
   onChange(event:any): void {
@@ -33,13 +36,13 @@ export class ChequesRegaloSelectComponent implements OnInit {
   Chequedescripcion!:ChequeRegalo|null;
   servicios:any = [];
   tiposChequesRegalo = TiposChequesRegalo;
-  chequeSelected:any;
+  chequeSelected:any = null;
   cron:any;
 
-  prueba =[{
-    servicio:"hiuhiuhiu"
-  }]
   ngOnInit(): void {
+
+  
+
     for(let tipo in this.tiposChequesRegalo){
       console.log(tipo,"tipooooooooooooooooo")
       this._chequesregalo.findBy('tipo',tipo).subscribe(
@@ -58,9 +61,43 @@ export class ChequesRegaloSelectComponent implements OnInit {
         }
       )
     }
-    console.log(this.servicios,"serviciossssssssssssss")
-    console.log(this.servicios[0],"sssss")
+    this._SetSolicitudesService.getSolicitud$().subscribe(
+      (res)=>{
+        if(res){
+          let campo:any=[];
+          this.servicios.forEach((servicio:any) => {
+   
+            servicio.cheques.forEach((cheq:any) => {
+              if(cheq.id == res.cheque_regalo?.id){
+                this.chequeSelected = cheq;
+              }
+            });
+          });
+        }else{
+          //?Para que busque el cheque con id 1 que es el de recogida y ponerlo default
+          this.servicios.forEach((servicio:any) => {
+            servicio.cheques.forEach((cheq:any) => {
+              if(cheq.servicio == "recogida"){
+                this.chequeSelected = cheq;
+                console.log(this.chequeSelected)
+              }
+            });
+          });
 
+          let valido;
+          if(this.chequeSelected){
+            this.valid.emit(true);
+            valido = true;
+          }
+          this.cheques_regalo.emit(
+            {
+              value: this.chequeSelected,
+              valid: valido
+            })
+        }
+      }
+    )
+   
   }
   
   hoverDescripcion(cheque:ChequeRegalo){

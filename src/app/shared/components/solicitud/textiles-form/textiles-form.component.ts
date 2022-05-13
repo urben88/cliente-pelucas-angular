@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { SetSolicitudesService } from 'src/app/core/services/forComponents/set-solicitudes.service';
 import  coloresBasicos from "../../../../core/constants/coloresBasicos"
 @Component({
   selector: 'solicitud-textiles-form',
@@ -13,6 +14,8 @@ export class TextilesFormComponent implements OnInit {
     private _build:FormBuilder,
     private _confirmationService:ConfirmationService,
     private _message:MessageService,
+    private _SetSolicitudesService:SetSolicitudesService
+
 
     ) { }
 
@@ -30,6 +33,15 @@ export class TextilesFormComponent implements OnInit {
       },
       (err)=>{
         console.log(err)
+      }
+    )
+    this._SetSolicitudesService.getSolicitud$().subscribe(
+      (res)=>{
+        if(res){
+          this.textilForm.controls['color'].setValue(res.textil?.color)
+        }else{
+          this.textilForm.reset()
+        }
       }
     )
   }
