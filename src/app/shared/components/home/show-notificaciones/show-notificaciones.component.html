@@ -7,7 +7,7 @@
             <div *ngIf="!info" class="alert alert-info" role="alert">
                 No tienes notificaciones
             </div>
-            <p-panel *ngFor="let noti of info" header="{{noti.header}}" [collapsed]="true" [toggleable]="true">
+            <p-panel *ngFor="let noti of info" class="mensaje" header="{{noti.header}}" [collapsed]="true" [toggleable]="true">
                 <div [innerHTML]="noti.mensaje | sanitizeHtml:'html'" class="ql-editor ql-blank"></div>
                 <div class="fecha" style="display: flex; align-self: flex-end; justify-content: flex-end; align-items: center;">
                     <strong class="me-2">Enviado el:</strong>
@@ -22,7 +22,7 @@
                 <div *ngIf="!success" class="alert alert-info" role="alert">
                     No tienes notificaciones
                 </div>
-              <p-panel *ngFor="let noti of success" header="{{noti.header}}" [collapsed]="true" [toggleable]="true">
+              <p-panel *ngFor="let noti of success" class="mensaje" header="{{noti.header}}" [collapsed]="true" [toggleable]="true">
                   <span [innerHTML]="noti.mensaje | sanitizeHtml:'html'" class="ql-editor ql-blank"></span>
                   <div class="fecha" style="display: flex; align-self: flex-end; justify-content: flex-end; align-items: center;">
                       <strong class="me-2">Enviado el:</strong>
@@ -37,7 +37,7 @@
                 <div *ngIf="!warn" class="alert alert-info" role="alert">
                     No tienes notificaciones
                 </div>
-              <p-panel *ngFor="let noti of warn" header="{{noti.header}}" [collapsed]="true" [toggleable]="true">
+              <p-panel *ngFor="let noti of warn" class="mensaje" header="{{noti.header}}" [collapsed]="true" [toggleable]="true">
                   <span [innerHTML]="noti.mensaje | sanitizeHtml:'html'" class="ql-editor ql-blank"></span>
                   <div class="fecha" style="display: flex; align-self: flex-end; justify-content: flex-end; align-items: center;">
                       <strong class="me-2">Enviado el:</strong>
