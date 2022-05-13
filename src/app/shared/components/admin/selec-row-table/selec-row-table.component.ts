@@ -31,10 +31,13 @@ export class SelecRowTableComponent implements OnInit, OnChanges {
             }
           }
     if(changes['rows']){
+      this.columns = [];
       let values = changes['rows'].currentValue;
       // console.log(values)
       if(values.length != 0){
-        this.columns = Object.keys(values[0]);
+        if(this.columns.length == 0){
+          this.columns = Object.keys(values[0]);
+        }
         // console.log(this.columns)
         this.ponerTipos(values[0])
       }

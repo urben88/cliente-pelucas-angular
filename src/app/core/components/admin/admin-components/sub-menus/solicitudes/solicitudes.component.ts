@@ -34,6 +34,12 @@ export class SolicitudesComponent implements OnInit {
   }
 
   actualizar(){
+    this.solicitud = null;
+    this.SetSolicitudesService.setSolicitud(null)
+    this.userSelected = null;
+    this.solicitudSelected = null;
+    this.solicitudes = [];
+    this.users = [];
     this.getSolicitudes();
     this.getUsers();
   }
