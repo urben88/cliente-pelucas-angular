@@ -1,12 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DatosClinicos } from 'src/app/core/models/DatosClinicos';
 import { User } from 'src/app/core/models/User.interface';
 import { DatosClinicosService } from 'src/app/core/services/db/datos-clinicos.service';
+import { SolicitudDatosclinicosService } from '../../../../core/services/forComponents/solicitud-datosclinicos.service';
 @Component({
-  selector: 'app-datos-clinicos-form',
+  selector: 'user-datos-clinicos-form',
   templateUrl: './datos-clinicos-form.component.html',
   styleUrls: ['./datos-clinicos-form.component.scss']
 })
@@ -17,6 +18,7 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
     private _datosClinicos:DatosClinicosService,
     private _confirmationService:ConfirmationService,
     private _message:MessageService,
+    private solicitudDatosClinicos:SolicitudDatosclinicosService
 
     ) { }
 
@@ -51,16 +53,67 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
     have_alergias:[false,[Validators.required]],
     alergias:['',[Validators.maxLength(300)]],
     alergias_medicacion:['',[Validators.maxLength(300)]],
-  })
+  },  { validators: [this.enfermedadesSelected(),this.alergiasSelected()] } )
 
   erroresDB:String[] =[];
   haveDatosClinicos:boolean = false;
   DatosClinicosUser!:DatosClinicos |null;
 
+  //?Para enviar el estado a la solicitud
+  @Output() status = new EventEmitter();
+
   ngOnInit(): void {
+    //?Para cuando uso este componente desde una solicitud
+    this.solicitudDatosClinicos.$emitter.subscribe(
+      (res)=>{
+        this.crear();
+        this.status.emit(this.datosclinicosForm.valid);
+      }
+    )
   }
   
   @Input() user!:User;
+  @Input() forAdmin:boolean = false;
+
+  //?Validaciones personalizadas para el formgroup
+  enfermedadesSelected(){
+    return (formGroup: FormGroup) => {
+      const have_enfermedades:any = formGroup.get('have_enfermedades')?.value;
+      // const have_protesis: string = formGroup.get('have_alergias')?.value;
+         const enfermedades: any = formGroup.get('enfermedades')?.value;
+         const tratamiento_actual: any = formGroup.get('tratamiento_actual')?.value;
+         const medicacion: any = formGroup.get('medicacion')?.value;
+
+      if (have_enfermedades) {
+        if(enfermedades == '' || tratamiento_actual=='' || medicacion==''){
+          return { enfermedades: "Los campos de las enfermedades deben estar rellenadas" };
+        }
+        if(enfermedades == null || tratamiento_actual==null || medicacion==null){
+          return { enfermedades: "Los campos de las enfermedades deben estar rellenadas" };
+        }
+      }
+      return null;
+    };
+  }
+  alergiasSelected(){
+    return (formGroup: FormGroup) => {
+      const have_alergias:any = formGroup.get('have_alergias')?.value;
+      // const have_protesis: string = formGroup.get('have_alergias')?.value;
+         const alergias: any = formGroup.get('alergias')?.value;
+         const alergias_medicacion: any = formGroup.get('alergias_medicacion')?.value;
+         const medicacion: any = formGroup.get('medicacion')?.value;
+
+      if (have_alergias) {
+        if(alergias == '' || alergias_medicacion=='' ){
+          return { alergias: "Los campos de las alergias deben estar rellenadas" };
+        }
+        if(alergias == null || alergias_medicacion==null){
+          return { alergias: "Los campos de las alergias deben estar rellenadas" };
+        }
+      }
+      return null;
+    };
+  }
 
   //? Mensages de error
   get have_enfermedadesErrorMsg(): string{
@@ -201,6 +254,7 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
     this.erroresDB = [];
     if(this.datosclinicosForm.invalid){
       this.datosclinicosForm.markAllAsTouched();
+      this._message.add({severity:'warn', summary: 'Aviso', detail: 'Debes de rellenar todos los campos de los datos clínicos para crearlos'});
       console.log("Formulario inválido")
     }else{
       console.log(this.datosclinicosForm.value)
@@ -234,6 +288,7 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
     this.erroresDB = [];
     if(this.datosclinicosForm.invalid){
       this.datosclinicosForm.markAllAsTouched();
+      this._message.add({severity:'warn', summary: 'Aviso', detail: 'Debes de rellenar todos los campos para actualizarlos'});
       console.log("Formulario invalido")
     }else{
       console.log(this.datosclinicosForm.value)

@@ -16,6 +16,7 @@ export class SetSolicitudesService {
   solicitud!:Solicitud|null;
 
   setSolicitud(solicitud:Solicitud|null){
+    console.log("SE ACTIVA SET SOLICITUD")
     if(solicitud){
       this.solicitud = solicitud;
       this.setSolicitud$.next(this.solicitud)
@@ -30,5 +31,6 @@ export class SetSolicitudesService {
 
   resetSolicitud(){
     this.solicitud=null;
+    console.log("SE RESETEA EL SERVICIO DE SOLICITUDES")
   }
 }

@@ -6,5 +6,5 @@
     </div>
    
     <generic-info-user *ngIf="userSelected" [user]="userSelected" title="Datos clínicos del usuario:" ></generic-info-user>
-    <app-datos-clinicos-form *ngIf="userSelected" [user]="userSelected"></app-datos-clinicos-form>
+    <user-datos-clinicos-form *ngIf="userSelected" [forAdmin]="true" [user]="userSelected"></user-datos-clinicos-form>
 </div>

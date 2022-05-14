@@ -9,6 +9,9 @@ import { Centro } from 'src/app/core/models/Centro.interface';
 import { ChequeRegalo } from 'src/app/core/models/ChequeRegalo';
 import { ChequesRegaloService } from 'src/app/core/services/db/cheques-regalo.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { UsersService } from '../../../../../core/services/db/users.service';
+import { User } from '../../../../../core/models/User.interface';
+import { SolicitudNotificacionService } from '../../../../../core/services/forComponents/solicitud-notificacion.service';
 
 @Component({
   selector: 'admin-solicitud-simple-show',
@@ -23,6 +26,8 @@ export class SolicitudSimpleShowComponent implements OnInit,OnChanges {
     private _chequeregalo:ChequesRegaloService,
     private _confirmationService:ConfirmationService,
     private _message:MessageService,
+    private _user:UsersService,
+    private solicitud_notificacion:SolicitudNotificacionService
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -30,6 +35,14 @@ export class SolicitudSimpleShowComponent implements OnInit,OnChanges {
       this._solicitud.findOne(this.solicitudId).subscribe(
         (res:Solicitud)=>{
           this.solicitud = res;
+          this._user.showOne(this.solicitud.user_id).subscribe(
+            (res:User)=>{
+              this.user = res;
+            },
+            (err:HttpErrorResponse)=>{
+              console.error(err)
+            }
+          )
           console.log(this.solicitud,"SOLICITUD SIMPLEEEEE")
         },
         (err:HttpErrorResponse)=>{
@@ -39,6 +52,14 @@ export class SolicitudSimpleShowComponent implements OnInit,OnChanges {
     }
     if(changes['solicitudSet']){
       this.solicitud = changes['solicitudSet'].currentValue;
+      this._user.showOne(this.solicitud.user_id).subscribe(
+        (res:User)=>{
+          this.user = res;
+        },
+        (err:HttpErrorResponse)=>{
+          console.error(err)
+        }
+      )
     }
   }
 
@@ -47,11 +68,14 @@ export class SolicitudSimpleShowComponent implements OnInit,OnChanges {
   @Input() solicitudSet!:Solicitud;
   @Output() actualizar = new EventEmitter<any>();
 
+  user!:User;
   solicitud!:Solicitud;
   cheque_regalo!:ChequeRegalo[];
   coloresBasicos = coloresBasicos
-  ngOnInit(): void {
+  notificacionValida:boolean = false;
+  header="¡Se ha aceptado tu solicitud!"
 
+  ngOnInit(): void {
   }
 
   eliminar(event:any){
@@ -79,6 +103,32 @@ export class SolicitudSimpleShowComponent implements OnInit,OnChanges {
   });
    
   }
+
+
+  //? Contorlar el estado de la solicitud
+  aceptar(){
+    this.solicitud_notificacion.emitirEvento();
+    if(this.notificacionValida){
+      this._solicitud.updateStatus(this.solicitud.id,{aceptado:true});
+      this.solicitud.aceptado = true;
+      this._message.add({severity:'success', summary: 'Aceptada!', detail: 'Se ha aceptado la solicitud'});
+    }
+  }
+  newNotificacion(event:any){
+    console.log(event)
+  }
+
+  cancelar(){
+    this._message.add({severity:'success', summary: 'Cancelada', detail: 'Se ha cancelado la solicitud'});
+    this._solicitud.updateStatus(this.solicitud.id,{aceptado:false});
+    this.solicitud.aceptado = false;
+  }
+
+  notificacionStatus(event:any){
+    this.notificacionValida = event;
+    console.log(event)
+  }
+
   colorPeluca(value:any){
     switch (value){
       case this.color[0].value:

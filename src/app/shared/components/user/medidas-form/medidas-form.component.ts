@@ -6,8 +6,9 @@ import { Medidas } from 'src/app/core/models/Medidas';
 import { User } from 'src/app/core/models/User.interface';
 import { MedidasService } from 'src/app/core/services/db/medidas.service';
 import patrones from '../../../../core/utils/validaciones/patterns'
+import { SolicitudMedidasService } from '../../../../core/services/forComponents/solicitud-medidas.service';
 @Component({
-  selector: 'app-medidas-form',
+  selector: 'user-medidas-form',
   templateUrl: './medidas-form.component.html',
   styleUrls: ['./medidas-form.component.scss'],
   providers: [ConfirmationService, MessageService]
@@ -18,7 +19,8 @@ export class MedidasFormComponent implements OnInit,OnChanges {
     private _build:FormBuilder,
     private _medidas:MedidasService,
     private _message:MessageService,
-    private _confirmationService:ConfirmationService
+    private _confirmationService:ConfirmationService,
+    private SolicitudMedidasService:SolicitudMedidasService
     ) { }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -45,26 +47,38 @@ export class MedidasFormComponent implements OnInit,OnChanges {
     }
 
   @Input() user!:User;
+  @Input() forAdmin = false;
   // @Output() delete = new EventEmitter<boolean>();
   medidasUser!:Medidas|null;
   haveMedidas:boolean =false;
   erroresDB:String[] =[];
 
+  //?Para enviar el estado a la solicitud
+  @Output() status = new EventEmitter();
+
 
   val!:number;
   medidasForm:FormGroup = this._build.group({
-    redondo:[0,[Validators.required,Validators.pattern(patrones.decimal)]],
-    patilla_a_patilla:[0,[Validators.required,Validators.pattern(patrones.decimal)]],
-    largo_de_frente:[0,[Validators.required,Validators.pattern(patrones.decimal)]],
-    sien_a_sien:[0,[Validators.required,Validators.pattern(patrones.decimal)]],
-    oreja_a_oreja_por_encima:[0,[Validators.required,Validators.pattern(patrones.decimal)]],
-    anchura_del_cuello_superior:[0,[Validators.required,Validators.pattern(patrones.decimal)]],
-    oreja_a_oreja_por_nacimiento_pelo:[0,[Validators.required,Validators.pattern(patrones.decimal)]],
-    anchura_cuello_inferior:[0,[Validators.required,Validators.pattern(patrones.decimal)]],
+    redondo:[null,[Validators.required,Validators.pattern(patrones.decimal)]],
+    patilla_a_patilla:[null,[Validators.required,Validators.pattern(patrones.decimal)]],
+    largo_de_frente:[null,[Validators.required,Validators.pattern(patrones.decimal)]],
+    sien_a_sien:[null,[Validators.required,Validators.pattern(patrones.decimal)]],
+    oreja_a_oreja_por_encima:[null,[Validators.required,Validators.pattern(patrones.decimal)]],
+    anchura_del_cuello_superior:[null,[Validators.required,Validators.pattern(patrones.decimal)]],
+    oreja_a_oreja_por_nacimiento_pelo:[null,[Validators.required,Validators.pattern(patrones.decimal)]],
+    anchura_cuello_inferior:[null,[Validators.required,Validators.pattern(patrones.decimal)]],
   })
 
   medicamentosSelected!:any;
   ngOnInit(): void {
+     //?Para cuando uso este componente desde una solicitud
+     this.SolicitudMedidasService.$emitter.subscribe(
+      (res)=>{
+        console.log(res,"EVENTOOOOO SERVICIO MEDIDAAAAAS")
+        this.crear();
+        this.status.emit(this.medidasForm.valid)
+      }
+    )
   }
   
 

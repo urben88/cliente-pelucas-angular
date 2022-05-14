@@ -25,7 +25,6 @@ export class ProtesisFormComponent implements OnInit {
   @Output() valid = new EventEmitter<any>(false);
 
   ngOnInit(): void {
-    console.log(formas,"FORMAS")
     this.protesisForm.valueChanges.subscribe(
       (res)=>{
         this.protesis.emit( {
@@ -38,14 +37,15 @@ export class ProtesisFormComponent implements OnInit {
         console.log(err)
       }
     )
+    //? Uso una subscripción que me sirve para añadir valores a la hora de actualizar.
     this._SetSolicitudesService.getSolicitud$().subscribe(
       (res:Solicitud|null)=>{
         if(res){
-          console.log(res,'PROTESIIIIIIIIIIIIIIIIIIISSSSSSSSSSSSSSSSSSSSSSSSSSSSS')
-            let protesis=res.protesis;
-            this.protesisForm.controls['forma'].setValue(protesis?.forma)
-            this.protesisForm.controls['color'].setValue(protesis?.color)
-            this.protesisForm.controls['longitud'].setValue(protesis?.longitud)
+            if(res.protesis){
+              this.protesisForm.controls['forma'].setValue(res.protesis.forma)
+              this.protesisForm.controls['color'].setValue(res.protesis.color)
+              this.protesisForm.controls['longitud'].setValue(res.protesis.longitud)
+            }
         }else{
           this.protesisForm.reset();
         }

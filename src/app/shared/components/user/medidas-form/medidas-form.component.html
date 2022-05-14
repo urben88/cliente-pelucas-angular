@@ -7,10 +7,10 @@
             <h1>Medidas de la cabeza</h1>
             <icon-refresh *ngIf="haveMedidas" (update)="reset()"></icon-refresh>
         </div>
-        <div *ngIf="!haveMedidas && !medidasUser" class="alert alert-success" role="alert">
+        <div *ngIf="!haveMedidas && !medidasUser && forAdmin" class="alert alert-success" role="alert">
             Este usuario no tiene registradas medidas, puedes crearlas
         </div>
-        <div *ngIf="haveMedidas && medidasUser" class="alert alert-primary" role="alert">
+        <div *ngIf="haveMedidas && medidasUser && forAdmin" class="alert alert-primary" role="alert">
             El usuario tiene medidas registradas puedes modificarlas
         </div>
         <div class="datos">
@@ -145,7 +145,7 @@
             </div>
             <div class="botones">
                 <button *ngIf="btnStatusUpdate()" (click)="update()" class="btn-morado">Actualizar</button>
-                <button *ngIf="btnStatusCreate()" (click)="crear()" class="btn-morado">Crear</button>
+                <button *ngIf="btnStatusCreate() && forAdmin" (click)="crear()" class="btn-morado">Crear</button>
                 <p-confirmPopup></p-confirmPopup>
                 <button (click)="eliminar($event)"  pButton  *ngIf="btnStatusUpdate()" class="btn-rojo">Eliminar registro</button>
                 <alert-dberrors [erroresDB]="erroresDB"></alert-dberrors>

@@ -46,5 +46,8 @@ export class SolicitudesService {
   delete(id:any){
     return this.http.delete<any>(this.urlSolicitudes+"/"+id);
   }
+  updateStatus(id:any,aceptado:any){
+    return this.http.put<any>(this.urlSolicitudes+"/updateStatus/"+id,aceptado);
+  }
 
 }

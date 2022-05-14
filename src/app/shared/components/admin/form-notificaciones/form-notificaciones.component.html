@@ -45,8 +45,8 @@
             </div>
         </div>
         <alert-dberrors [erroresDB]="erroresDB"></alert-dberrors>
-        <button *ngIf="!notificacion" (click)="send()"  class="btn-morado">Crear</button>
-        <button *ngIf="notificacion" (click)="update()"  class="btn-morado">Actualizar</button>
+        <button *ngIf="!notificacion && !forSolicitud" (click)="send()"  class="btn-morado">Crear</button>
+        <button *ngIf="notificacion && !forSolicitud" (click)="update()"  class="btn-morado">Actualizar</button>
     </form>
    
    

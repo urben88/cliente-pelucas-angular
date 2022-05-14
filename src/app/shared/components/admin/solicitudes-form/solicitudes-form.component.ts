@@ -14,6 +14,10 @@ import { disponibilidad } from '../../../../core/enums/Solicitudes'
 import { SetSolicitudesService } from '../../../../core/services/forComponents/set-solicitudes.service';
 import { Solicitud } from '../../../../core/models/Solicitud.interface.';
 import { Observable } from 'rxjs';
+import { Medidas } from '../../../../core/models/Medidas';
+import { UsersService } from '../../../../core/services/db/users.service';
+import { SolicitudDatosclinicosService } from '../../../../core/services/forComponents/solicitud-datosclinicos.service';
+import { SolicitudMedidasService } from '../../../../core/services/forComponents/solicitud-medidas.service';
 @Component({
   selector: 'admin-solicitudes-form',
   templateUrl: './solicitudes-form.component.html',
@@ -27,24 +31,31 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
     private _confirmationService: ConfirmationService,
     private _message: MessageService,
     private _auth: AuthService,
-    private _SetSolicitudesService: SetSolicitudesService
+    private _SetSolicitudesService: SetSolicitudesService,
+    private _user:UsersService,
+    private SolicitudDatosclinicosService:SolicitudDatosclinicosService,
+    private SolicitudMedidasService:SolicitudMedidasService
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['user_id']) {
-      console.log(changes['user_id'].currentValue)
+      //?Saber si ya existe una solicitud en el usuario
       this._solicitud.userHave(this.user_id).subscribe(
         (res: any) => {
           this.userHave = res.have
         },
         (err: HttpErrorResponse) => {
-          console.log(err)
+          console.error(err)
         }
       )
+
+      //?Obtener datos clinicos y medidas del usuario
+     this.getDatosClinicosMedidas();
     }
     if (changes['setSolicitud']) {
       if (this.userHave) {
-        console.log(changes['setSolicitud'].currentValue)
+        this.getDatosClinicosMedidas();
+        // console.log(changes['setSolicitud'].currentValue)
         let solicitud = changes['setSolicitud'].currentValue;
         if (solicitud.cabello) {
           this.setCabello = solicitud.cabello
@@ -53,7 +64,16 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
     }
   }
 
-
+    //?Método para obtener datos clinicos y medidas del usuario
+    getDatosClinicosMedidas(){
+      this._user.getStatusDatos(this.user_id).subscribe(
+        (res:any)=>{
+          console.log("REEEEEEEESSSSS",res)
+          this.datos_clinicos = res.datos_clinicos;
+          this.medidas = res.medidas
+        }
+      )
+    }
 
   solicitudesForm: FormGroup = this._build.group({
     disponibilidad: [null, [Validators.required, Validators.maxLength(100)]],
@@ -67,7 +87,7 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.solicitudesForm.valueChanges.subscribe(
       (res) => {
-        console.log(res, "CAMBIAAAA FOOORM")
+        // console.log(res, "CAMBIAAAA FOOORM")
       }
     )
     this._SetSolicitudesService.getSolicitud$().subscribe(
@@ -82,7 +102,6 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
         } else {
           this.solicitudesForm.reset();
         }
-        console.log(res, "OJJOOO PIOJOOO")
       }
     )
   }
@@ -95,11 +114,16 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
   userHave: boolean = false;
   erroresDB: String[] = [];
 
-  haveDatosClinicos: boolean = false;
-  DatosClinicosUser!: DatosClinicos | null;
+  //? Saber si tiene datos clinicos o memdidas
+  datos_clinicos!:DatosClinicos;
+  medidas!:Medidas;
 
   //?Para actualizar las tablas
   @Output() actualizar = new EventEmitter<any>();
+
+  //?Estado de los formularios
+  datosClinicosStatusform:boolean = false;
+  medidasStatusform:boolean = false;
 
   //?Productos
   protesis!: Protesis;
@@ -246,7 +270,7 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
     //     })
     //   }
     // }
-    console.log(this.solicitudesForm.errors)
+    // console.log(this.solicitudesForm.errors)
   }
 
   protesisChange(event: any) {
@@ -270,7 +294,7 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
 
   //! Cogo todos los elementos de los componentes
   getProtesis(event: any) {
-    console.log(event)
+    // console.log(event)
     this.protesis = event.value;
     this.protesisValid = event.valid;
     //?Cada vez que suelta un output actualizo el form y asi las validaciones personalizadas
@@ -278,20 +302,20 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
   }
 
   getCabello(event: any) {
-    console.log(event)
+    // console.log(event)
     this.cabello = event.value;
     this.cabelloValid = event.valid;
     this.solicitudesForm.updateValueAndValidity()
   }
   getTextil(event: any) {
-    console.log(event)
+    // console.log(event)
     this.textil = event.value;
     this.textilValid = event.valid;
-    console.log(this.textilValid)
+    // console.log(this.textilValid)
     this.solicitudesForm.updateValueAndValidity()
   }
   getCentro(event: any) {
-    console.log(event)
+    // console.log(event)
     this.centro = event.value;
     this.centroValid = event.valid;
 
@@ -299,11 +323,11 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
       this.solicitudesForm.controls['centrosId'].setValue(event.value.id)
     }
 
-    console.log(this.centro)
+    // console.log(this.centro)
     this.solicitudesForm.updateValueAndValidity()
   }
   getChequeRegalo(event: any) {
-    console.log(event)
+    // console.log(event)
     if (event.value) {
       this.solicitudesForm.controls['cheques_regaloId'].setValue(event.value.id)
     }
@@ -356,16 +380,24 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
     };
   }
 
+  //?Obtener lel estado de los datos clinicos y medidas
+  datosClinicosStatus(event:any){
+    this.datosClinicosStatusform = event;
+  }
+  medidasStatus(event:any){
+    this.medidasStatusform = event;
+  }
+
   //? Resetear datos
   reset(valuedefault = false) {
 
-    if (!valuedefault) {
-      if (this.DatosClinicosUser) {
-        // this.solicitudesForm.controls['have_enfermedades'].setValue(this.DatosClinicosUser?.have_enfermedades);
-      }
-    } else {
-      // this.solicitudesForm.controls['have_enfermedades'].setValue(false);
-    }
+    // if (!valuedefault) {
+    //   if (this.DatosClinicosUser) {
+    //     // this.solicitudesForm.controls['have_enfermedades'].setValue(this.DatosClinicosUser?.have_enfermedades);
+    //   }
+    // } else {
+    //   // this.solicitudesForm.controls['have_enfermedades'].setValue(false);
+    // }
 
   }
 
@@ -406,9 +438,11 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
 
   crear() {
     this.erroresDB = [];
-    if (this.solicitudesForm.invalid) {
+    this.SolicitudDatosclinicosService.emitirEvento();
+    this.SolicitudMedidasService.emitirEvento();
+    if (this.solicitudesForm.invalid && !this.datosClinicosStatusform && !this.medidasStatusform) {
       this.solicitudesForm.markAllAsTouched();
-      this._message.add({ severity: 'warn', summary: 'Aviso', detail: 'No todos los campos estan completados' });
+      this._message.add({ severity: 'warn', summary: 'Aviso', detail: 'No todos los campos estan completados, o tienen algún error' });
       // for(var i in this.solicitudesForm.errors){
       //   this._message.add({ severity: 'error', summary: 'Error', detail: i });
       // }
@@ -416,21 +450,19 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
       console.log("Formulario inválido")
     } else {
       console.log("correcto")
-      console.log(this.solicitudesForm.value)
+      // console.log(this.solicitudesForm.value)
       let resul = this.crearJSONSolicitud()
-      console.log(resul)
+      // console.log(resul)
       this._solicitud.create(resul)
         .subscribe(
           (res: any) => {
             this._message.add({ severity: 'success', summary: 'Creado', detail: 'Se ha enviado tu solicitud cón éxito' });
             this.newSolicitud.emit(true)
             this.actualizar.emit()
-            // this.haveDatosClinicos = true;
-            // this.DatosClinicosUser = res;
             // this.SimpleTableComponent .reset(); //Borra el contenido de los inputs
           },
           (error: any) => {
-            console.log(error)
+            console.error(error)
             if (error.error.msg) {
               this.erroresDB.push(error.error.msg)
               this._message.add({ severity: 'error', summary: 'Error', detail: error.error.msg });
@@ -450,21 +482,19 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
       this.solicitudesForm.markAllAsTouched();
       console.log("Formulario invalido")
     } else {
-      console.log(this.solicitudesForm.value)
+      // console.log(this.solicitudesForm.value)
       let resul = this.crearJSONSolicitud()
-      console.log(resul)
+      // console.log(resul)
       this._solicitud.update(this.user_id, resul)
         .subscribe(
           (res) => {
-            console.log(res)
-            this.DatosClinicosUser = res;
-            this.haveDatosClinicos = true;
+            // console.log(res)
             this._message.add({ severity: 'success', summary: 'Creado', detail: 'Se ha actualizado los datos clínicos correctamente' });
             this.actualizar.emit()
             // this.medidasForm.reset(); //Borra el contenido de los inputs
           },
           (error: any) => {
-            console.log(error)
+            console.error(error)
             if (error.error.msg) {
               this.erroresDB.push(error.error.msg)
               this._message.add({ severity: 'error', summary: 'Error', detail: error.error.msg });

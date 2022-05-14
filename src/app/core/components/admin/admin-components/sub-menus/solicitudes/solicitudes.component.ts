@@ -98,6 +98,7 @@ export class SolicitudesComponent implements OnInit {
         },
       )
     }else{
+      //? Para que no muestre la descripción del solicitud si no hay ninguna seleccionada
       this.solicitud=null;
     }
     console.log( this.solicitud,"SOLICITUDDDD")
@@ -120,6 +121,7 @@ export class SolicitudesComponent implements OnInit {
               (res:Solicitud)=>{
                 this.solicitud = res;
                 this.SetSolicitudesService.setSolicitud(this.solicitud)
+                console.log("SE ACTIVA SET SOLICITUD EN SOLICITUD SELECT",this.solicitud)
 
               },
               (err)=>{
@@ -133,7 +135,8 @@ export class SolicitudesComponent implements OnInit {
         },
       )
     }else{
-      this.solicitud=null;
+
+       this.solicitud=null;
     }
     console.log( this.solicitud,"SOLICITUDDDD")
 

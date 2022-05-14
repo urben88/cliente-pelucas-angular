@@ -25,5 +25,8 @@ export class UsersService {
   showOne(id:any){
     return this.http.get<User>(this.urlUsers+'/'+id);
   }
+  getStatusDatos(id:any){
+    return this.http.get<User>(this.urlUsers+'/getStatusDatos/'+id);
+  }
 
 }

@@ -64,15 +64,15 @@ export class CentrosSelectComponent implements OnInit {
         }
       },
       (err)=>{
-        console.log(err)
+        console.error(err)
       }
     )
+    //? Uso una subscripción que me sirve para añadir valores a la hora de actualizar.
     this._SetSolicitudesService.getSolicitud$().subscribe(
       (res)=>{
           if(res){
             this._centros.findBy('id',String(res.centrosId)).subscribe(
               (res)=>{
-
                   this.centrosForm.controls['centro'].setValue(res[0])
                   this.selected =res[0];
                   this.buscar(res[0].provincia)
@@ -111,7 +111,7 @@ export class CentrosSelectComponent implements OnInit {
         this.centros=res;
       },
       (err:HttpErrorResponse)=>{
-        console.log(err);
+        console.error(err);
       }
     )
   }
@@ -142,7 +142,7 @@ export class CentrosSelectComponent implements OnInit {
     }else{
       this.centrosForm.controls['centro'].setValue(centro)
       //  this.centro.emit(centro)
-       console.log(centro)
+      //  console.log(centro)
     }
   }
   selectedStyle(centro:Centro){

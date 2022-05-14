@@ -7,6 +7,7 @@ import {TiposNotificaciones} from '../../../../core/enums/Notificaciones'
 import { NotificacionesService } from '../../../../core/services/db/notificaciones.service';
 import { User } from '../../../../core/models/User.interface';
 import { MessageService } from 'primeng/api';
+import { SolicitudNotificacionService } from '../../../../core/services/forComponents/solicitud-notificacion.service';
 @Component({
   selector: 'admin-form-notificaciones',
   templateUrl: './form-notificaciones.component.html',
@@ -22,13 +23,23 @@ export class FormNotificacionesComponent implements OnInit,OnChanges {
   ]
   formats: string[] = ['bold', 'italic','video'];
   tipoSelected:any ={name:"Exito", code:TiposNotificaciones.success};
+
+  @Input() forSolicitud:boolean = false;
   @Input() notificacion!:Notificacion |null; 
   @Input() user!:User;
+  @Input() cabecera!:string;
   @Output() new = new EventEmitter<Notificacion>();
   @Output() newupdate = new EventEmitter<Notificacion>();
+  @Output() status = new  EventEmitter<any>();
 
   ngOnInit(): void {
     this.notificacion = null;
+    this.solicitud_notificacion.$emitter.subscribe(
+      (res)=>{
+        this.status.emit(this.notificacionesForm.valid)
+        this.send();
+      }
+    )
   }
 
   erroresDB:String[] =[];
@@ -44,6 +55,7 @@ export class FormNotificacionesComponent implements OnInit,OnChanges {
     private _notificaciones:NotificacionesService,
     private _message:MessageService,
     private _router: Router,
+    private solicitud_notificacion:SolicitudNotificacionService
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -55,6 +67,9 @@ export class FormNotificacionesComponent implements OnInit,OnChanges {
     }
     if(changes['user']){
       console.log(this.user,"Cambia useeer")
+    }
+    if(changes['cabecera']){
+      this.notificacionesForm.controls['header'].setValue(this.cabecera);
     }
   }
 

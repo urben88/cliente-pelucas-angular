@@ -46,6 +46,25 @@
         background-color: #8cb8fca8;
     }
 }
+
+.btn-verde{
+    background: rgb(167, 240, 56);
+    border-radius: 6px;
+    border: none;
+    padding: 11px 34px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: -0.015em;
+
+    color: #FFFFFF;
+    transition: 0.2s;
+    &:hover{
+        background-color: rgba(56, 240, 96, 0.506);
+    }
+}
 .btn-rojo{
     background: #f44e4e;
     border-radius: 6px;

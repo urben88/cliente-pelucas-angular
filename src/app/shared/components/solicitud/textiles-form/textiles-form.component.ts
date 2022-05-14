@@ -35,6 +35,7 @@ export class TextilesFormComponent implements OnInit {
         console.log(err)
       }
     )
+    //? Uso una subscripción que me sirve para añadir valores a la hora de actualizar.
     this._SetSolicitudesService.getSolicitud$().subscribe(
       (res)=>{
         if(res){

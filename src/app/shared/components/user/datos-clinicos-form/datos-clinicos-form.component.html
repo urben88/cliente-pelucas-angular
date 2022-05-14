@@ -4,13 +4,13 @@
 <div class="caja animate__animated animate__backInLeft">
     <form [formGroup]="datosclinicosForm">
         <div class="titulo">
-            <h1>Medidas de la cabeza</h1>
+            <h1>Datos Clínicos</h1>
             <icon-refresh *ngIf="haveDatosClinicos" (update)="reset()"></icon-refresh>
         </div>
-        <div *ngIf="!haveDatosClinicos" class="alert alert-success" role="alert">
+        <div *ngIf="!haveDatosClinicos && forAdmin" class="alert alert-success" role="alert">
             Este usuario no tiene registrado datos clínicos, puedes crearlos
         </div>
-        <div *ngIf="haveDatosClinicos" class="alert alert-primary" role="alert">
+        <div *ngIf="haveDatosClinicos && forAdmin" class="alert alert-primary" role="alert">
             El usuario tiene datos clínicos registrados, puedes modificarlos
         </div>
         <div class="datos" [ngClass]="posicion()">

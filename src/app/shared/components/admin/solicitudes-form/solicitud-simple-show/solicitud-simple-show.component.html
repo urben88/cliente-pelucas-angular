@@ -1,4 +1,8 @@
+<generic-info-user [user]="user"></generic-info-user>
 <div *ngIf="solicitud" class="caja">
+    <h1>Estado de la solicitud:</h1>
+    <span *ngIf="solicitud.aceptado">Aceptada</span>
+    <span *ngIf="solicitud.aceptado">Pendiente de aceptar</span>
     <div class="cajadatos">
         <div class="part">
             <h1>Productos</h1>
@@ -103,8 +107,12 @@
         </div>
     </div>
 
+    <admin-form-notificaciones *ngIf="!this.solicitud.aceptado" [cabecera]="header" (new)="newNotificacion($event)" (status)="notificacionStatus($event)" [forSolicitud]="true" [user]="user"></admin-form-notificaciones>
+
     <div class="botones">
         <p-confirmPopup></p-confirmPopup>
+        <button class="btn-verde" (click)="aceptar()" *ngIf="!solicitud.aceptado">Aceptar solicitud</button>
+        <button class="btn-rojo"  (click)="cancelar()" *ngIf="solicitud.aceptado">Cancelar solicitud</button>
         <button (click)="eliminar($event)"  pButton  class="btn-rojo">Eliminar solicitud</button>
     </div>
 </div>

@@ -27,7 +27,7 @@ export class CabellosFormComponent implements OnInit,OnChanges {
     }
     if(changes['set']){
       let valor = changes['set'].currentValue;
-      console.log(valor)
+      // console.log(valor)
       this.cabellosForm.controls['forma'] = valor.forma;
       this.cabellosForm.controls['color'] = valor.color;
       this.cabellosForm.controls['longitud'] = valor.longitud;
@@ -40,7 +40,7 @@ export class CabellosFormComponent implements OnInit,OnChanges {
   @Input() set:any = null;
 
   ngOnInit(): void {
-    console.log(formas,"FORMAS")
+    // console.log(formas,"FORMAS")
     this.cabellosForm.valueChanges.subscribe(
       (res)=>{
         this.cabello.emit(
@@ -51,16 +51,18 @@ export class CabellosFormComponent implements OnInit,OnChanges {
         this.valid.emit(this.cabellosForm.valid)
       },
       (err)=>{
-        console.log(err)
+        console.error(err)
       }
     )
+    //? Uso una subscripción que me sirve para añadir valores a la hora de actualizar.
     this._SetSolicitudesService.getSolicitud$().subscribe(
       (res:Solicitud|null)=>{
         if(res){
-            let cabello=res.cabello
-            this.cabellosForm.controls['forma'].setValue(cabello?.forma)
-            this.cabellosForm.controls['color'].setValue(cabello?.color)
-            this.cabellosForm.controls['longitud'].setValue(cabello?.longitud)
+            if(res.cabello){
+              this.cabellosForm.controls['forma'].setValue(res.cabello.forma)
+              this.cabellosForm.controls['color'].setValue(res.cabello.color)
+              this.cabellosForm.controls['longitud'].setValue(res.cabello.longitud)      
+            }
         }else{
           this.cabellosForm.reset();
         }

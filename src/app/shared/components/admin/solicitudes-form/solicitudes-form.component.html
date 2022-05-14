@@ -9,7 +9,7 @@
     <form [formGroup]="solicitudesForm">
         <div class="titulo">
             <h1 *ngIf="forAdmin">Administrar Solicitud</h1>
-            <icon-refresh *ngIf="haveDatosClinicos" (update)="reset()"></icon-refresh>
+            <icon-refresh *ngIf="false" (update)="reset()"></icon-refresh>
         </div>
         <div *ngIf="!userHave && forAdmin " class="alert alert-success" role="alert">
             Este usuario no tiene ninguna solicitud, puedes crearla
@@ -18,6 +18,14 @@
             El usuario ya tiene una solicitud enviada, puedes modificarla
         </div>
         <div class="datos">
+            <div class="campo">
+                <h1>Necesitamos saber sus medidas craneales</h1>
+                <user-medidas-form *ngIf="!medidas" (status)="medidasStatus($event)"  [user]="user"></user-medidas-form>
+            </div>
+            <div class="campo">
+                <h1>Necesitamos conocer sus datos clínicos</h1>
+               <user-datos-clinicos-form *ngIf="!datos_clinicos" (status)="datosClinicosStatus($event)" [user]="user"></user-datos-clinicos-form>
+            </div>
             <div class="campo">
                 <h1>¿Que desea solicitar?</h1>
                 <div class="solicitud-principal">
@@ -38,7 +46,7 @@
             </div>
             <div class="campo">
                 <div *ngIf="solicitudesForm.controls['have_protesis'].value" class="more">
-                    <solicitud-protesis-form (protesis)="getProtesis($event)" (protesisValue)="getProtesis($event)"></solicitud-protesis-form>
+                    <solicitud-protesis-form (protesis)="getProtesis($event)"></solicitud-protesis-form>
                 </div>
             </div>
             <div class="campo">

@@ -44,7 +44,7 @@ export class ChequesRegaloSelectComponent implements OnInit {
   
 
     for(let tipo in this.tiposChequesRegalo){
-      console.log(tipo,"tipooooooooooooooooo")
+      // console.log(tipo,"tipooooooooooooooooo")
       this._chequesregalo.findBy('tipo',tipo).subscribe(
         (res:any[])=>{
           let campo:any=[];
@@ -79,7 +79,7 @@ export class ChequesRegaloSelectComponent implements OnInit {
             servicio.cheques.forEach((cheq:any) => {
               if(cheq.servicio == "recogida"){
                 this.chequeSelected = cheq;
-                console.log(this.chequeSelected)
+                // console.log(this.chequeSelected)
               }
             });
           });
