@@ -1,2 +1,2 @@
 <h1>{{ title }}</h1>
-<h3><strong class="nombre">{{ user.nombre  | titlecase }} {{ user.apellidos  | titlecase }}<span>( {{ user.email }} )</span></strong> con id: <strong>{{ user.id}}</strong></h3>
+<h3 *ngIf="user"><strong class="nombre">{{ user.nombre  | titlecase }} {{ user.apellidos  | titlecase }}<span>( {{ user.email }} )</span></strong> con id: <strong>{{ user.id}}</strong></h3>

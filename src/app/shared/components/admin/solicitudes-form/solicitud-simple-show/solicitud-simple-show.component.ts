@@ -109,9 +109,19 @@ export class SolicitudSimpleShowComponent implements OnInit,OnChanges {
   aceptar(){
     this.solicitud_notificacion.emitirEvento();
     if(this.notificacionValida){
-      this._solicitud.updateStatus(this.solicitud.id,{aceptado:true});
-      this.solicitud.aceptado = true;
-      this._message.add({severity:'success', summary: 'Aceptada!', detail: 'Se ha aceptado la solicitud'});
+      console.log(this.solicitud.id,"ID DE LA SOLICITUD")
+      this._solicitud.updateStatus(this.solicitud.id,{aceptado:true}).subscribe(
+        (res)=>{
+          console.log(res,"RESPUESTAAAAA",)
+          this.solicitud.aceptado = true;
+          this._message.add({severity:'success', summary: 'Aceptada!', detail: 'Se ha aceptado la solicitud'});
+        },
+        (err)=>{
+          console.error(err);
+        }
+      )
+    }else{
+      this._message.add({severity:'error', summary: 'Error', detail: 'La solicitud no es valida'});
     }
   }
   newNotificacion(event:any){
@@ -119,9 +129,17 @@ export class SolicitudSimpleShowComponent implements OnInit,OnChanges {
   }
 
   cancelar(){
-    this._message.add({severity:'success', summary: 'Cancelada', detail: 'Se ha cancelado la solicitud'});
-    this._solicitud.updateStatus(this.solicitud.id,{aceptado:false});
-    this.solicitud.aceptado = false;
+
+    this._solicitud.updateStatus(this.solicitud.id,{aceptado:false}).subscribe(
+      (res:any)=>{
+        console.log(res,"RESPUESTAAAAA",)
+        this.solicitud.aceptado = false;
+        this._message.add({severity:'success', summary: 'Cancelada', detail: 'Se ha cancelado la solicitud'});
+      },
+      (err:any)=>{
+        console.error(err)
+      }
+    );
   }
 
   notificacionStatus(event:any){
