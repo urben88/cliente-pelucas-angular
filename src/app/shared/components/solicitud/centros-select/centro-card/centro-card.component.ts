@@ -18,7 +18,7 @@ export class CentroCardComponent implements OnInit,OnChanges {
       this._centros.findBy("id",String(this.centroId)).subscribe(
         (res:Centro[])=>{
           this.centro = res[0];
-          console.log(this.centro,"CENTROOO CARD")
+          // console.log(this.centro,"CENTROOO CARD")
         },
         (err:HttpErrorResponse)=>{
           console.error(err);
