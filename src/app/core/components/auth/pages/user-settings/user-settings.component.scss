@@ -1,12 +1,14 @@
 @import "../../../../../../styles.scss";
 .container{
-    z-index: 9;
+    position: relative;
+    z-index: 1 !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-top: $navheigth + 70px;
     user-select: none;
+    gap: 50px;
 }
 user-update{
     z-index: 99 !important

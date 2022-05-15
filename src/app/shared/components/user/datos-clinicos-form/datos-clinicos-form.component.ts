@@ -293,6 +293,15 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
     }else{
       console.log(this.datosclinicosForm.value)
       let resul:any= this.datosclinicosForm.value;
+      if(!resul.have_alergias){
+        resul.alergias = null;
+        resul.alergias_medicacion = null;
+      }
+      if(!resul.have_enfermedades){
+        resul.medicacion = null
+        resul.tratamiento_actual = null
+        resul.enfermedades = null
+      }
       resul['user_id']=this.user.id;
       console.log(resul)
       this._datosClinicos.update(this.user.id,resul)
@@ -331,6 +340,8 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
               this.DatosClinicosUser =null;
               this.haveDatosClinicos =false;
               this.datosclinicosForm.reset()
+              this.datosclinicosForm.controls['have_enfermedades'].setValue(false)
+              this.datosclinicosForm.controls['have_alergias'].setValue(false)
               // this.delete.emit(true)
             },
             (err)=>{

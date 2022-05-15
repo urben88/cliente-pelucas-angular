@@ -7,6 +7,7 @@ import { CentrosComponent } from './pages/centros/centros.component';
 import { NotificacionesComponent } from './pages/notificaciones/notificaciones.component';
 import { NotificacionComponent } from './pages/notificaciones/notificacion/notificacion.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { SolicitudComponent } from './pages/solicitud/solicitud.component';
 
 
 
@@ -16,7 +17,8 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
     CentrosComponent,
     NotificacionesComponent,
     NotificacionComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    SolicitudComponent
   ],
   imports: [
     CommonModule,

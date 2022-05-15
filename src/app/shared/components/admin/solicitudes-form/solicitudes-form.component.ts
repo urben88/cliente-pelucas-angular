@@ -227,7 +227,7 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
 
   //? Para mostrar o esconder los botones
   btnStatusCreate() {
-    if (this.forAdmin && !this.userHave) {
+    if (!this.userHave) {
       return true;
     }
     return false;

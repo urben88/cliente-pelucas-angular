@@ -5,10 +5,11 @@
         </div>
         <div class="menu">
             <div class="btn-menu" routerLink="/centros" routerLinkActive="activado">Centros</div>
-            <div class="btn-menu">Blog</div>
-            <div class="btn-menu">Tips</div>
+            <div class="btn-menu">Blog <i class="fa-solid fa-screwdriver-wrench"></i></div>
+            <div class="btn-menu">Tips <i class="fa-solid fa-screwdriver-wrench"></i></div>
             <div class="btn-menu" routerLink="/about_us" routerLinkActive="activado">About us</div>
-            <div class="btn-menu">Sugerencias</div>
+            <div class="btn-menu" routerLink="/solicitud" routerLinkActive="activado">Solicitar Producto</div>
+            <div class="btn-menu">Sugerencias <i class="fa-solid fa-screwdriver-wrench"></i></div>
             <div *ngIf="_auth.loggedIn()" [routerLink]="['/notificaciones']" routerLinkActive="activado"class="btn-menu">Tus Notificaciones</div>
         </div>
         <div *ngIf="!_auth.loggedIn(); else logged" class="botones">

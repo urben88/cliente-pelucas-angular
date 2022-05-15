@@ -1,0 +1,22 @@
+<div class="container mb-3">
+
+    <!--! Primera fila -->
+    <div class="row hero-centros-info  p-5">
+        <div class="col-12 p-0 m-0">
+           <admin-solicitud-simple-show *ngIf="userHave" (eliminado)="seElimina()" [forUser]="true" [solicitudId]="solicitud.id"></admin-solicitud-simple-show>
+           <admin-solicitudes-form *ngIf="!userHave" (newSolicitud)="newSolicitud()" [user_id]="user.id"></admin-solicitudes-form>
+
+                <p-dialog header="" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+                    [draggable]="false" [resizable]="false">
+                        <div class="displayModel">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <p>{{modalmsg}}</p>
+                        </div>
+                        <ng-template pTemplate="footer">
+                        <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
+                        </ng-template>
+                </p-dialog>
+        </div>
+    </div>
+
+</div>

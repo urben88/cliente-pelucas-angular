@@ -1,11 +1,11 @@
-<generic-info-user [user]="user"></generic-info-user>
+<generic-info-user *ngIf="!forUser" [user]="user"></generic-info-user>
 <!-- ! Mensajes info -->
 <p-toast position="top-center" style="margin-top:300px"></p-toast>
 
 <div *ngIf="solicitud" class="caja">
     <h1>Estado de la solicitud:</h1>
-    <span *ngIf="solicitud.aceptado">Aceptada</span>
-    <span *ngIf="solicitud.aceptado">Pendiente de aceptar</span>
+    <span style="color:green" class="estado" *ngIf="solicitud.aceptado">Aceptada <i class="fa-solid fa-circle-check"></i></span>
+    <span style="color: red" class="estado" *ngIf="!solicitud.aceptado">Pendiente de aceptar <i class="fa-solid fa-clock"></i></span>
     <div class="cajadatos">
         <div class="part">
             <h1>Productos</h1>
@@ -40,7 +40,7 @@
     
             </div>
             <div *ngIf="solicitud.protesis" class="producto">
-                <h3>Protesis:</h3>
+                <h3>Protesis</h3>
                 <div class="attr">
                     <small>forma</small>
                     <h3>{{solicitud.protesis.forma | titlecase}}</h3>
@@ -110,12 +110,12 @@
         </div>
     </div>
 
-    <admin-form-notificaciones *ngIf="!this.solicitud.aceptado" [cabecera]="header" (new)="newNotificacion($event)" (status)="notificacionStatus($event)" [forSolicitud]="true" [user]="user"></admin-form-notificaciones>
+    <admin-form-notificaciones *ngIf="!this.solicitud.aceptado && !forUser" [cabecera]="header" (new)="newNotificacion($event)" (status)="notificacionStatus($event)" [forSolicitud]="true" [user]="user"></admin-form-notificaciones>
 
     <div class="botones">
         <p-confirmPopup></p-confirmPopup>
-        <button class="btn-verde" (click)="aceptar()" *ngIf="!solicitud.aceptado">Aceptar solicitud</button>
-        <button class="btn-rojo"  (click)="cancelar()" *ngIf="solicitud.aceptado">Cancelar solicitud</button>
+        <button class="btn-verde" (click)="aceptar()" *ngIf="!solicitud.aceptado && !forUser">Aceptar solicitud</button>
+        <button class="btn-rojo"  (click)="cancelar()" *ngIf="solicitud.aceptado && !forUser">Cancelar solicitud</button>
         <button (click)="eliminar($event)"  pButton  class="btn-rojo">Eliminar solicitud</button>
     </div>
 </div>

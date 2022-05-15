@@ -6,6 +6,8 @@
 
 <div class="container">
     <user-update></user-update>
+    <user-datos-clinicos-form *ngIf="user" [user]="user"></user-datos-clinicos-form>
+    <user-medidas-form *ngIf="user" [user]="user"></user-medidas-form>
 </div>
 
 <!-- <app-footer></app-footer>  -->

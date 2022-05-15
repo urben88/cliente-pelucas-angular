@@ -1,5 +1,5 @@
 export interface Solicitud {
-    id?:               number;
+    id:               number;
     aceptado:         boolean;
     createdAt?:        Date;
     updatedAt?:        Date;

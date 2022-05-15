@@ -3,8 +3,6 @@
 <!-- ! Mensajes info -->
 <p-toast position="top-center" style="margin-top:300px"></p-toast>
 
-{{this.solicitudesForm.errors | json}}
-{{this.solicitudesForm.valid | json}}
 <div class="caja animate__animated animate__backInLeft">
     <form [formGroup]="solicitudesForm">
         <div class="titulo">
@@ -18,13 +16,13 @@
             El usuario ya tiene una solicitud enviada, puedes modificarla
         </div>
         <div class="datos">
-            <div class="campo">
+            <div  *ngIf="!medidas" class="campo">
                 <h1>Necesitamos saber sus medidas craneales</h1>
-                <user-medidas-form *ngIf="!medidas" (status)="medidasStatus($event)"  [user]="user"></user-medidas-form>
+                <user-medidas-form (status)="medidasStatus($event)"  [user]="user"></user-medidas-form>
             </div>
-            <div class="campo">
+            <div *ngIf="!datos_clinicos" class="campo">
                 <h1>Necesitamos conocer sus datos clínicos</h1>
-               <user-datos-clinicos-form *ngIf="!datos_clinicos" (status)="datosClinicosStatus($event)" [user]="user"></user-datos-clinicos-form>
+               <user-datos-clinicos-form (status)="datosClinicosStatus($event)" [user]="user"></user-datos-clinicos-form>
             </div>
             <div class="campo">
                 <h1>¿Que desea solicitar?</h1>
@@ -103,6 +101,4 @@
         </div>
 
     </form>
-    {{this.solicitudesForm.errors | json}}
-    {{this.solicitudesForm.valid | json}}
 </div>

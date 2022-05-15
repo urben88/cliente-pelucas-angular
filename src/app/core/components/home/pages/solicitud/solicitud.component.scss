@@ -1,0 +1,53 @@
+@import "../../../../../../styles.scss";
+.container{
+    padding-top: $navheigth;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    //justify-content: center;
+    // align-items: center;
+    width: 100% !important;
+    min-height: 1000px;
+    .row{
+         z-index: 2;
+         width: 100%;
+    }
+    .displayModel{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 40px;
+        font-size: 30px;
+        i{
+            font-size: 60px;
+            color: green;
+        }
+        p{
+
+        }
+    }
+}
+
+
+// `xs` devuelve solo un conjunto de reglas y ninguna consulta de medios
+// ... { ... }
+
+// `sm` se aplica a dispositivos x-small (teléfonos verticales, menos de 576px)
+@media (max-width: 575.98px) {  }
+
+// `md` se aplica a dispositivos pequeños (teléfonos horizontales, menos de 768px)
+@media (max-width: 767.98px) { 
+    .row{
+        padding: 0px !important;
+    } 
+}
+
+// "lg" se aplica a dispositivos medianos (tabletas, menos de 992 px)
+@media (max-width: 991.98px) {  }
+
+// `xl` se aplica a dispositivos grandes (computadoras de escritorio, menos de 1200 px)
+@media (max-width: 1199.98px) {  }
+
+// `xxl` se aplica a dispositivos de gran tamaño (escritorios grandes, menos de 1400px)
+@media (max-width: 1399.98px) {  }

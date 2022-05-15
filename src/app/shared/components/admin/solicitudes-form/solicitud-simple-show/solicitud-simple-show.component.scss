@@ -2,8 +2,14 @@
 .caja{
     border:  2px solid black;
     padding: 40px;
+    background-color: white;
+    width: 100%;
+    .estado{
+        font-size: 30px;
+        padding-bottom: 30px;
+    }
     .cajadatos{
-
+        margin-top: 40px;
         display: grid;
         grid-template-columns: repeat(2,1fr);
         gap: 30px;
@@ -26,6 +32,7 @@
                 flex-wrap: wrap;
                 gap: 30px;
                 padding-left: 30px;
+                margin-right: 30px;
                 padding-bottom: 20px;
                 padding-top: 40px;
                 border-left: $morado-boton 10px solid;
@@ -97,7 +104,14 @@
 // "lg" se aplica a dispositivos medianos (tabletas, menos de 992 px)
 @media (max-width: 991.98px) {  
     .caja{
-        grid-template-columns: repeat(1,1fr) !important;
+        .cajadatos{
+            grid-template-columns: repeat(1,1fr) !important;
+        }
+    }
+    .lugar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 

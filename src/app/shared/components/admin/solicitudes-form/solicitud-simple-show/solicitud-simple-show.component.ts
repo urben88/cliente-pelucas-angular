@@ -67,6 +67,8 @@ export class SolicitudSimpleShowComponent implements OnInit,OnChanges {
   @Input() solicitudId!:number;
   @Input() solicitudSet!:Solicitud;
   @Output() actualizar = new EventEmitter<any>();
+  @Output() eliminado = new EventEmitter<any>();
+  @Input() forUser:boolean = false;
 
   user!:User;
   solicitud!:Solicitud;
@@ -88,8 +90,9 @@ export class SolicitudSimpleShowComponent implements OnInit,OnChanges {
         this._solicitud.delete(this.solicitud.id).subscribe(
           (res:any)=>{
             console.log(res)
-            this._message.add({severity:'success', summary: 'Creado', detail: 'Se ha actualizado los datos clínicos correctamente'});
+            this._message.add({severity:'success', summary: 'Eliminada', detail: 'Has eliminado la solicitud correctamente'});
             this.actualizar.emit();
+            this.eliminado.emit();
             // this.solicitudSet = null;
           },
           (err:any)=>{
