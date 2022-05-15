@@ -3,6 +3,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation }
 import { Router } from '@angular/router';
 import { Notificacion } from 'src/app/core/models/Notificacion';
 import { NotificacionesService } from 'src/app/core/services/db/notificaciones.service';
+import { NotificacionesNavService } from '../../../../../core/services/forComponents/notificaciones/notificaciones-nav.service';
 
 @Component({
   selector: 'app-show-notificacion',
@@ -13,13 +14,13 @@ export class ShowNotificacionComponent implements OnInit,OnChanges{
 
   constructor(
     private _notificaciones:NotificacionesService,
-    private _router:Router
+    private _router:Router,
   ) { }
 
   notificacion!:Notificacion;
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['id']){
-
+      if(changes['id'].currentValue){
         this._notificaciones.show(changes['id'].currentValue).subscribe(
           (res:Notificacion)=>{
             console.log(res);
@@ -34,6 +35,7 @@ export class ShowNotificacionComponent implements OnInit,OnChanges{
             // this._router.navigate(['/notificaciones'])
           }
         )
+      }
         
     }
   }
@@ -41,7 +43,6 @@ export class ShowNotificacionComponent implements OnInit,OnChanges{
 
   @Input() id!:number;
   ngOnInit(): void {
-
   }
 
 }

@@ -5,12 +5,35 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: row-reverse;
     z-index: 1;
     margin-top: $navheigth + 70px;
     position: relative;
+    gap: 30px;
     // border: 2px solid black;
     youtube-player{
         z-index: 2;
+    }
+    .texto{
+        border-left: 10px solid $rosa;
+        padding-right: 100px;
+        padding-left: 20px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        margin-bottom: 20px;
+        border-radius: 0px 20px 20px 0px;
+        // color: $morado-input;
+        h1{
+            color: $morado-input;
+            font-family: 'Montserrat', sans-serif !important;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+        a{
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
     }
 }
 

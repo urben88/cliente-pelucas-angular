@@ -145,9 +145,9 @@
             </div>
             <div class="botones">
                 <button *ngIf="btnStatusUpdate()" (click)="update()" class="btn-morado">Actualizar</button>
-                <button *ngIf="btnStatusCreate() && forAdmin" (click)="crear()" class="btn-morado">Crear</button>
+                <button *ngIf="btnStatusCreate()" (click)="crear()" class="btn-morado">Crear</button>
                 <p-confirmPopup></p-confirmPopup>
-                <button (click)="eliminar($event)"  pButton  *ngIf="btnStatusUpdate()" class="btn-rojo">Eliminar registro</button>
+                <button (click)="eliminar($event)"  pButton  *ngIf="btnStatusUpdate() && forAdmin" class="btn-rojo">Eliminar registro</button>
                 <alert-dberrors [erroresDB]="erroresDB"></alert-dberrors>
             </div>
         </div>

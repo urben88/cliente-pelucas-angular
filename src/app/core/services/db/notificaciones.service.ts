@@ -41,5 +41,12 @@ export class NotificacionesService {
     return this.http.get<any>(this.urlNotificaciones+"/isFromActualUser/"+id);
   }
 
+  putLeido(id:number){
+    return this.http.put<any>(this.urlNotificaciones+"/putLeido/"+id,null);
+  }
+  findUserNotificacionesNoLeidas(id:number){
+    return this.http.get<any>(this.urlNotificaciones+"/findUserNotificacionesNoLeidas/"+id,{observe:'response'});
+  }
+
 
 }

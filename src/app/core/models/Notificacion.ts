@@ -6,4 +6,5 @@ export interface Notificacion{
     header:     string,
     createdAt?: Date,
     updatedAt?: Date,
+    leido?:     boolean;
 }

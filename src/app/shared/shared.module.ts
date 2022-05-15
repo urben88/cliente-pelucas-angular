@@ -42,6 +42,7 @@ import {MultiSelectModule} from 'primeng/multiselect';
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {DialogModule} from 'primeng/dialog';
+import {SidebarModule} from 'primeng/sidebar';
 
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -146,7 +147,9 @@ import { ChequesRegaloCardComponent } from './components/solicitud/cheques-regal
     InputNumberModule,
     ToggleButtonModule,
     RadioButtonModule,
-    DialogModule
+    DialogModule,
+    SidebarModule,
+    SidebarModule
   ],
   exports:[
     NavComponent,

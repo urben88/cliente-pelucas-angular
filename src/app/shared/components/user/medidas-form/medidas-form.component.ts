@@ -180,7 +180,7 @@ export class MedidasFormComponent implements OnInit,OnChanges {
     if(!valuedefault){
       if(this.medidasUser){
         this.medidasForm.controls['redondo'].setValue(this.medidasUser?.redondo );
-        this.medidasForm.controls['redondo'].setValue(this.medidasUser?.redondo);
+        this.medidasForm.controls['patilla_a_patilla'].setValue(this.medidasUser?.patilla_a_patilla);
         this.medidasForm.controls['largo_de_frente'].setValue(this.medidasUser?.largo_de_frente);
         this.medidasForm.controls['sien_a_sien'].setValue(this.medidasUser?.sien_a_sien);
         this.medidasForm.controls['oreja_a_oreja_por_encima'].setValue(this.medidasUser?.oreja_a_oreja_por_encima);
@@ -189,14 +189,14 @@ export class MedidasFormComponent implements OnInit,OnChanges {
         this.medidasForm.controls['anchura_cuello_inferior'].setValue(this.medidasUser?.anchura_cuello_inferior);
       }
     }else{
-      this.medidasForm.controls['redondo'].setValue(0);
-        this.medidasForm.controls['redondo'].setValue(0);
-        this.medidasForm.controls['largo_de_frente'].setValue(0);
-        this.medidasForm.controls['sien_a_sien'].setValue(0);
-        this.medidasForm.controls['oreja_a_oreja_por_encima'].setValue(0);
-        this.medidasForm.controls['anchura_del_cuello_superior'].setValue(0);
-        this.medidasForm.controls['oreja_a_oreja_por_nacimiento_pelo'].setValue(0);
-        this.medidasForm.controls['anchura_cuello_inferior'].setValue(0);
+      this.medidasForm.controls['redondo'].setValue(null);
+        this.medidasForm.controls['patilla_a_patilla'].setValue(null);
+        this.medidasForm.controls['largo_de_frente'].setValue(null);
+        this.medidasForm.controls['sien_a_sien'].setValue(null);
+        this.medidasForm.controls['oreja_a_oreja_por_encima'].setValue(null);
+        this.medidasForm.controls['anchura_del_cuello_superior'].setValue(null);
+        this.medidasForm.controls['oreja_a_oreja_por_nacimiento_pelo'].setValue(null);
+        this.medidasForm.controls['anchura_cuello_inferior'].setValue(null);
     }
 
   }

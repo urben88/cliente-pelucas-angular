@@ -10,7 +10,7 @@
             <div class="btn-menu" routerLink="/about_us" routerLinkActive="activado">About us</div>
             <div class="btn-menu" routerLink="/solicitud" routerLinkActive="activado">Solicitar Producto</div>
             <div class="btn-menu">Sugerencias <i class="fa-solid fa-screwdriver-wrench"></i></div>
-            <div *ngIf="_auth.loggedIn()" [routerLink]="['/notificaciones']" routerLinkActive="activado"class="btn-menu">Tus Notificaciones</div>
+            <div *ngIf="_auth.loggedIn()" [routerLink]="['/notificaciones']" routerLinkActive="activado"class="btn-menu">Notificaciones</div>
         </div>
         <div *ngIf="!_auth.loggedIn(); else logged" class="botones">
             <button [routerLink]="['/auth/login']" routerLinkActive="btnActive" class="btn-blanco">Log in</button>
@@ -36,7 +36,7 @@
                                     <i *ngIf="notificacion.tipo=='info'" class="pi pi-info-circle" style="color:rgb(13, 43, 241)"></i>
                                     <i *ngIf="notificacion.tipo=='warn'" class="pi pi-exclamation-triangle" style="color:rgb(241, 154, 13)"></i>
                                 </div>
-                                <p *ngIf="notificaciones.length == 0">No tienes notificaciones😄</p>
+                                <p *ngIf="notificaciones.length == 0">No tienes notificaciones nuevas 😄</p>
                                 <!-- <div class="notificacion">
                                     <h2>Se ha aceptado el pedido </h2>
                                     <i class="pi pi-check" style="color:rgb(13, 241, 13)"></i>
