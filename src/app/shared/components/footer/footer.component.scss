@@ -94,17 +94,27 @@
         }
        
     }
+    .menu{
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    .footer{
+        height: 800px;
+    }
 
 }
 
 // "lg" se aplica a dispositivos medianos (tabletas, menos de 992 px)
 @media (max-width: 991.98px) { 
+   
     .titulo{
         flex-direction: column-reverse !important;
         h1{
             margin-top: -20px;
         }
     }
+  
  }
 
 // `xl` se aplica a dispositivos grandes (computadoras de escritorio, menos de 1200 px)

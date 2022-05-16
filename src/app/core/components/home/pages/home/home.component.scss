@@ -175,7 +175,23 @@
  }
 
 // "lg" se aplica a dispositivos medianos (tabletas, menos de 992 px)
-@media (max-width: 991.98px) { }
+@media (max-width: 991.98px) {
+    .video{
+        flex-direction: column;
+        .texto{
+            border-left: none;
+            border-bottom: 10px solid $rosa;
+            border-radius: 0;
+        }
+
+    }
+    :host{
+        youtube-player{
+            // width: 20px !important;
+            // height: 20px !important;
+        }
+    }
+ }
 
 // `xl` se aplica a dispositivos grandes (computadoras de escritorio, menos de 1200 px)
 @media (max-width: 1199.98px) {}
