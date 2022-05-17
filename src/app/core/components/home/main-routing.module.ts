@@ -22,7 +22,7 @@ const routes: Routes = [
       {path:'notificaciones',component:NotificacionesComponent},
       {path:'notificacion/:id',component:NotificacionComponent},
       {path:'about_us',component:AboutUsComponent},
-      {path:'solicitud',component:SolicitudComponent},
+      {path:'solicitud',component:SolicitudComponent,canActivate:[AuthGuard]},
       
       // {path:'**',redirectTo: ''},
     ]

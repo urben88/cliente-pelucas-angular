@@ -1,8 +1,8 @@
 <!--? Tabla a seguir Table Lazy  -->
 <p-toast></p-toast>
-<div class="card">
-  
-    <h5>Filtrar y editar Usuarios</h5> <app-spinner></app-spinner>
+<div class="card" *ngIf="users">
+    <app-spinner></app-spinner>
+    <h5>Filtrar y editar Usuarios</h5>
         <p-table [value]="users" 
         dataKey="id"
         editMode="row"
@@ -58,7 +58,6 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-user let-editing="editing" let-ri="rowIndex">
-               
                 <tr [pEditableRow]="user">
                     <td>
                         <p-cellEditor>

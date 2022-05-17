@@ -1,5 +1,7 @@
 
 <div class="caja">
+    <app-spinner></app-spinner>
+
     <div *ngIf="notificacion" class="notificacion">
         <container-element [ngSwitch]="notificacion.tipo" class="tipo">
             <h1 *ngSwitchCase="'success'" style="color:green">Éxito<i class="pi pi-check" style="color: green;"></i></h1>  
@@ -28,5 +30,5 @@
         </div>
     </div>
     
-    <button routerLink="/notificaciones"class="btn-morado">Ver todas tus notificaciones</button>
+    <button *ngIf="notificacion" routerLink="/notificaciones"class="btn-morado">Ver todas tus notificaciones</button>
 </div>

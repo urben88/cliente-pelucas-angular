@@ -10,6 +10,7 @@ import { ErrorPost } from 'src/app/core/models/Error.interface';
 //? Servicio
 import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/User.interface';
+import { IsAdminService } from 'src/app/core/services/forComponents/is-admin.service';
 
 @Component({
   selector: 'app-login',
@@ -30,11 +31,12 @@ export class LoginComponent implements OnInit {
     private _builder: FormBuilder,
     private _auth: AuthService,
     private _router: Router,
+    private _isAdmin: IsAdminService
   ) { }
 
   ngOnInit(): void {
     this.singinForm.reset({ //? Existe setValue pero hay que poner por default valor a todos los controles
-      email:"tirolin25@gmail.com"
+      email:""
     }) 
   }
 
@@ -67,10 +69,12 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (res:Singin)=>{
           localStorage.setItem('token',res.token);
-          this.singinForm.reset(); //Borra el contenido de los inputs
+          // this.singinForm.reset(); //Borra el contenido de los inputs
           if(this._auth.isAdmin(res.user)){
-            this._router.navigate(['/admin'])
+            this._isAdmin.$isAdmin.emit(true)
+            this._router.navigate(['/admin/'])
           }else{
+            this._isAdmin.$isAdmin.emit(false)
             this._router.navigate(['/'])
           }
 

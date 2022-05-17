@@ -1,4 +1,4 @@
-<p-table style="min-height: 6000px !important;"
+<p-table *ngIf="rows && rows.length !=0 ; else vacio " style="min-height: 6000px !important;"
 [value]="rows" 
 responsiveLayout="scroll" 
 dataKey="id"
@@ -29,3 +29,9 @@ dataKey="id"
         </tr>
     </ng-template>
 </p-table>
+
+<ng-template #vacio>
+    <div class="alert alert-info" role="alert">
+        <i class="fa-solid fa-circle-info"></i>  No hay datos
+    </div>
+</ng-template>

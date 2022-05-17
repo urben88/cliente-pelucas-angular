@@ -201,13 +201,13 @@ export class MedidasFormComponent implements OnInit,OnChanges {
 
   }
   btnStatusCreate(){
-    if(this.medidasUser == null && !this.haveMedidas){
+    if(this.user && this.medidasUser == null && !this.haveMedidas){
       return true;
     }
     return false;
   }
   btnStatusUpdate(){
-    if(this.medidasUser != null && this.haveMedidas){
+    if(this.user && this.medidasUser != null && this.haveMedidas){
       return true;
     }
     return false;

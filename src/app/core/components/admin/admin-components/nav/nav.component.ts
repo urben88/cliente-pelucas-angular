@@ -29,7 +29,7 @@ export class NavComponent implements OnInit {
         {label: 'Centros',routerLink:'/centros'},
         {label: 'Blog'},
         {label: 'Tips'},
-        {label: 'About us'},
+        {label: 'About us',routerLink:'/about_us'},
         {label: 'Sugerencias'},
         {label: 'Tus Notificaciones',routerLink:'/notificaciones'}
     ];

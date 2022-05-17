@@ -1,8 +1,11 @@
 <div class="caja p-5">
     <!--! Titulo -->
+    <h1>Administrar notificaciones de los usuarios</h1>
+    <app-spinner></app-spinner>
     <admin-selec-row-table [rows]="users | selecRow:'users'" (selected)="seleccionaUser($event)"></admin-selec-row-table>
     <div *ngIf="userSelect !=null" class="notificacionestable">
         <generic-info-user [title]="'Notificaciones del usuario:'" [user]="userSelect"></generic-info-user>
+        <app-spinner></app-spinner>
         <admin-simple-table [canDelete]="true" [rows]="notificaciones" [sort]="true" (selected)="seleccionaNotificacion($event)" (delete)="deletenoti($event)"></admin-simple-table>
     </div>
     <admin-form-notificaciones *ngIf="userSelect !=null" [notificacion]="notificacionSelect" [user]="userSelect" (new)="meterListaNoti($event)" (newupdate)="cambiarNoti($event)"></admin-form-notificaciones>

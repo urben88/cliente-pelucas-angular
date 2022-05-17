@@ -1,7 +1,7 @@
 export interface Solicitud {
     id:               number;
     aceptado:         boolean;
-    createdAt?:        Date;
+    createdAt?:        string;
     updatedAt?:        Date;
     user_id:          number;
     disponibilidad?:   string;

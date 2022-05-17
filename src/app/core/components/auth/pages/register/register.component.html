@@ -31,7 +31,7 @@
             <div class="field" style="display: flex; flex-direction: column;">
                 <label for="email" class="block">Correo electronico</label>
                 <input id="email" type="email" aria-describedby="username2-help" pInputText formControlName="email" />
-                <small *ngIf="campoEsValido('email') || errores.email" class="p-error block">
+                <small *ngIf="campoEsValido('email')" class="p-error block">
                     {{ emailErrorMsg }}
                 </small>  
             </div>

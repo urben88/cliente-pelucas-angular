@@ -12,10 +12,12 @@ import { MedidasComponent } from './admin-components/sub-menus/medidas/medidas.c
 import { DatosClinicosComponent } from './admin-components/sub-menus/datos-clinicos/datos-clinicos.component';
 import { ChequesRegaloComponent } from './admin-components/sub-menus/cheques-regalo/cheques-regalo.component';
 import { SolicitudesComponent } from './admin-components/sub-menus/solicitudes/solicitudes.component';
+import { AdminGuard } from '../../guards/admin.guard';
 const routes: Routes = [
   {
     path:'',
     component:TemplateComponent,
+    canActivateChild:[AdminGuard],
     children:[
       {path: 'auth/update',component:UpdateComponent},
       {path: 'dashboard',component:DashboardComponent},

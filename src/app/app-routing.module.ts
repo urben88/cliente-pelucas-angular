@@ -14,6 +14,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes,{
     scrollPositionRestoration:'enabled',
+    //? Este parámetro es para evitar el error de rutas al desplegar la aplicación angular
     useHash:true
   })],
   exports: [RouterModule]

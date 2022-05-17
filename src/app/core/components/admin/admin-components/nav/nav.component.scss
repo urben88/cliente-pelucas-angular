@@ -94,6 +94,11 @@ nav{
     }
 }
 
+.irWeb{
+    margin-left: 20px;
+    color: $morado-input;
+    display: none;
+}
 // `xs` devuelve solo un conjunto de reglas y ninguna consulta de medios
 // ... { ... }
 
@@ -109,6 +114,11 @@ nav{
     .menupag{
         display: none !important;
     }
+    
+    .irWeb{
+        display: block;
+    }
+
 }
 
 // `xl` se aplica a dispositivos grandes (computadoras de escritorio, menos de 1200 px)

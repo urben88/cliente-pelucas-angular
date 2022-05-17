@@ -1,7 +1,9 @@
 <div class="container mb-3">
-
     <!--! Primera fila -->
     <div class="row hero-centros-info  p-5">
+        <div style="width:100%;display:flex;justify-content: center;align-items: center;">
+            <app-spinner></app-spinner>
+        </div>
         <div *ngIf="user" class="col-12 p-0 m-0">
            <admin-solicitud-simple-show *ngIf="userHave && user" (eliminado)="seElimina()" [forUser]="true" [solicitudId]="solicitud.id"></admin-solicitud-simple-show>
            <admin-solicitudes-form *ngIf="!userHave" (newSolicitud)="newSolicitud()" [user_id]="user.id"></admin-solicitudes-form>

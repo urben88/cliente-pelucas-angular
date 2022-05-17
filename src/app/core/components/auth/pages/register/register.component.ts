@@ -11,6 +11,7 @@ import {Login, Singin} from "../../../../models/Auth.interface"
 import {User} from "../../../../models/User.interface"
 import {ErrorPost} from "../../../../models/Error.interface"
 import { Router } from '@angular/router';
+import { IsAdminService } from 'src/app/core/services/forComponents/is-admin.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -35,19 +36,19 @@ export class RegisterComponent implements OnInit {
   erroresDB:any[] = [];
 
   singupForm:FormGroup = this._builder.group({
-    nombre:['Ruben  ',Validators.required],
-    apellidos:['esteve vicente',[Validators.required,Validators.pattern(patrones.apellidos)]],
-    email:['tirolin25@gmail.com',[Validators.required,Validators.pattern(patrones.email)]],
-    telefono:['111 111 1111',[Validators.required,Validators.pattern(patrones.telefono)]],
-    cpostal:['12345',[Validators.required,Validators.pattern(patrones.cpostal)]],
-    password1:['12345',[Validators.required ,Validators.minLength(5)]],
-    password2:['12345',Validators.required],
+    nombre:['',Validators.required],
+    apellidos:['',[Validators.required,Validators.pattern(patrones.apellidos)]],
+    email:['',[Validators.required,Validators.pattern(patrones.email)]],
+    telefono:['',[Validators.required,Validators.pattern(patrones.telefono)]],
+    cpostal:['',[Validators.required,Validators.pattern(patrones.cpostal)]],
+    password1:['',[Validators.required ,Validators.minLength(5)]],
+    password2:['',Validators.required],
     rol:['receptor',Validators.required],
   },{
     validators: [ validar2.camposIguales('password1','password2') ]
   });
 
-  constructor( private _builder:FormBuilder, private _auth:AuthService, private _router:Router) {
+  constructor( private _builder:FormBuilder, private _auth:AuthService, private _router:Router, private _isAdmin:IsAdminService) {
 
     
   }
@@ -150,6 +151,7 @@ export class RegisterComponent implements OnInit {
             console.log('Registrado correctamente')
             this.singupForm.reset(); //Borra el contenido de los inputs
             this._auth.setToken(res.token)
+            this._isAdmin.$isAdmin.emit(false)
             this._router.navigate(['/'])
         },
         (err:ErrorPost)=>{

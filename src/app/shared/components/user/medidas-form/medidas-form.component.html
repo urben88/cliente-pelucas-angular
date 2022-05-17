@@ -1,7 +1,7 @@
 <!-- ! Mensajes info -->
 <p-toast position="top-center" style="margin-top:300px"></p-toast>
 
-<div class="caja animate__animated animate__backInLeft" >
+<div class="caja animate__animated" [ngClass]="forAdmin ? 'animate__backInLeft' :'animate__fadeInUpBig'" >
     <form [formGroup]="medidasForm">
         <div class="titulo">
             <h1>Medidas de la cabeza</h1>
