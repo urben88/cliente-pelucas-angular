@@ -14,7 +14,6 @@ export class SpinnerComponent implements OnInit {
   ngOnInit(): void {
     this._spinner.getIsLoading$().subscribe(cargando=>{
       this.isLoading$ = cargando
-      console.log("ESTADO DEL SNIPPER",this.isLoading$)
     })
   }
 

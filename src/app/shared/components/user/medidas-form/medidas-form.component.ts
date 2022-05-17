@@ -216,7 +216,7 @@ export class MedidasFormComponent implements OnInit,OnChanges {
     this.erroresDB = [];
     if(this.medidasForm.invalid){
       this.medidasForm.markAllAsTouched();
-      console.log("Formulario inválido")
+      console.log("Formulario inválido en medidas")
     }else{
       console.log(this.medidasForm.value)
       let resul = this.medidasForm.value;

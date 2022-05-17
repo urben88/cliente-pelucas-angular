@@ -440,7 +440,8 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
     this.erroresDB = [];
     this.SolicitudDatosclinicosService.emitirEvento();
     this.SolicitudMedidasService.emitirEvento();
-    if (this.solicitudesForm.invalid && !this.datosClinicosStatusform && !this.medidasStatusform) {
+
+    if (this.solicitudesForm.invalid && (!this.datosClinicosStatusform || !this.medidasStatusform)) {
       this.solicitudesForm.markAllAsTouched();
       this._message.add({ severity: 'warn', summary: 'Aviso', detail: 'No todos los campos estan completados, o tienen algún error' });
       // for(var i in this.solicitudesForm.errors){
