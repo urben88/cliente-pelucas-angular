@@ -53,6 +53,9 @@
        
     }
 
+    .p-toast,.p-toast-message {
+        z-index: 999 !important;
+    }
 }
 //? Para cuando imprimo texto desde db
 .text-modal{

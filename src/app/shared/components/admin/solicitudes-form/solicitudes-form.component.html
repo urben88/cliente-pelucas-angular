@@ -17,11 +17,11 @@
         <div class="datos">
             <div  *ngIf="!medidas" class="campo">
                 <h1>Necesitamos saber sus medidas craneales</h1>
-                <user-medidas-form *ngIf="user" [forSolicitud]="true" (status)="medidasStatus($event)" [user]="user"></user-medidas-form>
+                <user-medidas-form [forSolicitud]="true" (status)="medidasStatus($event)" [user]="user"></user-medidas-form>
             </div>
             <div *ngIf="!datos_clinicos" class="campo">
                 <h1>Necesitamos conocer sus datos clínicos</h1>
-               <user-datos-clinicos-form *ngIf="user"  [forSolicitud]="true" (status)="datosClinicosStatus($event)" [user]="user"></user-datos-clinicos-form>
+               <user-datos-clinicos-form  [forSolicitud]="true" (status)="datosClinicosStatus($event)" [user]="user"></user-datos-clinicos-form>
             </div>
             <div class="campo">
                 <h1>¿Que desea solicitar?</h1>
