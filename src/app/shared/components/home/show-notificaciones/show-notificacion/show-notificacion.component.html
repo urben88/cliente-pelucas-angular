@@ -31,4 +31,6 @@
     </div>
     
     <button *ngIf="notificacion" routerLink="/notificaciones"class="btn-morado">Ver todas tus notificaciones</button>
+    <p-confirmPopup></p-confirmPopup>
+    <button *ngIf="notificacion" (click)="eliminar($event)" class="btn-rojo">Eliminar mensaje</button>
 </div>

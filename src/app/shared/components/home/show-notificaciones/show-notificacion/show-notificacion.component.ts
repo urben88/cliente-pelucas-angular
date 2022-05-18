@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
 import { Notificacion } from 'src/app/core/models/Notificacion';
 import { NotificacionesService } from 'src/app/core/services/db/notificaciones.service';
 import { NotificacionesNavService } from '../../../../../core/services/forComponents/notificaciones/notificaciones-nav.service';
@@ -10,39 +11,65 @@ import { NotificacionesNavService } from '../../../../../core/services/forCompon
   templateUrl: './show-notificacion.component.html',
   styleUrls: ['./show-notificacion.component.scss'],
 })
-export class ShowNotificacionComponent implements OnInit,OnChanges{
+export class ShowNotificacionComponent implements OnInit, OnChanges {
 
   constructor(
-    private _notificaciones:NotificacionesService,
-    private _router:Router,
+    private _notificaciones: NotificacionesService,
+    private _router: Router,
+    private _confirmationService: ConfirmationService,
   ) { }
 
-  notificacion!:Notificacion;
+  notificacion!: Notificacion;
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes['id']){
-      if(changes['id'].currentValue){
+    if (changes['id']) {
+      if (changes['id'].currentValue) {
         this._notificaciones.show(changes['id'].currentValue).subscribe(
-          (res:Notificacion)=>{
+          (res: Notificacion) => {
             console.log(res);
-            if(res){
+            if (res) {
               this.notificacion = res;
-            }else{
+            } else {
               // this._router.navigate(['/notificaciones',false])
             }
           },
-          (err:HttpErrorResponse)=>{
+          (err: HttpErrorResponse) => {
             console.error(err)
             // this._router.navigate(['/notificaciones'])
           }
         )
       }
-        
+
     }
   }
 
 
-  @Input() id!:number;
+  @Input() id!: number;
   ngOnInit(): void {
   }
+  eliminar(event: any) {
+    if (this.id) {
+      this._confirmationService.confirm({
+        target: event.target,
+        message: '¿Estas seguro que quieres eliminar el mensaje?',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+          console.log('Has aceptado')
+          this._notificaciones.delete(this.id).subscribe(
+            (res) => {
+              console.log(res);
+              this._router.navigate(['/notificaciones'])
+            },
+            (err: any) => {
+              console.error(err);
+            }
+          )
+        },
+        reject: () => {
+          console.log('Has cancelado')
+        }
+      })
+    }
+  }
+
 
 }

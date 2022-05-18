@@ -18,15 +18,15 @@
             <div class="cajaproductos">
                 <h1>Productos que ofrecemos</h1>
                 <div class="productos">
-                    <div>
+                    <div (click)="cambiarInfo('protesis')">
                         <span class="escondido"><h1>Prótesis</h1></span>
                         <img src="assets/img/home/protesis.jpg" alt="">
                     </div>
-                    <div>
+                    <div (click)="cambiarInfo('natural')">
                         <span class="escondido"><h1>Pelo natural</h1></span>
                         <img src="assets/img/home/pelo_natural.jpg" style="height: auto; width: 500px ;margin-top: 70px; margin-right: 300px;" alt="">
                     </div>
-                    <div>
+                    <div (click)="cambiarInfo('panuelo')">
                         <span class="escondido"><h1>Pañuelo</h1></span>
                         <img src="assets/img/home/textil.jpg" style="height: auto; margin-top: 180px;" alt="">
                     </div>
@@ -40,12 +40,11 @@
             </div>
         </div>
         <div class="col-12 col-md-4 d-flex justify-content-center mt-5">
-            <p-card header="Advanced Card" subheader="Card Subheader" [style]="{width: '100%'}" styleClass="p-card-shadow">
+            <p-card header="{{info.titulo}}" subheader="{{info.subtitulo}}" [style]="{width: '100%'}" styleClass="p-card-shadow">
                 <ng-template pTemplate="header">
-                    <img alt="chica_pañuelo" src="assets/img/home/chica_panuelo.jpg" style="width: 50%; margin-left: 25%;">
+                    <img alt="chica_pañuelo" src="{{info.img}}" style="width: 70%; margin-left: 15%;">
                 </ng-template>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
-                    quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+                <p>{{info.body}}</p>
                 <ng-template pTemplate="footer">
                 </ng-template>
             </p-card>

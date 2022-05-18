@@ -25,6 +25,7 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['user']){
+      console.log("USUARIO ENVIADO A DATOS CLINICOS",this.user,changes['user'].currentValue)
       this._datosClinicos.findUserDatosClinicos(this.user.id).subscribe(
         (res)=>{
          this.DatosClinicosUser = res;
@@ -43,6 +44,11 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
         }
       )
     }
+    this.datosclinicosForm.valueChanges.subscribe(
+      (res:any)=>{
+        this.status.emit(this.datosclinicosForm.valid);
+      }
+    )
   }
 
   datosclinicosForm:FormGroup = this._build.group({
@@ -67,6 +73,7 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
     this.solicitudDatosClinicos.$emitter.subscribe(
       (res)=>{
         this.crear();
+        console.log("SE CREA DATOS CLINICOS")
         this.status.emit(this.datosclinicosForm.valid);
       }
     )
@@ -74,6 +81,7 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
   
   @Input() user!:User;
   @Input() forAdmin:boolean = false;
+  @Input() forSolicitud = false;
 
   //?Validaciones personalizadas para el formgroup
   enfermedadesSelected(){
@@ -213,13 +221,13 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
   }
 
   btnStatusCreate(){
-    if(this.user && this.DatosClinicosUser == null && !this.haveDatosClinicos){
+    if(!this.forSolicitud && this.user && this.DatosClinicosUser == null && !this.haveDatosClinicos){
       return true;
     }
     return false;
   }
   btnStatusUpdate(){
-    if(this.user && this.DatosClinicosUser != null && this.haveDatosClinicos){
+    if( !this.forSolicitud && this.user && this.DatosClinicosUser != null && this.haveDatosClinicos){
       return true;
     }
     return false;
@@ -255,10 +263,11 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
     if(this.datosclinicosForm.invalid){
       this.datosclinicosForm.markAllAsTouched();
       this._message.add({severity:'warn', summary: 'Aviso', detail: 'Debes de rellenar todos los campos de los datos clínicos para crearlos'});
-      console.log("Formulario inválido")
+      console.log("Formulario inválido Datos clínicos")
     }else{
       console.log(this.datosclinicosForm.value)
       let resul = this.datosclinicosForm.value;
+      console.log("Se crean los datos clinicos")
       resul['user_id'] = this.user.id;
       console.log(resul)
       this._datosClinicos.create(resul)
@@ -267,6 +276,7 @@ export class DatosClinicosFormComponent implements OnInit,OnChanges {
           this._message.add({severity:'success', summary: 'Creado', detail: 'Se han añadido los datos clínicos correctamente'});
           this.haveDatosClinicos = true;
           this.DatosClinicosUser = res;
+          console.log(res,"DATOS CLINICOS CREADO")
           // this.SimpleTableComponent .reset(); //Borra el contenido de los inputs
         },
         (error:any) =>{

@@ -44,10 +44,16 @@ export class MedidasFormComponent implements OnInit,OnChanges {
            }
          )
        }
+       this.medidasForm.valueChanges.subscribe(
+        (res:any)=>{
+          this.status.emit(this.medidasForm.valid);
+        }
+      )
     }
 
   @Input() user!:User;
   @Input() forAdmin = false;
+  @Input() forSolicitud = false;
   // @Output() delete = new EventEmitter<boolean>();
   medidasUser!:Medidas|null;
   haveMedidas:boolean =false;
@@ -201,13 +207,13 @@ export class MedidasFormComponent implements OnInit,OnChanges {
 
   }
   btnStatusCreate(){
-    if(this.user && this.medidasUser == null && !this.haveMedidas){
+    if(!this.forSolicitud && this.user && this.medidasUser == null && !this.haveMedidas){
       return true;
     }
     return false;
   }
   btnStatusUpdate(){
-    if(this.user && this.medidasUser != null && this.haveMedidas){
+    if(!this.forSolicitud && this.user && this.medidasUser != null && this.haveMedidas){
       return true;
     }
     return false;
@@ -218,6 +224,7 @@ export class MedidasFormComponent implements OnInit,OnChanges {
       this.medidasForm.markAllAsTouched();
       console.log("Formulario inválido en medidas")
     }else{
+      console.log("Se crean las medidas medidas")
       console.log(this.medidasForm.value)
       let resul = this.medidasForm.value;
       resul['user_id'] = this.user.id;
@@ -228,6 +235,7 @@ export class MedidasFormComponent implements OnInit,OnChanges {
           this._message.add({severity:'success', summary: 'Creado', detail: 'Se han añadido las medidas correctamente'});
           this.haveMedidas = true;
           this.medidasUser = res;
+          console.log(res,"MEDIDAS CREADO")
           // this.medidasForm.reset(); //Borra el contenido de los inputs
         },
         (error:any) =>{

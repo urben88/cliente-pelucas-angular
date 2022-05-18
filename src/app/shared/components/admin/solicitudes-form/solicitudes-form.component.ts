@@ -146,6 +146,7 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
   setCentro!: any;
   centroValid: boolean = false;
 
+  loadingbtn:boolean = false;
 
   disponibilidad: any = disponibilidad;
 
@@ -437,20 +438,52 @@ export class SolicitudesFormComponent implements OnInit, OnChanges {
 
 
   crear() {
+    this.loadingbtn = true
     this.erroresDB = [];
-    this.SolicitudDatosclinicosService.emitirEvento();
-    this.SolicitudMedidasService.emitirEvento();
+    if(!this.medidas && this.datos_clinicos && !this.medidas && this.solicitudesForm.valid){
+      this.SolicitudMedidasService.emitirEvento();
+    }
+    if(!this.datos_clinicos && this.medidas && this.solicitudesForm.valid){
+      this.SolicitudDatosclinicosService.emitirEvento();
+      console.log("Se emite evento en caso 2")
+    }
+    if(!this.datos_clinicos && !this.medidas && this.solicitudesForm.valid){
+      if(this.datosClinicosStatusform && this.medidasStatusform){
+        console.log("Se emite evento en caso 3")
+        this.SolicitudDatosclinicosService.emitirEvento();
+        this.SolicitudMedidasService.emitirEvento();
+      }
+    }
 
-    if (this.solicitudesForm.invalid && (!this.datosClinicosStatusform || !this.medidasStatusform)) {
+    //? Para saber en que situación de datos nos encontramos
+    let expresonInvalido;
+    if(!this.medidas && !this.datos_clinicos){
+      console.log("Caso 1")
+      expresonInvalido = !this.solicitudesForm.valid || !this.datosClinicosStatusform || !this.medidasStatusform;
+    }else if(!this.medidas){
+      console.log("Caso 2")
+      expresonInvalido = (!this.solicitudesForm.valid) || (!this.medidasStatusform);
+    }else if(!this.datos_clinicos){
+      console.log("Caso 3")
+      expresonInvalido = (!this.solicitudesForm.valid) || (!this.datosClinicosStatusform);
+    }else{
+      console.log("Caso 4")
+      expresonInvalido = (!this.solicitudesForm.valid);
+    }
+    console.log(this.solicitudesForm.valid,this.datosClinicosStatusform,this.medidasStatusform)
+    console.log(expresonInvalido)
+    //? !this.solicitudesForm.valid && !this.datosClinicosStatusform || !this.medidasStatusform
+    if (expresonInvalido) {
+      this.loadingbtn = false;
       this.solicitudesForm.markAllAsTouched();
       this._message.add({ severity: 'warn', summary: 'Aviso', detail: 'No todos los campos estan completados, o tienen algún error' });
       // for(var i in this.solicitudesForm.errors){
-      //   this._message.add({ severity: 'error', summary: 'Error', detail: i });
-      // }
-
-      console.log("Formulario inválido")
-    } else {
-      console.log("correcto")
+        //   this._message.add({ severity: 'error', summary: 'Error', detail: i });
+        // }
+        
+        console.log("Formulario inválido")
+      } else {
+        console.log("correcto")
       // console.log(this.solicitudesForm.value)
       let resul = this.crearJSONSolicitud()
       // console.log(resul)
