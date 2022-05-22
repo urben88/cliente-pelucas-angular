@@ -1,0 +1,11 @@
+@import "../../../../../styles.scss";
+.select{
+    animation: 1s;
+    background-color: $azul-selected  !important;
+}
+.data{
+    &:hover{
+        cursor: pointer;
+    }
+    user-select: none;
+}

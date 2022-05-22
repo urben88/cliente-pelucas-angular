@@ -1,0 +1,39 @@
+<div class="contenedor">
+    <div class="select">
+        <label for="provincia">Escoge la provincia</label>
+        <div>
+            <p-dropdown id="provincia" [(ngModel)]="provinciaSelected" (onChange)="provinciaChange($event)" [options]="dropdown" optionLabel="label" optionValue="value"></p-dropdown>
+            <small style="margin-top: -30px;" *ngIf="campoEsValido('centro')" class="p-error block" >
+                {{ centroErrorMsg }}
+            </small>
+        </div>
+        <!-- {{ centrosForm.status }} -->
+    </div>
+    <div class="centros">
+        <div *ngIf="provinciaSelected == CentrosEnum.Valencia" class="titulo">
+            <h2>Valencia</h2>
+            <img class="mancha animate__animated animate__bounce" src="assets/decorados/Mancha.svg">
+            <img class="animate__animated animate__bounce" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Escut_de_Val%C3%A8ncia.svg/1200px-Escut_de_Val%C3%A8ncia.svg.png" alt="Escudo valencia">
+        </div>
+        <div *ngIf="provinciaSelected == CentrosEnum.Castellon"  class="titulo">
+            <h2>Castellón</h2>
+            <img class="mancha animate__animated animate__bounce" src="assets/decorados/Mancha.svg">
+            <img class="animate__animated animate__bounce" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Escut_de_Castell%C3%B3_ornamentat-2.svg/1200px-Escut_de_Castell%C3%B3_ornamentat-2.svg.png" alt="Escudo castellón">
+        </div>
+        <div *ngIf="provinciaSelected == CentrosEnum.Alicante"  class="titulo">
+            <h2>Alicante</h2>
+            <img class="mancha animate__animated animate__bounce" src="assets/decorados/Mancha.svg">
+            <img class="animate__animated animate__bounce" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Escut_d%27Alacant_02.svg/1200px-Escut_d%27Alacant_02.svg.png" alt="Escudo alicante">
+        </div>
+        <div class="cards">
+            <div *ngFor="let centro of centros" class="card" style="width: 14rem;" [ngClass]="selectedStyle(centro)" (click)="seleccionar(centro)">
+                <img class="card-img" src="{{ centro.img }}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{ centro.nombre }}</h5>
+                  <p class="card-subtitle mb-2 text-muted">{{ centro.ciudad }}</p>
+                  <small><i class="fa-solid fa-check"></i></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

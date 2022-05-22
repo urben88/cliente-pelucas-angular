@@ -1,0 +1,20 @@
+@mixin text-h1-morado(){
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+    /* identical to box height */
+    letter-spacing: -0.015em;
+    /* Morado letra */
+    color: #7879F1;
+} 
+$morado-input: #9C27B0;
+$morado-footer: #3D2844;
+$morado-footer-claro: #3d2844b3;
+$morado-boton: #7879F1;
+$rosa:#F329CD;
+$rosa-hover:#F8BCDB;
+$azul:#4CECF8;
+$azul-selected:#ABC5FB;
+$gris-fondo:#F8F8F8;

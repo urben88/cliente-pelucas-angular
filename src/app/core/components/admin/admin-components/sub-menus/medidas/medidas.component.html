@@ -1,0 +1,10 @@
+<div class="caja">
+    <h1>Administrar Medidas de los usuarios</h1>
+    <app-spinner></app-spinner>
+    <div class="tabla">
+        <admin-selec-row-table [rows]="users | selecRow:'users'" (selected)="userSelect($event)"></admin-selec-row-table>
+    </div>
+    
+    <generic-info-user *ngIf="userSelected" [user]="userSelected" [title]="'Medidas del usuario:'" ></generic-info-user>
+    <user-medidas-form *ngIf="userSelected" [forAdmin]="true" [user]="userSelected"></user-medidas-form>
+</div>

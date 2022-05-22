@@ -1,0 +1,47 @@
+@import "../../../styles.scss";
+.container{
+    padding-top: $navheigth + 70px;
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .caja{
+        background-color: white;
+        z-index: 9;
+        width: 75%;
+        min-width: 200px;
+        border: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        .datos{
+            font-size: 100%;
+            // border: 2px solid black;
+            margin: 20px 0px;
+            input{
+                width: 100%;
+            }
+            .field{
+                margin-bottom: 10px;
+            }
+            .doble{
+                display: flex;
+                justify-content: space-around;
+                // border: 2px solid black;
+                gap: 20px;
+                width: 100%;
+                p-inputNumber{
+                    width: 100% !important;
+                }
+            }
+            p-password{
+                width: 100% !important;
+                margin-bottom: 20px;
+            }
+        }
+        button{
+            width: 180px;
+        }
+
+    }
+}

@@ -1,0 +1,54 @@
+<!-- ! Mensajes info -->
+<p-toast position="top-center" style="margin-top:300px"></p-toast>
+
+<div class="caja animate__animated animate__backInLeft">
+    <form [formGroup]="chequesRegaloForm">
+      <div class="titulo" style="display: flex; align-items:center; gap:10px">
+            <h1>Cheques regalo</h1><icon-refresh (update)="reset()" *ngIf="chequeRegalo"></icon-refresh>
+      </div>
+    
+      <h2 *ngIf="!chequeRegalo" style="color: green">Crear</h2>
+      <h2 *ngIf="chequeRegalo" style="color: blue">Actualizar</h2>
+
+        <div class="datos">
+            
+            <div class="campo">
+
+                    <div class="field" style="display: flex; flex-direction: column;">
+                        <label for="enfermedades" class="block">Servicio</label>
+                                <p-dropdown [options]="tiposselect" optionLabel="name" optionValue="value"
+                                    formControlName="tipo" placeholder="Selecciona el tipo de servicio" [showClear]="true">
+                                </p-dropdown>
+                        <small *ngIf="campoEsValido('tipo')" class="p-error block">
+                            {{ tipoErrorMsg }}
+                        </small>
+                    </div>
+    
+                    <div class="field" style="display: flex; flex-direction: column;">
+                        <label for="enfermedades" class="block">Servicio</label>
+                        <input pInputText type="text" formControlName="servicio">
+                        <small *ngIf="campoEsValido('servicio')" class="p-error block">
+                            {{ servicioErrorMsg }}
+                        </small>
+                    </div>
+                    <div class="field" style="display: flex; flex-direction: column;">
+                        <label for="enfermedades" class="block">Describe el servicio</label>
+                        <textarea id="enfermedades" [rows]="5" [cols]="30" [autoResize]="false" [maxlength]="300"
+                            pInputTextarea formControlName="descripcion"></textarea>
+                        <small *ngIf="campoEsValido('descripcion')" class="p-error block">
+                            {{ descripcionErrorMsg }}
+                        </small>
+                    </div>
+
+                    <div class="botones">
+                        <button *ngIf="btnStatusUpdate()" (click)="update()" class="btn-morado">Actualizar</button>
+                        <button *ngIf="btnStatusCreate()" (click)="crear()" class="btn-morado">Crear</button>
+                        <p-confirmPopup></p-confirmPopup>
+                        <button (click)="eliminar($event)" pButton *ngIf="btnStatusUpdate()" class="btn-rojo">Eliminar
+                            cheque</button>
+                        <alert-dberrors [erroresDB]="erroresDB"></alert-dberrors>
+                    </div>
+                </div>
+            </div>
+    </form>
+</div>

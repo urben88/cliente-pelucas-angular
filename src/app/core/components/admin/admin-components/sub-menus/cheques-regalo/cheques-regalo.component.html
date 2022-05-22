@@ -1,0 +1,10 @@
+<div class="caja">
+    <h1>Administrar servicios de los Cheques regalo</h1>
+    <app-spinner></app-spinner>
+    <div class="tabla">
+        <admin-selec-row-table [rows]="cheques  | selecRow:'cheques_regalo'" (selected)="chequeSelect($event)"></admin-selec-row-table>
+    </div>
+    <div class="form">
+        <admin-cheques-regalo-form [chequeRegalo]="chequeSelected"></admin-cheques-regalo-form>
+    </div>
+</div>

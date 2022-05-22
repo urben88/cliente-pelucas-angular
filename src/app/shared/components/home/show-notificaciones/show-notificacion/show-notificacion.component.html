@@ -1,0 +1,36 @@
+
+<div class="caja">
+    <app-spinner></app-spinner>
+
+    <div *ngIf="notificacion" class="notificacion">
+        <container-element [ngSwitch]="notificacion.tipo" class="tipo">
+            <h1 *ngSwitchCase="'success'" style="color:green">Éxito<i class="pi pi-check" style="color: green;"></i></h1>  
+            <h1 *ngSwitchCase="'info'" style="color:blue">Info<i style="color: blue;" class="pi pi-info-circle"></i></h1>  
+            <h1 *ngSwitchCase="'warn'" style="color:orange">Aviso <i class="pi pi-exclamation-triangle"  style="color: orange;"> </i></h1>  
+        </container-element>
+
+        <div class="titulo">
+            <!-- <p-fieldset legend="Título"> -->
+                        <h3><i class="fa-solid fa-angle-right" style="color:black; margin-right: 20px;"></i>{{ notificacion.header }}</h3>
+            <!-- </p-fieldset> -->
+        </div>
+      
+        <div class="mensaje">
+            <!-- <p-fieldset legend="Mensaje"> -->
+                <div [innerHTML]="notificacion.mensaje | sanitizeHtml:'html' " class='ql-editor ql-blank'></div>
+            <!-- </p-fieldset> -->
+        </div>
+        <div class="info" style="align-self: flex-end;">
+            <div class="creado">
+                <strong>Creado: </strong><small> {{ notificacion.createdAt | date: 'dd/MM/yyyy hh:mm a'}}</small>
+            </div>
+            <div class="actualizado">
+                <strong>Actualizado: </strong><small> {{ notificacion.updatedAt | date: 'dd/MM/yyyy hh:mm a' }}</small>
+            </div>
+        </div>
+    </div>
+    
+    <button *ngIf="notificacion" routerLink="/notificaciones"class="btn-morado">Ver todas tus notificaciones</button>
+    <p-confirmPopup></p-confirmPopup>
+    <button *ngIf="notificacion" (click)="eliminar($event)" class="btn-rojo">Eliminar mensaje</button>
+</div>

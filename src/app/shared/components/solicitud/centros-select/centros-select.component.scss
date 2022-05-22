@@ -1,0 +1,137 @@
+@import "../../../../../styles.scss";
+
+.contenedor{
+    width: 100% !important;
+    .select{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        div{
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            position: relative;
+            small{
+                bottom: -20px;
+                position: absolute;
+                width: 400px;
+                left: -40px;
+            }
+        }
+    }
+    .centros{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 20px;
+        min-width: 100% !important;
+        justify-content: flex-start;
+        .titulo{
+            padding: 20px 50px;
+            text-align: center;
+            grid-column: 1/2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            img{
+                width: 200px;
+                z-index: 2;
+            }
+            .mancha{
+                position: absolute;
+                z-index: 0;
+                width: 100%;
+            }
+            h2{
+                z-index: 2;
+            }
+            // border-right: 10px solid $morado-footer;
+
+        }
+        .cards{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: start;
+            align-items: center;
+            gap: 30px;
+            margin-top: 40px;
+            .card{
+                cursor: pointer;
+                transition: 0.2s;
+                &:hover{
+                    transform: scale(0.9);
+                    background-color: $morado-boton;
+                    color: white;
+                    p{
+                        color: #F8F8F8 !important;
+                    }
+                    small{
+                        // display: block;
+                    }
+                }
+                small{
+                    position: absolute;
+                    right: 20px;
+                    bottom: 20px;
+                    font-weight: bold;
+                    color: $rosa;
+                    font-size: 30px;
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.selected{
+    background-color: $morado-boton;
+    color: white;
+    small{
+        display: block !important;
+    }
+    p{
+        color: #F8F8F8 !important;
+    }
+}
+
+// `xs` devuelve solo un conjunto de reglas y ninguna consulta de medios
+// ... { ... }
+
+// `sm` se aplica a dispositivos x-small (teléfonos verticales, menos de 576px)
+@media (max-width: 575.98px) {  }
+
+// `md` se aplica a dispositivos pequeños (teléfonos horizontales, menos de 768px)
+@media (max-width: 767.98px) {
+
+}
+
+// "lg" se aplica a dispositivos medianos (tabletas, menos de 992 px)
+@media (max-width: 991.98px) { 
+    .cards{
+        justify-content: center !important;
+        align-items: center !important;
+    }
+ }
+
+// `xl` se aplica a dispositivos grandes (computadoras de escritorio, menos de 1200 px)
+@media (max-width: 1199.98px) { 
+    .centros{
+        .titulo{
+            width: 100% !important;
+        }
+        flex-direction: column !important; 
+    }
+    .mancha{
+        width: 60% !important;
+    }
+
+}
+
+// `xxl` se aplica a dispositivos de gran tamaño (escritorios grandes, menos de 1400px)
+@media (max-width: 1399.98px) {  }

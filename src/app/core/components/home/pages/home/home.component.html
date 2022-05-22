@@ -1,0 +1,65 @@
+
+<!-- <p style="min-height: 500px;">home works!</p> -->
+<div class="container mb-3">
+    <!--! Primera fila -->
+    <div class="row">
+        <div class="col video">
+            <div class="texto">
+                <h1>Última novedad en nuestro canal de youtube!</h1>
+                <a href="https://www.youtube.com/channel/UCwtSyT2KmN-yW2rc2w--k9w/featured" class="btn-morado">Visitar</a>
+            </div>
+            <youtube-player videoId="N64uEBrVSpI" [width]="350" [height]="250"></youtube-player>
+        </div> 
+    </div>
+    <!--! Segunda fila -->
+    <div class="row mt-3" style="position: relative;" >
+        <img src="/assets/decorados/PelucaRosa.svg" alt="peluca" class="peluca">
+        <div class="col-12 col-md-8 d-flex justify-content-center pe-3">
+            <div class="cajaproductos">
+                <h1>Productos que ofrecemos</h1>
+                <div class="productos">
+                    <div (click)="cambiarInfo('protesis')">
+                        <span class="escondido"><h1>Prótesis</h1></span>
+                        <img src="assets/img/home/protesis.jpg" alt="">
+                    </div>
+                    <div (click)="cambiarInfo('natural')">
+                        <span class="escondido"><h1>Pelo natural</h1></span>
+                        <img src="assets/img/home/pelo_natural.jpg" style="height: auto; width: 500px ;margin-top: 70px; margin-right: 300px;" alt="">
+                    </div>
+                    <div (click)="cambiarInfo('panuelo')">
+                        <span class="escondido"><h1>Pañuelo</h1></span>
+                        <img src="assets/img/home/textil.jpg" style="height: auto; margin-top: 180px;" alt="">
+                    </div>
+                    <!-- <div>
+                        <span class="escondido"><h1>Pañuelo</h1></span>
+                        <img src="assets/img/home/chica_panuelo.jpg" style="margin-top: 100px;" alt="">
+                    </div> -->
+                    
+                </div>
+
+            </div>
+        </div>
+        <div class="col-12 col-md-4 d-flex justify-content-center mt-5">
+            <p-card header="{{info.titulo}}" subheader="{{info.subtitulo}}" [style]="{width: '100%'}" styleClass="p-card-shadow">
+                <ng-template pTemplate="header">
+                    <img alt="chica_pañuelo" src="{{info.img}}" style="width: 70%; margin-left: 15%;">
+                </ng-template>
+                <p>{{info.body}}</p>
+                <ng-template pTemplate="footer">
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+    <!--! Tercera fila -->
+    <div class="hero-centros row p-5">
+            <div class="col-12 col-md-6 centros">
+                <div>
+                    <h1>Visita los centros que colaboran</h1>
+                    <button class="btn-morado" routerLink="centros">Visitar</button> 
+                </div> 
+            </div>
+            <div class="col-12 col-md-6 foto p-0 m-0">
+                <!-- <img alt="vereda" src="assets/img/home/vereda.jpg" style="width: 100%;"> -->
+            </div>
+    </div>
+</div>

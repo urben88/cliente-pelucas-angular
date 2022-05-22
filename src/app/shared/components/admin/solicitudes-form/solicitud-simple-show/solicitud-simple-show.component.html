@@ -1,0 +1,121 @@
+<generic-info-user *ngIf="!forUser && user" [user]="user"></generic-info-user>
+<!-- ! Mensajes info -->
+<p-toast position="top-center" style="margin-top:300px"></p-toast>
+
+<div *ngIf="solicitud" class="caja">
+    <h1>Estado de la solicitud:</h1>
+    <span style="color:green" class="estado" *ngIf="solicitud.aceptado">Aceptada <i class="fa-solid fa-circle-check"></i></span>
+    <span style="color: red" class="estado" *ngIf="!solicitud.aceptado">Pendiente de aceptar <i class="fa-solid fa-clock"></i></span>
+    <div class="cajadatos">
+        <div class="part">
+            <h1>Productos</h1>
+            <div *ngIf="solicitud.cabello" class="producto">
+                <h3>Cabello</h3>
+                <div class="attr">
+                    <small>forma</small>
+                    <h3>{{solicitud.cabello.forma | titlecase}}</h3>
+                    <img *ngIf="solicitud.cabello.forma == 'liso'" src="../../../../../assets/decorados/formasPelo/liso.svg"
+                        class="formamini">
+                    <img *ngIf="solicitud.cabello.forma  == 'rizado'"
+                        src="../../../../../assets/decorados/formasPelo/rizado.svg" class="formamini">
+                    <img *ngIf="solicitud.cabello.forma  == 'ondulado'"
+                        src="../../../../../assets/decorados/formasPelo/ondulado.svg" class="formamini">
+                </div>
+    
+                <div class="attr">
+                    <small>color</small>
+                    <h3>{{solicitud.cabello.color | titlecase}}</h3>
+                    <img [src]="colorPeluca(solicitud.cabello.color )" class="pelucamini">
+                </div>
+                <div class="attr">
+                    <small>longitud</small>
+                    <h3>{{solicitud.cabello.longitud | titlecase}}</h3>
+                    <img *ngIf="solicitud.cabello.longitud  == 'corto'"
+                        src="../../../../../assets/img/icons/largura/corto.png" class="pelucamini">
+                    <img *ngIf="solicitud.cabello.longitud  == 'medio'"
+                        src="../../../../../assets/img/icons/largura/medio.png" class="pelucamini">
+                    <img *ngIf="solicitud.cabello.longitud  == 'largo'"
+                        src="../../../../../assets/img/icons/largura/largo.png" class="pelucamini">
+                </div>
+    
+            </div>
+            <div *ngIf="solicitud.protesis" class="producto">
+                <h3>Protesis</h3>
+                <div class="attr">
+                    <small>forma</small>
+                    <h3>{{solicitud.protesis.forma | titlecase}}</h3>
+                    <img *ngIf="solicitud.protesis.forma == 'liso'"
+                        src="../../../../../assets/decorados/formasPelo/liso.svg" class="formamini">
+                    <img *ngIf="solicitud.protesis.forma  == 'rizado'"
+                        src="../../../../../assets/decorados/formasPelo/rizado.svg" class="formamini">
+                    <img *ngIf="solicitud.protesis.forma  == 'ondulado'"
+                        src="../../../../../assets/decorados/formasPelo/ondulado.svg" class="formamini">
+                </div>
+                <div class="attr">
+                    <small>color</small>
+                    <h3>{{solicitud.protesis.color | titlecase}}</h3>
+                    <img [src]="colorPeluca(solicitud.protesis.color )" class="pelucamini">
+                </div>
+                <div class="attr">
+                    <small>longitud</small>
+                    <h3> {{solicitud.protesis.longitud | titlecase}}</h3>
+                    <img *ngIf="solicitud.protesis.longitud  == 'corto'"
+                        src="../../../../../assets/img/icons/largura/corto.png" class="pelucamini">
+                    <img *ngIf="solicitud.protesis.longitud  == 'medio'"
+                        src="../../../../../assets/img/icons/largura/medio.png" class="pelucamini">
+                    <img *ngIf="solicitud.protesis.longitud  == 'largo'"
+                        src="../../../../../assets/img/icons/largura/largo.png" class="pelucamini">
+                </div>
+    
+    
+            </div>
+            <div *ngIf="solicitud.textil" class="producto">
+                <h3>Textil</h3>
+                <div class="attr">
+                    <small>color</small>
+                    <h3>{{solicitud.textil.color | titlecase}}</h3>
+                    <img [src]="colorPanuelo(solicitud.textil.color)" class="pelucamini">
+                </div>
+                
+            </div>
+    
+        </div>
+    
+        <div class="part">
+            <h1>Servicio gratuito</h1>
+            <div class="servicio">
+                <cheques-regalo-card *ngIf="solicitud.cheques_regaloId" [cheque_regaloId]="solicitud.cheques_regaloId">
+                </cheques-regalo-card>
+                <!-- {{ cheque_regalo[0].servicio}} -->
+            </div>
+        </div>
+    
+        <div class="part">
+            <h1>Disponibilidad</h1>
+            <div class="disponibilidad">
+                <h3>{{ solicitud.disponibilidad | titlecase }}</h3>
+                <img *ngIf="solicitud.disponibilidad == 'Mañanas' " src="assets/img/solicitud/partes-dia/manana.PNG">
+                <img *ngIf="solicitud.disponibilidad == 'Medios días' " src="assets/img/solicitud/partes-dia/medio-dia.PNG">
+                <img *ngIf="solicitud.disponibilidad == 'Tardes' " src="assets/img/solicitud/partes-dia/tarde.PNG">
+                <img *ngIf="solicitud.disponibilidad != 'Mañanas' && solicitud.disponibilidad != 'Medios días' && solicitud.disponibilidad != 'Tardes'"
+                    src="assets/img/solicitud/partes-dia/otro.PNG">
+            </div>
+        </div>
+        <div class="part">
+            <h1>Lugar de recogida</h1>
+            <div class="lugar">
+                <h3></h3>
+                <centro-card *ngIf="solicitud.centrosId" [info]="true" [centroId]="solicitud.centrosId"></centro-card>
+            </div>
+        </div>
+    </div>
+
+    <admin-form-notificaciones *ngIf="!this.solicitud.aceptado && !forUser" [cabecera]="header" (new)="newNotificacion($event)" (status)="notificacionStatus($event)" [forSolicitud]="true" [user]="user"></admin-form-notificaciones>
+
+    <div class="botones">
+        <p-confirmPopup></p-confirmPopup>
+        <button class="btn-verde" (click)="aceptar()" *ngIf="!solicitud.aceptado && !forUser">Aceptar solicitud</button>
+        <button class="btn-rojo"  (click)="cancelar()" *ngIf="solicitud.aceptado && !forUser">Cancelar solicitud</button>
+        <button (click)="eliminar($event)"  pButton  class="btn-rojo">Eliminar solicitud</button>
+    </div>
+</div>

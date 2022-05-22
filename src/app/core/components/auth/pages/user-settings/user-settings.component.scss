@@ -1,0 +1,38 @@
+@import "../../../../../../styles.scss";
+.container{
+    position: relative;
+    z-index: 1 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: $navheigth + 70px;
+    user-select: none;
+    gap: 50px;
+    padding-bottom: 50px !important;
+}
+user-update{
+    z-index: 99 !important
+}
+.circulo1,.circulo2{
+    z-index: 0;
+    position: fixed;
+    user-select: none;
+    overflow: hidden;
+}
+
+.circulo1{
+    transform: rotate(16.35deg);
+    width: 1058px;
+    height: 1007.98px;
+    left: -211.27px;
+    top: -348px;
+}
+.circulo2{
+    width: 675.82px;
+    height: 643.87px;
+    left: 1300.06px;
+    top: 174.05px;
+    transform: rotate(-148.03deg);
+
+}

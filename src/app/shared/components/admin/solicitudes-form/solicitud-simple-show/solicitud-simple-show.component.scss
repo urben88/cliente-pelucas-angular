@@ -1,0 +1,122 @@
+@import "../../../../../../styles.scss";
+.caja{
+    border:  2px solid black;
+    padding: 40px;
+    background-color: white;
+    width: 100%;
+    .estado{
+        font-size: 30px;
+        padding-bottom: 30px;
+    }
+    .cajadatos{
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 30px;
+        .part{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 20px;
+        
+            h1{
+                color: $morado-input;
+                font-weight: bold;
+            }
+            img{
+                width: 70px;
+            }
+            .producto{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 30px;
+                padding-left: 30px;
+                margin-right: 30px;
+                padding-bottom: 20px;
+                padding-top: 40px;
+                border-left: $morado-boton 10px solid;
+                border-bottom: $morado-boton 5px solid;
+                border-radius: 10px 0px 0px 10px;
+                .attr{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    small{
+                        font-size: 10px;
+                        text-transform: uppercase;
+                    }
+                    h3{
+                        font-weight: 500;
+                        color: $morado-boton;
+                        text-decoration: none;
+                    }
+                    padding-bottom: 20px;
+                    text-decoration: none;
+                }
+                h3{
+                    min-width: 100%;
+                    font-weight: bold;
+                    color: $morado-footer-claro;
+                    // text-decoration: underline;
+                }
+            }
+            .disponibilidad{
+                display: flex;
+                justify-content: flex-start !important;
+                align-items: center;
+                flex-direction: row;
+                gap: 20px;
+                img{
+                    width: 200px;
+                }
+                h3{
+                    margin-left: 30px;
+                    width: auto;
+                    font-weight: bold;
+                    color: $morado-footer-claro;
+                    // text-decoration: underline;
+                }
+            }
+        }
+    }
+    .botones{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin: 50px;
+        gap: 20px;
+    }
+}
+
+// `xs` devuelve solo un conjunto de reglas y ninguna consulta de medios
+// ... { ... }
+
+// `sm` se aplica a dispositivos x-small (teléfonos verticales, menos de 576px)
+@media (max-width: 575.98px) {  }
+
+// `md` se aplica a dispositivos pequeños (teléfonos horizontales, menos de 768px)
+@media (max-width: 767.98px) {
+}
+
+// "lg" se aplica a dispositivos medianos (tabletas, menos de 992 px)
+@media (max-width: 991.98px) {  
+    .caja{
+        .cajadatos{
+            grid-template-columns: repeat(1,1fr) !important;
+        }
+    }
+    .lugar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+// `xl` se aplica a dispositivos grandes (computadoras de escritorio, menos de 1200 px)
+@media (max-width: 1199.98px) {  }
+
+// `xxl` se aplica a dispositivos de gran tamaño (escritorios grandes, menos de 1400px)
+@media (max-width: 1399.98px) {  }

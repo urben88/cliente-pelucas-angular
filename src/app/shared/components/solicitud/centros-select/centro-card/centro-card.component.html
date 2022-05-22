@@ -1,0 +1,17 @@
+<div *ngIf="centro && !info" class="card" style="width: 14rem;">
+    <img class="card-img" src="{{ centro.img }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ centro.nombre }}</h5>
+      <p class="card-subtitle mb-2 text-muted">{{ centro.ciudad }}</p>
+      <small><i class="fa-solid fa-check"></i></small>
+    </div>
+</div>
+
+<div *ngIf="info && centro" class="cardinfo" style="width: 14rem;" (click)="irInfo(centro.info)">
+    <img class="card-img" src="{{ centro.img }}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ centro.nombre }}</h5>
+      <p class="card-subtitle mb-2 text-muted">{{ centro.ciudad }} {{centro.provincia}}</p>
+      
+      <small>+ Info</small>
+</div>

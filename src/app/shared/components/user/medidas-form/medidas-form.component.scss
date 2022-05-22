@@ -1,0 +1,133 @@
+@import "../../../../../styles.scss";
+.caja{
+    background-color: white;
+    z-index: 9;
+    width: 100%;
+    min-width: 200px;
+    border: 2px solid black;
+    padding: 30px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    .titulo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    
+    }
+    .datos{
+        max-width: 900px;
+        font-size: 100%;
+        margin: 20px 0px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 30px;
+        input{
+            width: 100%;
+        }
+        .field{
+            margin-bottom: 10px;
+        }
+        .doble{
+            display: flex;
+            justify-content: space-around;
+            // border: 2px solid black;
+            gap: 20px;
+            width: 100%;
+            p-inputNumber{
+                width: 100% !important;
+            }
+        }
+        .campo{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows:repeat(4, 1fr);
+            gap: 30px; 
+            width: 100%;
+            .carta{
+                background-color: $gris-fondo;
+                border: 2px solid black;
+                display:grid;
+                grid-template-columns: repeat(2, 1fr);
+                justify-items: center;
+                align-items: center;
+                .cajaimg{
+                    padding: 10px;
+
+                }
+                .field{
+                    justify-self: flex-start;
+                    .input{
+                        input{
+                            margin-right: 10px;
+                        }
+                    }
+                }
+
+            }
+        }
+        .botones{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+    }
+    button{
+        width: 180px;
+    }
+}
+.flexrow{
+    flex-direction: row !important;
+}
+.flexcolumn{
+    flex-direction: column !important;
+}
+.inputNumber{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    color: #495057;
+    background: #ffffff;
+    padding: 0.5rem 0.5rem;
+    border: 1px solid #ced4da;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    border-radius: 3px;
+    width: 100px !important;
+    &:focus{
+        transition: 0.1s;
+        border: 0.5px solid #9C27B0;
+        outline: 3px solid #DF9EEA;
+    }
+
+}
+.inputError{
+    border: 2px solid red !important;
+}
+// `xs` devuelve solo un conjunto de reglas y ninguna consulta de medios
+// ... { ... }
+
+// `sm` se aplica a dispositivos x-small (teléfonos verticales, menos de 576px)
+@media (max-width: 575.98px) {}
+
+// `md` se aplica a dispositivos pequeños (teléfonos horizontales, menos de 768px)
+@media (max-width: 767.98px) {  }
+
+// "lg" se aplica a dispositivos medianos (tabletas, menos de 992 px)
+@media (max-width: 991.98px) { 
+    .campo{
+        grid-template-columns: repeat(1, 1fr) !important;
+        grid-auto-rows:repeat(4, 1fr);
+    }
+}
+
+// `xl` se aplica a dispositivos grandes (computadoras de escritorio, menos de 1200 px)
+@media (max-width: 1199.98px) {  }
+
+// `xxl` se aplica a dispositivos de gran tamaño (escritorios grandes, menos de 1400px)
+@media (max-width: 1399.98px) { }

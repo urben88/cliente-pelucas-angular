@@ -1,0 +1,51 @@
+<form [formGroup]="protesisForm">
+    <div class="datos">
+        <!-- <div class="field" style="display: flex; flex-direction: column;">
+            <label for="tratamiento_actual" class="block">Forma del cabello</label>
+            <input id="email" type="email" aria-describedby="username2-help" pInputText/>
+            <small *ngIf="campoEsValido('forma')" class="p-error block">
+                {{ formaErrorMsg }}
+            </small>
+        </div> -->
+        <div class="field" style="display: flex; flex-direction: column;">
+            <label for="tratamiento_actual" class="block">Forma de la prótesis</label>
+                <div class="cajainput">
+                    <p-dropdown [options]="formas" optionLabel="name" optionValue="value" formControlName="forma" 
+                         placeholder="Selecciona la forma" [showClear]="true">
+                    </p-dropdown>
+                    <img *ngIf="protesisForm.controls['forma'].value == 'liso'" src="../../../../../assets/decorados/formasPelo/liso.svg" class="formamini">
+                    <img *ngIf="protesisForm.controls['forma'].value == 'rizado'" src="../../../../../assets/decorados/formasPelo/rizado.svg" class="formamini">
+                    <img *ngIf="protesisForm.controls['forma'].value == 'ondulado'" src="../../../../../assets/decorados/formasPelo/ondulado.svg" class="formamini">
+                </div>
+            <small *ngIf="campoEsValido('forma')" class="p-error block">
+                {{ formaErrorMsg }}
+            </small>
+        </div>
+        <div class="field" style="display: flex; flex-direction: column;">
+            <label for="tratamiento_actual" class="block">Color de la prótesis</label>
+            <div class="cajainput">
+                <p-dropdown [options]="color" optionLabel="name" optionValue="value" formControlName="color" 
+                     placeholder="Selecciona el color" [showClear]="true">
+                </p-dropdown>     
+                <img *ngIf="protesisForm.controls['color'].value" [src]="colorPeluca()" class="pelucamini">
+            </div>
+            <small *ngIf="campoEsValido('color')" class="p-error block">
+                {{ colorErrorMsg }}
+            </small>
+        </div>
+        <div class="field" style="display: flex; flex-direction: column;">
+            <label for="tratamiento_actual" class="block">Largura</label>
+            <div class="cajainput">
+                <p-dropdown [options]="longitud" optionLabel="name" optionValue="value" formControlName="longitud" 
+                     placeholder="Selecciona la largura" [showClear]="true">
+                </p-dropdown>
+                <img *ngIf="protesisForm.controls['longitud'].value == 'corto'" src="../../../../../assets/img/icons/largura/corto.png" class="pelucamini">
+                <img *ngIf="protesisForm.controls['longitud'].value == 'medio'" src="../../../../../assets/img/icons/largura/medio.png" class="pelucamini">
+                <img *ngIf="protesisForm.controls['longitud'].value == 'largo'" src="../../../../../assets/img/icons/largura/largo.png" class="pelucamini">
+            </div>
+            <small *ngIf="campoEsValido('longitud')" class="p-error block">
+                {{ longitudErrorMsg }}
+            </small>
+        </div>
+    </div>
+</form>

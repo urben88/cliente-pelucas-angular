@@ -1,0 +1,71 @@
+
+@import "../../../../../../styles.scss";
+.card{
+    cursor: pointer;
+    transition: 0.2s;
+    &:hover{
+        transform: scale(0.9);
+        background-color: $morado-boton;
+        color: white;
+        p{
+            color: #F8F8F8 !important;
+        }
+        small{
+            // display: block;
+        }
+    }
+    small{
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        font-weight: bold;
+        color: $rosa;
+        font-size: 30px;
+        display: none;
+    }
+}
+
+.cardinfo{
+    cursor: pointer;
+    transition: 0.2s;
+    background-color: rgba(236, 236, 236, 0.486);
+    &:hover{
+        transform: scale(0.9);
+        background-color: $morado-boton;
+        color: rgb(249, 249, 249);
+        p{
+            color: #F8F8F8 !important;
+        }
+        small{
+            display: block;
+        }
+    }
+    small{
+        position: absolute;
+        right: 20px;
+        bottom: 10px;
+        font-weight: bold;
+        color: $rosa;
+        display: none;
+    }
+}
+
+// `xs` devuelve solo un conjunto de reglas y ninguna consulta de medios
+// ... { ... }
+
+// `sm` se aplica a dispositivos x-small (teléfonos verticales, menos de 576px)
+@media (max-width: 575.98px) {  }
+
+// `md` se aplica a dispositivos pequeños (teléfonos horizontales, menos de 768px)
+@media (max-width: 767.98px) {
+    
+  }
+
+// "lg" se aplica a dispositivos medianos (tabletas, menos de 992 px)
+@media (max-width: 991.98px) {  }
+
+// `xl` se aplica a dispositivos grandes (computadoras de escritorio, menos de 1200 px)
+@media (max-width: 1199.98px) {  }
+
+// `xxl` se aplica a dispositivos de gran tamaño (escritorios grandes, menos de 1400px)
+@media (max-width: 1399.98px) {  }

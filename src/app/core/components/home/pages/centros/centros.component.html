@@ -1,0 +1,108 @@
+<div class="container mb-3">
+
+    <!--! Primera fila -->
+    <div class="row hero-centros-info  p-5">
+
+        <div class="col-12 col-md-6 foto p-0 m-0">
+            <p-galleria id="start" [value]="images" [responsiveOptions]="responsiveOptions" [containerStyle]="{'max-width': '640px'}" [numVisible]="5" style="user-select: none;"> 
+                <ng-template pTemplate="item" let-item>
+                    <app-spinner></app-spinner>
+                    <img [src]="item.img" style="width: 100%; display: block;  height: 300px;" />
+                </ng-template> 
+                <ng-template pTemplate="thumbnail" let-item>
+                    <div class="grid grid-nogutter justify-content-center">
+                        <app-spinner></app-spinner>
+                        <img [src]="item.img" style="display: block;" style="width:100px; padding: 5px"/>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="caption" let-item>
+                    <h4 style="margin-bottom: .5rem; color: #ffffff;">{{item.nombre}}</h4>
+                    <p>{{ item.ciudad }}</p>
+                </ng-template>
+            </p-galleria>
+        </div>
+
+        <div class="col-12 col-md-6 centros">
+            <div>
+                <h1>Centros colaboradores</h1>
+                <h2 class="h2 small">Los centros son los nucleos que se encargan de gestionar todas las solicitudes.
+                    Los centros se encargan de:
+                </h2>
+                <ul>
+                    <li><i class="pi pi-check-circle"></i>Aceptar las solicitudes que solicites</li>
+                    <li><i class="pi pi-check-circle"></i>Luegar de recogida</li>
+                    <li><i class="pi pi-check-circle"></i>Ajustar los productos a tus necesitades</li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- ! Segunda fila -->
+    <!-- <app-map></app-map> -->
+
+    <!-- ! Tercera fila -->
+    <div class="row w-100">
+        <div class="col-12">
+            <div class="listacentros">
+                <h1>Centros disponibles</h1>
+                <div class="provincia">
+                    <div class="titulo">
+                        <h2>Castellón</h2>
+                        <img class="mancha animate__animated animate__bounce" src="assets/decorados/Mancha.svg">
+                        <img class="animate__animated animate__bounce" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Escut_de_Castell%C3%B3_ornamentat-2.svg/1200px-Escut_de_Castell%C3%B3_ornamentat-2.svg.png" alt="Escudo castellón">
+                    </div>
+                    <div class="cartas">
+                        <app-spinner></app-spinner>
+                        <div *ngFor="let centro of castellon" class="card" style="width: 14rem;" (click)="irInfo(centro.info)">
+                            <img class="card-img" src="{{ centro.img }}" alt="Card image cap">
+                            <div class="card-body">
+                              <h5 class="card-title">{{ centro.nombre }}</h5>
+                              <p class="card-subtitle mb-2 text-muted">{{ centro.ciudad }}</p>
+                                <small>+ Info</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="provincia">
+                    <div class="titulo">
+                        <h2>Valencia</h2>
+                        <img class="mancha animate__animated animate__bounce" src="assets/decorados/Mancha.svg">
+                        <img class="animate__animated animate__bounce" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Escut_de_Val%C3%A8ncia.svg/1200px-Escut_de_Val%C3%A8ncia.svg.png" alt="Escudo valencia">
+                    </div>
+                    <div class="cartas">
+                        <app-spinner></app-spinner>
+                        <div *ngFor="let centro of valencia" class="card" style="width: 14rem;" (click)="irInfo(centro.info)">
+                            <img class="card-img" src="{{ centro.img }}" alt="Card image cap">
+                            <div class="card-body">
+                              <h5 class="card-title">{{ centro.nombre }}</h5>
+                              <p class="card-subtitle mb-2 text-muted">{{ centro.ciudad }}</p>
+                              <small>+ Info</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="provincia">
+                    <div class="titulo">
+                        <h2>Alicante</h2>
+                        <img class="mancha animate__animated animate__bounce" src="assets/decorados/Mancha.svg">
+                        <img class="animate__animated animate__bounce" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Escut_d%27Alacant_02.svg/1200px-Escut_d%27Alacant_02.svg.png" alt="Escudo alicante">
+                    </div>
+                    <div  class="cartas">
+                        <app-spinner></app-spinner>
+                        <div *ngFor="let centro of alicante" class="card" style="width: 14rem;" (click)="irInfo(centro.info)">
+                            <img class="card-img" src="{{ centro.img }}" alt="Card image cap">
+                            <div class="card-body">
+                              <h5 class="card-title">{{ centro.nombre }}</h5>
+                              <p class="card-subtitle mb-2 text-muted">{{ centro.ciudad }}</p>
+                              <small>+ Info</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

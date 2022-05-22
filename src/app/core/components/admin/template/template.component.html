@@ -1,0 +1,24 @@
+<!-- Modelo a seguir https://coreui.io/demo/4.0/free/ -->
+<!-- Bootstrap https://bootstrap-cheatsheet.themeselection.com/ -->
+<div class="container-fluid" style="height: 100vh;">
+    <div class="row" style="height: 100%;">
+
+        <!-- TODO MENU -->
+        <div id="menu" [ngClass]="hideMenu ? 'd-none' : 'd-block' " class="col-2 menu d-flex flex-column">
+            <admin-menu></admin-menu>
+        </div>
+
+        <!-- TODO Submenu -->
+        <div [ngClass]="hideMenu ? 'col-12' : 'col-10' " class="submenu">
+            <admin-nav (menuStatus)="statusMenu($event)"></admin-nav>
+
+            <div class="apartado">
+                <div class="caja" [ngClass]="_router.isActive('/admin/auth/update',false) ? 'update' : ''">
+                    <router-outlet></router-outlet>
+                </div>
+                
+            </div>        
+        </div>
+        
+    </div>
+</div>

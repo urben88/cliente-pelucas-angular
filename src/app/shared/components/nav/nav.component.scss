@@ -1,0 +1,255 @@
+// @import "../../../../assets/scss/_variables.scss";
+@import "../../../../styles.scss";
+.nav{
+    // border: 2px solid black;
+    z-index: 10;
+    position: fixed;
+    top: 0px;
+    background-color: white;
+    min-height: $navheigth; // 62px
+    max-height: 700px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items:baseline;
+    flex-wrap: wrap;
+    box-shadow: 0px 2px 10px;
+
+    //? caja
+    .caja{
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        flex-wrap: nowrap;
+        //? El logo
+        .logo{
+            width: 100px;
+            height: $navheigth;
+            padding-bottom: 0px;
+            margin-bottom: 0px;
+            // border: black 2px solid;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        //?Botones del menú
+        .menu{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            // gap: 24px;
+            user-select: none;
+            .btn-menu{
+                padding-left:20px;
+                padding-right:20px;
+                // max-width: 100px;
+                height: $navheigth;
+                // border: 2px solid black;
+                font-family: 'Montserrat';
+                font-style:normal;
+                font-weight: 500;
+                font-size: 15px;
+                line-height: 18px;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                letter-spacing: -0.015em;
+                color: #7879F1;
+                transition: 0.2s;
+                cursor: pointer;
+                &:hover{
+                    cursor: pointer;
+                    // transform: scale(1.1);
+                    // font-family: 'Montserrat';
+                    // font-style: normal;
+                    // font-weight: 700;
+                    color: #ef5da8a1;
+                    // color: aliceblue;
+                }
+            } 
+        }
+    }
+
+    //? Caja de los botones de la derecha
+    .botones{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        // border: 2px solid black;
+        margin-bottom: 0px;
+        .user{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            .imagen{
+                position: relative;
+                p-avatar{
+                    margin-top: 5px;
+                    position: relative;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+                i{
+                    display: block;
+                    opacity: 0;
+                    position: absolute;
+                    top: -20px;
+                    right: -10px;
+                    border-radius: 100%;
+                    background-color:$morado-input;
+                    padding: 5px;
+                    color: white;
+                    transition: 0.3s;
+                    transform:skew(20deg)
+                }
+                &:hover{
+                    cursor: pointer;
+                    transition: 0.3s;
+                    i{
+                        transform:skewY(0deg);
+                        opacity: 1;
+                        transition: 0.3s;
+                        display: block;
+                        top: 0px;
+                        
+                    }
+                }
+            }
+            //?Campana
+            i{
+
+                position: relative;
+                // border: 2px solid black;
+                padding-top: 2px;
+                &:hover{
+                    cursor: pointer;
+                    .caja{
+                        display: flex;
+                    }
+                }
+                .caja{
+                    display: none;
+                    // display: none;
+                    position: absolute;
+                    width: 250px;
+                    background-color: white;
+                    border: 2px solid black;
+                    flex-direction: column;
+                    padding: 20px;
+                    top: 33px;
+                    left: -100px;
+                    h1{
+                        font-size: 20px;
+                        margin-bottom: 0px;
+                    }
+                    .notificaciones{       
+                        .notificacion{
+                            display: flex;
+                            flex-direction: row;
+                            flex-wrap: nowrap;
+                            justify-content: center;
+                            align-items:center;
+                            cursor: pointer;
+                            margin-bottom: 5px;
+    
+                            // &:hover{
+    
+                            //     background-color: #7878f186;
+                            //     color: white;
+                            // }
+                            padding: 5px;
+                            h2{
+                                font-size: 10px;
+                                padding-top: 6px;
+                            }
+                            i{
+                                margin-left: 10px;
+                                font-size: 15px;
+                            }
+                        }
+                    }
+                }
+        }
+            margin-right: 10px;
+        }
+    }
+
+}
+.activadomenu{
+    color: #d9ff00da;
+}
+.activado{
+    color:$rosa-hover !important;
+}
+.btn-admin{
+    position: absolute;
+    right: 10px;
+    top: 15px;
+}
+.successNoti{
+    background-color: rgba(0, 128, 0, 0.135);
+}
+.infoNoti{
+    background-color: rgba(0, 30, 128, 0.135);
+}
+.warnNoti{
+    background-color: rgba(163, 118, 13, 0.135);
+}
+
+
+// .btnActive{
+//     background-color: #ef5da8a1;
+//     color: white;
+// }
+
+// `sm` se aplica a dispositivos x-small (teléfonos verticales, menos de 576px)
+@media (max-width: 575.98px) { 
+
+ }
+
+// `md` se aplica a dispositivos pequeños (teléfonos horizontales, menos de 768px)
+@media (max-width: 767.98px) { 
+    .logo{
+        margin: 30px auto;
+        width: 200px !important;
+        height: 200px !important;
+    }
+    .nav{
+        // height: 62px * 2;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+    .caja{
+        flex-direction: column;
+    }
+    .menu{
+        width: 100%;
+        padding-top: 30px;
+        margin-bottom: 20px;
+        justify-content: center;
+        .btn-menu{
+            // font-size: 20px !important; 
+        }
+    }
+    .botones{
+        margin-bottom: 40px !important;
+        flex-direction: column !important;
+    }
+ }
+
+// "lg" se aplica a dispositivos medianos (tabletas, menos de 992 px)
+@media (max-width: 991.98px) {  }
+
+// `xl` se aplica a dispositivos grandes (computadoras de escritorio, menos de 1200 px)
+@media (max-width: 1199.98px) { }
+
+// `xxl` se aplica a dispositivos de gran tamaño (escritorios grandes, menos de 1400px)
+@media (max-width: 1399.98px) { }

@@ -1,0 +1,17 @@
+<div class="caja">
+    <div class="tablas">
+        <h1>Administrar solicitudes</h1>
+        <app-spinner></app-spinner>
+        <div class="tabla">
+            <admin-selec-row-table [rows]="solicitudes | selecRow:'solicitudes'" (selected)="solicitudSelect($event)" [desselect]="userSelected ? true : false"></admin-selec-row-table>
+        </div>
+        <!-- <admin-simple-table [rows]="solicitudes"></admin-simple-table> -->
+        <h1>Administrar solicitudes de los usuarios</h1>
+        <div class="tabla">
+            <admin-selec-row-table [rows]="users | selecRow:'users'" (selected)="userSelect($event)" [desselect]="solicitudSelected ? true : false"></admin-selec-row-table>
+        </div>
+    </div>
+    <app-spinner></app-spinner>
+    <admin-solicitud-simple-show *ngIf="solicitud && (userSelected || solicitudSelected)" (actualizar)="actualizar()" [solicitudSet]="solicitud"></admin-solicitud-simple-show>
+   <admin-solicitudes-form *ngIf="!solicitud && (userSelected || solicitudSelected)" [forAdmin]="true" (actualizar)="actualizar()" [user_id]="passId()"></admin-solicitudes-form>
+</div>

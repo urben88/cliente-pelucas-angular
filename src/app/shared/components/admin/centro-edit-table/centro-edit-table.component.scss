@@ -1,0 +1,21 @@
+.card{
+    padding: 20px;
+}
+.pi-cog{
+    cursor: pointer;
+    margin-top: 20%; 
+    color: blueviolet;
+}
+
+.filtrofecha{
+    min-width: 400px !important;
+}
+.filtro{
+    min-width: 200px !important
+}
+:host ::ng-deep{
+    .p-datatable,.p-datatable-wrapper{
+         min-height: 600px !important;
+     }
+ }
+ 

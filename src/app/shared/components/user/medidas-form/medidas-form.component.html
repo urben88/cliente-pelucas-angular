@@ -1,0 +1,154 @@
+<!-- ! Mensajes info -->
+<p-toast position="top-center" style="margin-top:300px"></p-toast>
+<div class="caja animate__animated" [ngClass]="forAdmin ? 'animate__backInLeft' :'animate__fadeInUpBig'" >
+    <form [formGroup]="medidasForm">
+        <div class="titulo">
+            <h1>Medidas de la cabeza</h1>
+            <icon-refresh *ngIf="haveMedidas" (update)="reset()"></icon-refresh>
+        </div>
+        <div *ngIf="!haveMedidas && !medidasUser && forAdmin" class="alert alert-success" role="alert">
+            Este usuario no tiene registradas medidas, puedes crearlas
+        </div>
+        <div *ngIf="haveMedidas && medidasUser && forAdmin" class="alert alert-primary" role="alert">
+            El usuario tiene medidas registradas puedes modificarlas
+        </div>
+        <div class="datos">
+            <div class="campo">
+
+                <div class="carta">
+                    <div class="cajaimg">
+                        <img src="assets/img/medidas/redondo.PNG">
+                    </div>
+                    <div class="field" style="display: flex; flex-direction: column;">
+                        <label>Redondo</label>
+                        
+                        <div class="input">
+                            <input [ngClass]="errorStyle('redondo')" class="inputNumber" type="number" formControlName="redondo">
+                            <small>cm</small>
+                        </div>
+
+                        <small *ngIf="campoEsValido('redondo')" class="p-error block">
+                            {{ redondoErrorMsg }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="carta">
+                    <div class="cajaimg">
+                        <img src="assets/img/medidas/patilla_a_patilla_por_frente.PNG">
+                    </div>
+                    <div class="field" style="display: flex; flex-direction: column;">
+                        <label>Patilla a patilla por frente</label>
+                        
+                        <div class="input">
+                            <input [ngClass]="errorStyle('patilla_a_patilla')" class="inputNumber" type="number" formControlName="patilla_a_patilla">
+                            <small>cm</small>
+                        </div>
+                        
+                        <small *ngIf="campoEsValido('patilla_a_patilla')" class="p-error block">
+                            {{ patilla_a_patillaErrorMsg }}
+                        </small>
+                    </div>
+                </div>
+                <div class="carta">
+                    <div class="cajaimg">
+                        <img src="assets/img/medidas/largo_de_frente_a_cuello.PNG">
+                    </div>
+                    <div class="field" style="display: flex; flex-direction: column;">
+                        <label>Largo de frente a cuello</label>
+                        <div class="input">
+                            <input [ngClass]="errorStyle('largo_de_frente')" class="inputNumber" type="number" formControlName="largo_de_frente">
+                            <small>cm</small>
+                        </div>
+                        <small *ngIf="campoEsValido('largo_de_frente')" class="p-error block">
+                            {{ largo_de_frenteErrorMsg }}
+                        </small>
+                    </div>
+                </div>
+                <div class="carta">
+                    <div class="cajaimg">
+                        <img src="assets/img/medidas/sien_a_sien_por_detras.PNG">
+                    </div>
+                    <div class="field" style="display: flex; flex-direction: column;">
+                        <label>Sien a sien por detrás</label>
+                        <div class="input">
+                            <input [ngClass]="errorStyle('sien_a_sien')" class="inputNumber" type="number" formControlName="sien_a_sien">
+                            <small>cm</small>
+                        </div>
+                        <small *ngIf="campoEsValido('sien_a_sien')" class="p-error block">
+                            {{ sien_a_sienErrorMsg }}
+                        </small>
+                    </div>
+                </div>
+                <div class="carta">
+                    <div class="cajaimg">
+                        <img src="assets/img/medidas/oreja_a_oreja_por_encima.PNG">
+                    </div>
+                    <div class="field" style="display: flex; flex-direction: column;">
+                        <label>Oreja a oreja por encima</label>
+                        <div class="input">
+                            <input [ngClass]="errorStyle('oreja_a_oreja_por_encima')" class="inputNumber" type="number" formControlName="oreja_a_oreja_por_encima">
+                            <small>cm</small>
+                        </div>
+                        <small *ngIf="campoEsValido('oreja_a_oreja_por_encima')" class="p-error block">
+                            {{ oreja_a_oreja_por_encimaErrorMsg }}
+                        </small>
+                    </div>
+                </div>
+                <div class="carta">
+                    <div class="cajaimg">
+                        <img src="assets/img/medidas/anchura_del_cuello_superior.PNG">
+                    </div>
+                    <div class="field" style="display: flex; flex-direction: column;">
+                        <label>Anchura del cuello superior</label>
+                        <div class="input">
+                            <input [ngClass]="errorStyle('anchura_del_cuello_superior')" class="inputNumber" type="number" formControlName="anchura_del_cuello_superior">
+                            <small>cm</small>
+                        </div>
+                        <small *ngIf="campoEsValido('anchura_del_cuello_superior')" class="p-error block">
+                            {{ anchura_del_cuello_superiorErrorMsg }}
+                        </small>
+                    </div>
+                </div>
+                <div class="carta">
+                    <div class="cajaimg">
+                        <img src="assets/img/medidas/oreja_a_oreja_por_el_nacimiento_del_pelo.PNG">
+                    </div>
+                    <div class="field" style="display: flex; flex-direction: column;">
+                        <label>Anchura del cuello superior</label>
+                        <div class="input">
+                            <input [ngClass]="errorStyle('oreja_a_oreja_por_nacimiento_pelo')" class="inputNumber" type="number" formControlName="oreja_a_oreja_por_nacimiento_pelo">
+                            <small>cm</small>
+                        </div>
+                        <small *ngIf="campoEsValido('oreja_a_oreja_por_nacimiento_pelo')" class="p-error block">
+                            {{ oreja_a_oreja_por_nacimiento_peloErrorMsg }}
+                        </small>
+                    </div>
+                </div>
+                <div class="carta">
+                    <div class="cajaimg">
+                        <img src="assets/img/medidas/anchura_del_cuello_inferior.PNG">
+                    </div>
+                    <div class="field" style="display: flex; flex-direction: column;">
+                        <label>Anchura del cuello superior</label>
+                        <div class="input">
+                            <input [ngClass]="errorStyle('anchura_cuello_inferior')" class="inputNumber" type="number" formControlName="anchura_cuello_inferior">
+                            <small>cm</small>
+                        </div>
+                        <small *ngIf="campoEsValido('anchura_cuello_inferior')" class="p-error block">
+                            {{ anchura_cuello_inferiorErrorMsg }}
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div class="botones">
+                <button *ngIf="btnStatusUpdate()" (click)="update()" class="btn-morado">Actualizar</button>
+                <button *ngIf="btnStatusCreate()" (click)="crear()" class="btn-morado">Crear</button>
+                <p-confirmPopup></p-confirmPopup>
+                <button (click)="eliminar($event)"  pButton  *ngIf="btnStatusUpdate() && forAdmin" class="btn-rojo">Eliminar registro</button>
+                <alert-dberrors [erroresDB]="erroresDB"></alert-dberrors>
+            </div>
+        </div>
+    </form>
+</div>

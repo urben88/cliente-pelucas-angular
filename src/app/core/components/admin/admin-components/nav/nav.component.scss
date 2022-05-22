@@ -1,0 +1,128 @@
+@import "../../../../../../styles.scss";
+nav{
+    background-color: white;
+    margin: 0px;
+    padding: 16px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10%;
+    border-bottom: 2px #ECEDEF solid;
+    box-shadow: rgba(0, 0, 0, 0.311) 0px 0px 7px;
+    .bloque{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        i{
+            cursor: pointer;
+            font-size: 20px;
+            &:active{
+                transform: scale(0.9);
+            }
+        }
+        .menupag{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px
+        }
+    }
+    .user{ 
+        gap:10px;  
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        p{
+            user-select: none;
+            position: relative;
+            margin: 0px;
+            &:hover{
+                cursor: pointer;
+                color: blue;
+                text-decoration: underline;
+                .pi-cog{
+                    transform:skewY(0deg);
+                    opacity: 1;
+                    transition: 0.3s;
+                    display: block;
+                    top: 7px;
+                }
+                .pi-user{
+                    transition: 0.3s;
+                    opacity: 0;
+                    bottom: -20px;
+                }
+
+            }
+            .pi-user{
+                position: relative;
+                transition: 0.3s;
+                bottom: 0;
+            }
+            .pi-cog{
+                display: block;
+                opacity: 0;
+                position: absolute;
+                top: -20px;
+                left: 5px;  
+                transition: 0.3s;
+                transform:skew(20deg)
+            }
+        }
+        .cuenta{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            h1,small{
+                text-align: center;
+                font-size: 10px;
+            }
+        }
+
+    }
+}
+.activado{
+    color: $morado-boton;
+}
+:host ::ng-deep{
+    .p-breadcrumb{
+            padding: 5px 10px;
+    }
+}
+
+.irWeb{
+    margin-left: 10px;
+    color: $morado-input;
+    display: none;
+}
+// `xs` devuelve solo un conjunto de reglas y ninguna consulta de medios
+// ... { ... }
+
+// `sm` se aplica a dispositivos x-small (teléfonos verticales, menos de 576px)
+@media (max-width: 575.98px) {  }
+
+// `md` se aplica a dispositivos pequeños (teléfonos horizontales, menos de 768px)
+@media (max-width: 767.98px) { 
+ }
+
+// "lg" se aplica a dispositivos medianos (tabletas, menos de 992 px)
+@media (max-width: 991.98px) {  
+    .menupag{
+        display: none !important;
+    }
+    
+    .irWeb{
+        display: block;
+    }
+
+}
+
+// `xl` se aplica a dispositivos grandes (computadoras de escritorio, menos de 1200 px)
+@media (max-width: 1199.98px) {  }
+
+// `xxl` se aplica a dispositivos de gran tamaño (escritorios grandes, menos de 1400px)
+@media (max-width: 1399.98px) {  }

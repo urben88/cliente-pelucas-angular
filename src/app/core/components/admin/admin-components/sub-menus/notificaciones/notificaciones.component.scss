@@ -1,0 +1,32 @@
+@import "../../../../../../../styles.scss";
+.caja{
+    overflow: auto;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.206) 0px 0px 7px;
+    .bloque{
+        background-color: white;
+        padding: 50px;
+        margin-top: 50px;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .grafico{
+            width: 30%;
+        } 
+    }
+    
+    .notificacionestable{
+        margin-top: 50px;
+        strong{
+            color: $morado-boton;
+        }
+    }
+    admin-selec-row{
+      
+    }
+    admin-delete-table{
+        margin-top: 50px !important;
+    }
+   
+}

@@ -1,0 +1,66 @@
+.cajaform-1{
+    // border: 2px solid rgba(128, 128, 128, 0.223);
+    padding: 30px;
+    h1{
+        /* Body H4 */
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        /* or 150% */
+
+        letter-spacing: -0.015em;
+    }
+}
+.p-inputtext{
+    border-radius: 0px;
+    border: 2px solid rgba(128, 128, 128, 0.44);
+}
+:host ::ng-deep{
+    .p-inputnumber{
+        .p-inputtext{
+            border-radius: 0px;
+            border: 2px solid rgba(128, 128, 128, 0.44);
+            &:focus{
+                border-color: blueviolet;
+            }
+        }
+    }
+    .p-dropdown{
+        border-radius: 0px;
+        border: 2px solid rgba(128, 128, 128, 0.44);
+        &:focus{
+            border-color: blueviolet;
+        }
+    }
+    .p-inputnumber-input{
+        border-radius: 0px;
+        border:none
+    }
+    .p-password-panel{
+        width: 100%;
+    }
+    .p-inputtext,.p-password-input, .p-password-panel,.ng-tns-c69-0,.ng-tns-c69-1v{
+        .p-inputtext{
+            width: 100%;
+            border-radius: 0px !important;
+            border: 2px solid rgba(128, 128, 128, 0.44) !important;
+            &:focus{
+                border-color: blueviolet;
+            }
+        }
+       
+    }
+
+    .p-toast,.p-toast-message {
+        z-index: 999 !important;
+    }
+}
+//? Para cuando imprimo texto desde db
+.text-modal{
+    position: relative;
+    word-wrap: break-word;
+    display: inline-block !important;
+}
+

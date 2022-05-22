@@ -1,0 +1,13 @@
+<div id="cajaCheques"class="caja">
+    <div *ngFor="let tipo of servicios" class="cajaTipo">
+        <h1>{{tipo.tipo | titlecase }}</h1>
+        <div *ngFor="let category of tipo.cheques" class="cajaCheques">
+            <p-radioButton [inputId]="category.cheque" name="cheque" [value]="category" (ngModelChange)="onChange($event)" [(ngModel)]="chequeSelected">
+            </p-radioButton>
+            <label (mouseleave)="outDescripcion(category)" (mouseenter)="hoverDescripcion(category)" [for]="category.key">{{category.servicio | titlecase}}</label>
+            <div *ngIf="Chequedescripcion" [ngClass]="infoStyle(category)" class="info">
+                {{Chequedescripcion.descripcion}} 
+            </div>
+        </div>
+    </div>
+</div>

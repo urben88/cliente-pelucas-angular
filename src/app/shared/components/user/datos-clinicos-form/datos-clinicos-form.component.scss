@@ -1,0 +1,100 @@
+@import "../../../../../styles.scss";
+.caja{
+    background-color: white;
+    z-index: 9;
+    width: 100%;
+    min-width: 200px;
+    border: 2px solid black;
+    padding: 30px;
+    .titulo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    
+    }
+    .datos{
+        font-size: 100%;
+        // border: 2px solid black;
+        margin: 20px 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+        gap: 30px;
+        input{
+            width: 100%;
+        }
+        .field{
+            margin-bottom: 10px;
+        }
+        .doble{
+            display: flex;
+            justify-content: space-around;
+            // border: 2px solid black;
+            gap: 20px;
+            width: 100%;
+            p-inputNumber{
+                width: 100% !important;
+            }
+        }
+        .campo{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 30px;
+            .switch{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .more{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                 gap: 30px; 
+            }
+        }
+        .botones{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+    }
+    button{
+        width: 180px;
+    }
+}
+.flexrow{
+    flex-direction: row !important;
+}
+.flexcolumn{
+    flex-direction: column !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+}
+
+// `xs` devuelve solo un conjunto de reglas y ninguna consulta de medios
+// ... { ... }
+
+// `sm` se aplica a dispositivos x-small (teléfonos verticales, menos de 576px)
+@media (max-width: 575.98px) {  }
+
+// `md` se aplica a dispositivos pequeños (teléfonos horizontales, menos de 768px)
+@media (max-width: 767.98px) { 
+    .flexrow{
+        flex-direction: column !important;
+    }
+}
+
+// "lg" se aplica a dispositivos medianos (tabletas, menos de 992 px)
+@media (max-width: 991.98px) {  }
+
+// `xl` se aplica a dispositivos grandes (computadoras de escritorio, menos de 1200 px)
+@media (max-width: 1199.98px) {  }
+
+// `xxl` se aplica a dispositivos de gran tamaño (escritorios grandes, menos de 1400px)
+@media (max-width: 1399.98px) {  }
