@@ -1,0 +1,9 @@
++información en la documentación
+
+Comandos básicos en consola:
+
+1- npm install
+
+2- ng serve --prod
+
+
